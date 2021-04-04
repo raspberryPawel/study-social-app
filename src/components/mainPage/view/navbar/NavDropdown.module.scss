@@ -1,0 +1,33 @@
+.NavDropdown {
+	position: relative;
+}
+
+.dropdownContainer {
+	position: relative;
+	overflow: hidden;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	box-sizing: border-box;
+	color: #333;
+	cursor: default;
+	outline: none;
+	transition: all 200ms ease;
+	display: flex;
+	height: 30px;
+	padding: 0 20px;
+	flex-direction: row;
+	align-items: center;
+	width: 200px;
+	justify-content: space-between;
+
+	p{
+		display: flex;
+		align-items: center;
+
+		img{
+			height: 15px;
+			padding: 0 10px;
+		}
+	}
+}

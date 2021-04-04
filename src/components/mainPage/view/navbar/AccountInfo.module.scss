@@ -1,0 +1,38 @@
+@import "../../../../assets/variables";
+
+.AccountInfo {
+
+}
+
+.account {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 5px 0;
+
+	img {
+		width: 40px;
+		height: 40px;
+		object-fit: cover;
+		border-radius: 100%;
+	}
+}
+
+.accountDetails {
+	display: flex;
+	flex-direction: column;
+	padding-left: 10px;
+	width: calc(100% - 50px);
+
+	span {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	a{
+		color: $blue;
+		font-size: 12px;
+		cursor: pointer;
+	}
+}
