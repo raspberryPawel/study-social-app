@@ -1,5 +1,6 @@
-import React, {Component} from "react";
+import React, {Component, ReactElement} from "react";
 import "react-dropdown/style.css";
+import OutsideClickHandler from "react-outside-click-handler";
 import styled from "styled-components";
 import administration from "../../../../assets/icons/administration.svg";
 import arrow from "../../../../assets/icons/arrow-down.svg";
@@ -11,16 +12,18 @@ import home from "../../../../assets/icons/house.svg";
 import groupNorms from "../../../../assets/icons/open-book.svg";
 import peoples from "../../../../assets/icons/people.svg";
 import publications from "../../../../assets/icons/publications.svg";
+import {DropdownOption} from "../../interfaces/DropdownOption";
 
 import {DropdownSections} from "../../interfaces/DropdownSections";
 import {AccountInfo} from "./AccountInfo";
 import {DropdownView} from "./DropdownView";
-import styles from "./NavDropdown.module.scss";
+import "./NavDropdown.scss";
 
 interface IProps {}
 
 interface IState {
-	isOpen: boolean
+	isOpen: boolean,
+	selectedOption: DropdownOption
 }
 
 interface DropdownArrowProps {
@@ -59,25 +62,38 @@ const DropdownArrow = styled.img<DropdownArrowProps>`
 
 export class NavDropdown extends Component<IProps, IState> {
 	state = {
-		isOpen: false
+		isOpen: false,
+		selectedOption: null
 	};
 
-	protected onButtonClick = () => {
+	protected toggleDropdown = () => {
 		const isOpen = !this.state.isOpen;
 		this.setState({isOpen});
 	};
 
-	render() {
+	protected changeSelectedOption = (selectedOption: DropdownOption) => {
+		this.setState({selectedOption});
+	};
+
+	public render(): ReactElement {
+		const {selectedOption} = this.state;
 		return (
-			<div className={styles.NavDropdown}>
-				<div className={styles.dropdownContainer} onClick={this.onButtonClick}>
-					<p><img src={home} /> Home</p>
-					<DropdownArrow src={arrow} isOpen={this.state.isOpen} />
+			<OutsideClickHandler onOutsideClick={this.toggleDropdown}>
+				<div className={"NavDropdown"}>
+					<div className={"dropdownContainer"} onClick={this.toggleDropdown}>
+						{!selectedOption
+							? <p><img src={home} alt={"home icon"} />Home</p>
+							: <p><img src={selectedOption.icon} alt={"home icon"} />{selectedOption.title}</p>}
+						<DropdownArrow src={arrow} isOpen={this.state.isOpen} />
+					</div>
+					{
+						this.state.isOpen &&
+						<DropdownView dropdownSections={dropdownSections}
+									  changeSelectedOption={this.changeSelectedOption}
+						/>
+					}
 				</div>
-				{
-					this.state.isOpen && <DropdownView dropdownSections={dropdownSections} />
-				}
-			</div>
+			</OutsideClickHandler>
 		);
 	}
 }

@@ -1,27 +1,29 @@
-import React, {Component} from "react";
+import React, {Component, ReactElement} from "react";
 import {DropdownElement} from "../../../../common/DropdownElement";
 import {SectionSeparator} from "../../../../common/SectionSeparator";
 import {DropdownOption} from "../../interfaces/DropdownOption";
 import {DropdownSections} from "../../interfaces/DropdownSections";
-import styles from "./DropdownView.module.scss";
+import "./DropdownView.scss";
 
 interface IProps {
-	dropdownSections: DropdownSections[]
+	dropdownSections: DropdownSections[];
+	changeSelectedOption: (selectedOption: DropdownOption) => void
 }
 
-interface IState {}
-
-export class DropdownView extends Component<IProps, IState> {
-
+export class DropdownView extends Component<IProps> {
 	protected createSection = (section: DropdownSections) => {
 		return (
 			<div>
 				{!section.options && <SectionSeparator />}
-				<p className={styles.sectionTitle}>{section.title}</p>
+				<p className={"sectionTitle"}>{section.title}</p>
 
 				{section.options
 					? section.options?.map(
-						(option: DropdownOption) => <DropdownElement icon={option.icon} text={option.title} />)
+						(option: DropdownOption) => <DropdownElement
+							icon={option.icon}
+							text={option.title}
+							onClick={() => this.props.changeSelectedOption(option)}
+						/>)
 					: section.component
 				}
 			</div>
@@ -29,11 +31,11 @@ export class DropdownView extends Component<IProps, IState> {
 
 	};
 
-	public render() {
+	public render(): ReactElement {
 		const {dropdownSections} = this.props;
 
 		return (
-			<div className={styles.DropdownView}>
+			<div className={"DropdownView"}>
 				{dropdownSections.map(this.createSection)}
 			</div>
 		);

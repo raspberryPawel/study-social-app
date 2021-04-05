@@ -13,12 +13,11 @@
 	width: 100%;
 	z-index: 1000;
 	-webkit-overflow-scrolling: touch;
-}
 
-.sectionTitle {
-	color: $light-grey;
-	font-size: 13px;
-	padding-left: 5px;
-	margin: 5px 0;
+	.sectionTitle {
+		color: $light-grey;
+		font-size: 13px;
+		padding-left: 5px;
+		margin: 5px 0;
+	}
 }
-

@@ -1,15 +1,11 @@
-import React, {Component} from "react";
+import React, {Component, ReactElement} from "react";
 import {NavBar} from "../components/mainPage/view/navbar/NavBar";
-import styles from "./MainPage.module.scss";
+import "./MainPage.scss";
 
-interface IProps {}
-
-interface IState {}
-
-export class MainPage extends Component<IProps, IState> {
-	render() {
+export class MainPage extends Component {
+	public render(): ReactElement {
 		return (
-			<div className={styles.MainPage}>
+			<div className={"MainPage"}>
 				<NavBar />
 			</div>
 		);

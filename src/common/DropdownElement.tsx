@@ -5,6 +5,7 @@ interface IProps {
 	icon: string,
 	text: string,
 	center?: boolean,
+	className?: string;
 	onClick?: () => void
 }
 
@@ -39,10 +40,10 @@ export class DropdownElement extends Component<IProps> {
 	};
 
 	public render() {
-		const {icon, text, center} = this.props;
+		const {icon, text} = this.props;
 		return (
 			<Element {...this.props} onClick={this.onClick}>
-				<span><img src={icon} />{text}</span>
+				<span><img src={icon} alt={"icon"} />{text}</span>
 			</Element>
 		);
 	}

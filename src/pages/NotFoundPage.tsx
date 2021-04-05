@@ -1,16 +1,13 @@
 import {Button} from "@material-ui/core";
-import React, {Component} from "react";
+import React, {Component, ReactElement} from "react";
+import {Link} from "react-router-dom";
 import page404 from "../assets/icons/404.svg";
-import styles from "./NotFoundPage.module.scss";
+import "./NotFoundPage.scss";
 
-interface IProps {}
-
-interface IState {}
-
-export class NotFoundPage extends Component<IProps, IState> {
-	render() {
+export class NotFoundPage extends Component {
+	public render(): ReactElement {
 		return (
-			<div className={styles.NotFoundPage}>
+			<div className={"NotFoundPage"}>
 				<section>
 					<img src={page404} alt={"page not found"} />
 				</section>
@@ -21,7 +18,9 @@ export class NotFoundPage extends Component<IProps, IState> {
 						How you got here is a mystery. But you can click the button below
 						to go back to the homepage.
 					</p>
-					<Button onClick={() => {console.log("siemaneczko");}}>Home</Button>
+					<Link to={"/"}>
+						<Button>Home</Button>
+					</Link>
 				</section>
 			</div>
 		);

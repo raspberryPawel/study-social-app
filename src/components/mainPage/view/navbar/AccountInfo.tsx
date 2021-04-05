@@ -1,26 +1,20 @@
-import React, {Component} from "react";
+import React, {Component, ReactElement} from "react";
 import logout from "../../../../assets/icons/logout.svg";
 import privacy from "../../../../assets/icons/privacy.svg";
 import settings from "../../../../assets/icons/settings.svg";
 import personImage from "../../../../assets/images/enxampleperson.png";
 import {DropdownElement} from "../../../../common/DropdownElement";
 import {SectionSeparator} from "../../../../common/SectionSeparator";
-import styles from "./AccountInfo.module.scss";
+import "./AccountInfo.scss";
 
-interface IProps {}
-
-interface IState {}
-
-export class AccountInfo extends Component<IProps, IState> {
-	render() {
-		const name = "Jeanne-Marie de la cli";
-
+export class AccountInfo extends Component {
+	public render(): ReactElement {
 		return (
-			<div className={styles.AccountInfo}>
-				<section className={styles.account}>
+			<div className={"AccountInfo"}>
+				<section className={"account"}>
 					<img src={personImage} alt="" />
-					<div className={styles.accountDetails}>
-						<span>Name surname siema siema </span>
+					<div className={"accountDetails"}>
+						<span>Name surname example person </span>
 						<a>See profile</a>
 					</div>
 				</section>
@@ -28,9 +22,8 @@ export class AccountInfo extends Component<IProps, IState> {
 				<DropdownElement icon={privacy} text={"Privacy"} />
 				<DropdownElement icon={settings} text={"Settings"} />
 				<SectionSeparator />
-				<DropdownElement icon={logout} text={"Logout"} center/>
+				<DropdownElement className={"logoutButton"} icon={logout} text={"Logout"} center />
 			</div>
 		);
 	}
-
 }
