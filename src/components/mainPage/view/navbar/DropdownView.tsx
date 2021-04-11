@@ -1,5 +1,6 @@
 import React, {Component, ReactElement} from "react";
-import {DropdownElement} from "../../../../common/DropdownElement";
+import {ButtonElement} from "../../../../common/ButtonElement";
+import {CustomScrollbar} from "../../../../common/CustomScrollbar";
 import {SectionSeparator} from "../../../../common/SectionSeparator";
 import {DropdownOption} from "../../interfaces/DropdownOption";
 import {DropdownSections} from "../../interfaces/DropdownSections";
@@ -19,7 +20,7 @@ export class DropdownView extends Component<IProps> {
 
 				{section.options
 					? section.options?.map(
-						(option: DropdownOption) => <DropdownElement
+						(option: DropdownOption) => <ButtonElement
 							icon={option.icon}
 							text={option.title}
 							onClick={() => this.props.changeSelectedOption(option)}
@@ -35,9 +36,9 @@ export class DropdownView extends Component<IProps> {
 		const {dropdownSections} = this.props;
 
 		return (
-			<div className={"DropdownView"}>
+			<CustomScrollbar className={"DropdownView"} style={{height: 400, position: "absolute"}}>
 				{dropdownSections.map(this.createSection)}
-			</div>
+			</CustomScrollbar>
 		);
 	}
 }

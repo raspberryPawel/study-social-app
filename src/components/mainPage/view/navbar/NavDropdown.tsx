@@ -1,6 +1,6 @@
+import {ClickAwayListener} from "@material-ui/core";
 import React, {Component, ReactElement} from "react";
 import "react-dropdown/style.css";
-import OutsideClickHandler from "react-outside-click-handler";
 import styled from "styled-components";
 import administration from "../../../../assets/icons/administration.svg";
 import arrow from "../../../../assets/icons/arrow-down.svg";
@@ -63,12 +63,17 @@ const DropdownArrow = styled.img<DropdownArrowProps>`
 export class NavDropdown extends Component<IProps, IState> {
 	state = {
 		isOpen: false,
-		selectedOption: null
+		selectedOption: {title: "Home", icon: home}
 	};
 
 	protected toggleDropdown = () => {
 		const isOpen = !this.state.isOpen;
 		this.setState({isOpen});
+	};
+
+	protected onOutsideClick = () => {
+		if (this.state.isOpen)
+			this.setState({isOpen: false});
 	};
 
 	protected changeSelectedOption = (selectedOption: DropdownOption) => {
@@ -78,12 +83,10 @@ export class NavDropdown extends Component<IProps, IState> {
 	public render(): ReactElement {
 		const {selectedOption} = this.state;
 		return (
-			<OutsideClickHandler onOutsideClick={this.toggleDropdown}>
+			<ClickAwayListener onClickAway={this.onOutsideClick}>
 				<div className={"NavDropdown"}>
 					<div className={"dropdownContainer"} onClick={this.toggleDropdown}>
-						{!selectedOption
-							? <p><img src={home} alt={"home icon"} />Home</p>
-							: <p><img src={selectedOption.icon} alt={"home icon"} />{selectedOption.title}</p>}
+						{<p><img src={selectedOption.icon} alt={"home icon"} />{selectedOption.title}</p>}
 						<DropdownArrow src={arrow} isOpen={this.state.isOpen} />
 					</div>
 					{
@@ -93,7 +96,7 @@ export class NavDropdown extends Component<IProps, IState> {
 						/>
 					}
 				</div>
-			</OutsideClickHandler>
+			</ClickAwayListener>
 		);
 	}
 }
