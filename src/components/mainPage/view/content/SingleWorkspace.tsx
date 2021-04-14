@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import styled from "styled-components";
+import {DotSeparator} from "../../../../common/DotSeparator";
 import {Workspace} from "../../interfaces/Workspace";
 
 interface IProps {
@@ -122,7 +123,7 @@ export const SingleWorkspace: FC<IProps> = props => {
 						<img src={icon} alt="workspace-icon" />
 						{workspaceName}
 					</span>
-					<span>•</span>
+					<DotSeparator/>
 					<span>{usersCount} users</span>
 				</WorkspaceInfo>
 

@@ -18,7 +18,7 @@ export class CustomScrollbar extends Component<IProps, IState> {
 	protected scrollbar: Scrollbars | null = null;
 	protected static defaultProps = {
 		scrollHorizontallyOnWheel: false,
-		scrollHorizontallyMultiplier: 3,
+		scrollHorizontallyMultiplier: 5,
 		className: "",
 		style: {}
 	};
