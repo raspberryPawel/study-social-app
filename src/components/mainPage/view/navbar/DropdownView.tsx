@@ -1,4 +1,6 @@
-import React, {Component, ReactElement} from "react";
+import {TextField} from "@material-ui/core";
+import React, {ChangeEvent, FC, useState} from "react";
+
 import {ButtonElement} from "../../../../common/ButtonElement";
 import {CustomScrollbar} from "../../../../common/CustomScrollbar";
 import {SectionSeparator} from "../../../../common/SectionSeparator";
@@ -11,8 +13,17 @@ interface IProps {
 	changeSelectedOption: (selectedOption: DropdownOption) => void
 }
 
-export class DropdownView extends Component<IProps> {
-	protected createSection = (section: DropdownSections) => {
+export const DropdownView: FC<IProps> = props => {
+	const [value, changeValue] = useState<string>("");
+	const {dropdownSections} = props;
+
+	const onChange = (e: ChangeEvent) => {
+		const inputValue = (e.target as HTMLInputElement).value;
+
+		changeValue(inputValue);
+	};
+
+	const createSection = (section: DropdownSections) => {
 		return (
 			<div>
 				{!section.options && <SectionSeparator />}
@@ -20,11 +31,15 @@ export class DropdownView extends Component<IProps> {
 
 				{section.options
 					? section.options?.map(
-						(option: DropdownOption) => <ButtonElement
-							icon={option.icon}
-							text={option.title}
-							onClick={() => this.props.changeSelectedOption(option)}
-						/>)
+						(option: DropdownOption) => {
+							return option.title.toLowerCase().includes(value.toLowerCase()) ?
+								<ButtonElement
+									icon={option.icon}
+									text={option.title}
+									onClick={() => props.changeSelectedOption(option)}
+								/>
+								: null;
+						})
 					: section.component
 				}
 			</div>
@@ -32,13 +47,10 @@ export class DropdownView extends Component<IProps> {
 
 	};
 
-	public render(): ReactElement {
-		const {dropdownSections} = this.props;
-
-		return (
-			<CustomScrollbar className={"DropdownView"} style={{height: 400, position: "absolute"}}>
-				{dropdownSections.map(this.createSection)}
-			</CustomScrollbar>
-		);
-	}
-}
+	return (
+		<CustomScrollbar className={"DropdownView"} style={{position: "absolute"}}>
+			<TextField className="filter-input" label="Filter" variant="outlined" onChange={onChange} />
+			{dropdownSections.map(createSection)}
+		</CustomScrollbar>
+	);
+};

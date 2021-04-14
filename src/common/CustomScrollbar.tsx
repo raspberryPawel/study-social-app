@@ -1,18 +1,26 @@
 import React, {Component, CSSProperties, ReactElement} from "react";
 import {Scrollbars} from "react-custom-scrollbars";
+// @ts-ignore
+import {ReactHeight} from "react-height";
 
 interface IProps {
 	scrollHorizontallyOnWheel?: boolean;
 	scrollHorizontallyMultiplier?: number;
 	className?: string;
-	style?: CSSProperties
+	style?: CSSProperties,
+	autoHeight?: boolean,
+	maxHeight?: number,
 }
 
-interface IState {isFocused: boolean}
+interface IState {
+	isFocused: boolean,
+	childrenHeight: number
+}
 
 export class CustomScrollbar extends Component<IProps, IState> {
 	state = {
-		isFocused: false
+		isFocused: false,
+		childrenHeight: 0,
 	};
 
 	protected scrollbar: Scrollbars | null = null;
@@ -20,6 +28,8 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		scrollHorizontallyOnWheel: false,
 		scrollHorizontallyMultiplier: 5,
 		className: "",
+		autoHeight: true,
+		maxHeight: 400,
 		style: {}
 	};
 
@@ -58,16 +68,24 @@ export class CustomScrollbar extends Component<IProps, IState> {
 	};
 
 	public render(): ReactElement {
+		const styles = {
+			height: `${this.state.childrenHeight}px`,
+			maxHeight: `${this.props.maxHeight}px`,
+			...this.props.style
+		};
+
 		return (
 			<Scrollbars
 				className={this.props.className}
 				ref={(node) => this.scrollbar = node}
 				onWheel={this.onWheel}
-				style={this.props.style}
+				style={styles}
 				onMouseOver={this.onMouseOver}
 				onMouseLeave={this.onMouseLeave}
 			>
-				{this.props.children}
+				<ReactHeight onHeightReady={(height: number) => this.setState({childrenHeight: height})}>
+					{this.props.children}
+				</ReactHeight>
 			</Scrollbars>
 		);
 	}

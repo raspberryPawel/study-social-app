@@ -21,4 +21,21 @@
 		padding-left: 5px;
 		margin: 5px 0;
 	}
+
+	.filter-input {
+		width: calc(90% - 10px);
+		margin: 10px 5%;
+
+		.MuiOutlinedInput-input {
+			padding: 10px 14px;
+		}
+
+		.MuiInputLabel-outlined {
+			transform: translate(14px, 15px) scale(1);
+		}
+
+		.MuiInputLabel-outlined.Mui-focused {
+			transform: translate(14px, -6px) scale(0.75);
+		}
+	}
 }

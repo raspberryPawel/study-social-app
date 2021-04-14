@@ -62,7 +62,7 @@ const DropdownArrow = styled.img<DropdownArrowProps>`
 
 export class NavDropdown extends Component<IProps, IState> {
 	state = {
-		isOpen: false,
+		isOpen: true,
 		selectedOption: {title: "Home", icon: home}
 	};
 
