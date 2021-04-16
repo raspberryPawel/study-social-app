@@ -6,9 +6,10 @@ interface IProps {
 }
 
 const Title = styled.div`
-		width: 100%;
-		text-align: left;
-		font-size: 1.3em;
+	width: 100%;
+	height: auto;
+	text-align: left;
+	font-size: 1.3em;
 `;
 
 export const SectionTitle: FC<IProps> = props => <Title>{props.title}</Title>;

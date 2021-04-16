@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import styled from "styled-components";
 import {DotSeparator} from "../../../../common/DotSeparator";
-import {Workspace} from "../../interfaces/Workspace";
+import {Workspace} from "../../../../interfaces/Workspace";
 
 interface IProps {
 	workspace: Workspace

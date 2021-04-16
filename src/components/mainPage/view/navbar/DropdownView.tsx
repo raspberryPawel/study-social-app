@@ -4,8 +4,8 @@ import React, {ChangeEvent, FC, useState} from "react";
 import {ButtonElement} from "../../../../common/ButtonElement";
 import {CustomScrollbar} from "../../../../common/CustomScrollbar";
 import {SectionSeparator} from "../../../../common/SectionSeparator";
-import {DropdownOption} from "../../interfaces/DropdownOption";
-import {DropdownSections} from "../../interfaces/DropdownSections";
+import {DropdownOption} from "../../../../interfaces/DropdownOption";
+import {DropdownSections} from "../../../../interfaces/DropdownSections";
 import "./DropdownView.scss";
 
 interface IProps {

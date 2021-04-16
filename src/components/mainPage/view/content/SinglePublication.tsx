@@ -1,12 +1,12 @@
 import {Avatar} from "@material-ui/core";
 import React, {Component, ReactElement} from "react";
 import personImage from "../../../../assets/images/enxampleperson.png";
-import {Publication} from "../../interfaces/Publication";
+import {LatestPublication} from "../../../../interfaces/LatestPublication";
 
 import "./SinglePublication.scss";
 
 interface IProps {
-	publication: Publication
+	publication: LatestPublication
 }
 
 interface IState {}
@@ -16,16 +16,16 @@ export class SinglePublication extends Component<IProps, IState> {
 		const {publication} = this.props;
 		return (
 			<div className={"SinglePublication"}>
-				<div className="publication-image"><img src={publication.imageUrl} alt="publication" /></div>
+				<div className="publication-image"><img src={publication.photo.url} alt="publication" /></div>
 				<div className="publication-content">
 					<strong className="title">{publication.title}</strong>
 					<div className="info">
-						<div className="date">{publication.date.toDateString()}</div>
+						<div className="date">{publication.lastUpdateDate.toDateString()}</div>
 						<div className="author">
 							<Avatar alt="Remy Sharp" src={personImage} className={"avatar"}
 									style={{width: 20, height: 20}}
 							/>
-							{publication.author.name} {publication.author.surname}
+							{publication.user.name}
 						</div>
 					</div>
 				</div>

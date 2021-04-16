@@ -4,7 +4,7 @@ import document from "../../../../assets/icons/document.svg";
 import placeholder from "../../../../assets/images/placehoder.png";
 import {CustomScrollbar} from "../../../../common/CustomScrollbar";
 import {SectionTitle} from "../../../../common/SectionTitle";
-import {Workspace} from "../../interfaces/Workspace";
+import {Workspace} from "../../../../interfaces/Workspace";
 import {SingleWorkspace} from "./SingleWorkspace";
 import "./Workspaces.scss";
 

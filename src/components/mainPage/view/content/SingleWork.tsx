@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import styled from "styled-components";
 import {DotSeparator} from "../../../../common/DotSeparator";
-import {Work} from "../../interfaces/Work";
+import {Work} from "../../../../interfaces/Work";
 
 interface IProps {
 	work: Work
@@ -46,13 +46,15 @@ const WorkspaceIcon = styled.img`
 
 export const SingleWork: FC<IProps> = props => {
 	const {
-		title,
-		content,
-		companyName,
+		postId,
+		id,
+		name,
+		body,
+		email,
 		workspaceName,
 		lastUpdateDate,
 		icon,
-		author,
+		user,
 	} = props.work;
 
 	const getLastUpdateText = (): string => {
@@ -69,17 +71,17 @@ export const SingleWork: FC<IProps> = props => {
 
 	return (
 		<WorkContainer>
-			<Title>{title}</Title>
-			<Content>{content}</Content>
+			<Title>{name}</Title>
+			<Content>{body}</Content>
 			<Info>
-				<div>{companyName}</div>
+				<div>{user.company.name}</div>
 				<DotSeparator />
 				<Workspace>
 					<WorkspaceIcon src={icon} alt="workspace-icon" />
 					<div>{workspaceName}</div>
 				</Workspace>
 				<DotSeparator />
-				<span>Updated {getLastUpdateText()} by {author.name} {author.surname}</span>
+				<span>Updated {getLastUpdateText()} by {user.name}</span>
 			</Info>
 		</WorkContainer>
 	);

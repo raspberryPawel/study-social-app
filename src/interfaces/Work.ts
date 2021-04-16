@@ -1,11 +1,13 @@
 import {User} from "./User";
 
 export interface Work {
-	title: string,
-	content: string,
-	companyName: string,
+	postId: number,
+	id: number,
+	name: string,
+	body: string,
+	email: string,
 	workspaceName: string,
 	lastUpdateDate: Date,
 	icon: string,
-	author: User,
+	user: User,
 }

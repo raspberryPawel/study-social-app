@@ -1,6 +1,6 @@
 import React, {Component, CSSProperties, ReactElement} from "react";
 import {Scrollbars} from "react-custom-scrollbars";
-// @ts-ignore
+// @ts-ignore @todo add types
 import {ReactHeight} from "react-height";
 
 interface IProps {

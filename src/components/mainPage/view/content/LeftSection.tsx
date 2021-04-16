@@ -11,7 +11,7 @@ import addNewPerson from "../../../../assets/icons/user-plus.svg";
 import personImage from "../../../../assets/images/enxampleperson.png";
 import {ButtonElement} from "../../../../common/ButtonElement";
 import {SectionSeparator} from "../../../../common/SectionSeparator";
-import {DropdownOption} from "../../interfaces/DropdownOption";
+import {DropdownOption} from "../../../../interfaces/DropdownOption";
 import "./LeftSection.scss";
 
 const options: DropdownOption[] = [
