@@ -43,7 +43,7 @@ export class MainPageApi {
 				...comment,
 				user: users[randomIndex],
 				icon: contract,
-				workspaceName: "string",
+				workspaceName: "Company",
 				lastUpdateDate: new Date(),
 			};
 		});

@@ -18,7 +18,7 @@ const ResumeYourWorkMain = styled.div`
 	min-height: 400px;
 	display: flex;
 	flex-direction: column;
-	padding-bottom: 20px;
+	padding-bottom: 100px;
 	position: relative;
 `;
 

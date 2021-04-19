@@ -1,4 +1,5 @@
 export interface DropdownOption {
 	title: string,
-	icon: string
+	icon: string,
+	link: string
 }

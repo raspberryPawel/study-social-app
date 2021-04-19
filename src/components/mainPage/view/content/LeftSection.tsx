@@ -1,5 +1,6 @@
 import {Avatar, Paper} from "@material-ui/core";
 import React, {Component, ReactElement} from "react";
+import {Link} from "react-router-dom";
 import ecosystem from "../../../../assets/icons/ecosystem.svg";
 import entities from "../../../../assets/icons/entities2.svg";
 import network from "../../../../assets/icons/network.svg";
@@ -14,10 +15,11 @@ import {SectionSeparator} from "../../../../common/SectionSeparator";
 import {DropdownOption} from "../../../../interfaces/DropdownOption";
 import "./LeftSection.scss";
 
+
 const options: DropdownOption[] = [
-	{title: "Publications", icon: publications},
-	{title: "Ecosystem", icon: ecosystem},
-	{title: "Entities", icon: entities},
+	{title: "Publications", icon: publications, link: "/publications"},
+	{title: "Ecosystem", icon: ecosystem, link: "/"},
+	{title: "Entities", icon: entities, link: "/"},
 ];
 
 
@@ -47,13 +49,16 @@ export class LeftSection extends Component {
 
 				<div className={"navOptions"}>
 					{options?.map(
-						(option: DropdownOption) => <ButtonElement
-							className={"sectionElement"}
-							icon={option.icon}
-							text={option.title}
-							// onClick={() => this.props.changeSelectedOption(option)}
-						/>)
-					}
+						(option: DropdownOption) =>
+							<Link to={option.link}>
+								<ButtonElement
+									className={"sectionElement"}
+									icon={option.icon}
+									text={option.title}
+									// onClick={() => this.props.changeSelectedOption(option)}
+								/>
+							</Link>
+					)}
 				</div>
 
 			</div>

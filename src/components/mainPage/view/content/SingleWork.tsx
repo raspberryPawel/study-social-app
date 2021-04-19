@@ -46,11 +46,8 @@ const WorkspaceIcon = styled.img`
 
 export const SingleWork: FC<IProps> = props => {
 	const {
-		postId,
-		id,
 		name,
 		body,
-		email,
 		workspaceName,
 		lastUpdateDate,
 		icon,

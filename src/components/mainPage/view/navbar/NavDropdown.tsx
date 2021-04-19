@@ -33,20 +33,20 @@ const dropdownSections: DropdownSections[] = [
 	{
 		title: "Platform",
 		options: [
-			{title: "Home", icon: home},
-			{title: "Publications", icon: publications},
-			{title: "Peoples", icon: peoples},
-			{title: "Entities", icon: entities},
-			{title: "Administration", icon: administration}]
+			{title: "Home", icon: home, link: "/"},
+			{title: "Publications", icon: publications, link: "/publications"},
+			{title: "Peoples", icon: peoples, link: "/"},
+			{title: "Entities", icon: entities, link: "/"},
+			{title: "Administration", icon: administration, link: "/"}]
 	},
 	{
 		title: "Workspaces",
 		options: [
-			{title: "Client contract", icon: document},
-			{title: "Supplier contract", icon: document},
-			{title: "Corporate", icon: corporate},
-			{title: "Group Norms", icon: groupNorms},
-			{title: "Real estate contracts", icon: document}
+			{title: "Client contract", icon: document, link: "/"},
+			{title: "Supplier contract", icon: document, link: "/"},
+			{title: "Corporate", icon: corporate, link: "/"},
+			{title: "Group Norms", icon: groupNorms, link: "/"},
+			{title: "Real estate contracts", icon: document, link: "/"}
 		]
 	},
 	{
@@ -103,7 +103,7 @@ const DropdownButton = styled.div`
 export class NavDropdown extends Component<IProps, IState> {
 	state = {
 		isOpen: false,
-		selectedOption: {title: "Home", icon: home}
+		selectedOption: {title: "Home", icon: home, link: "/"}
 	};
 
 	protected toggleDropdown = () => {

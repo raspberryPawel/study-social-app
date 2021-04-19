@@ -9,7 +9,7 @@ interface IProps {
 	className?: string;
 	style?: CSSProperties,
 	autoHeight?: boolean,
-	maxHeight?: number,
+	maxHeight?: number | string,
 }
 
 interface IState {
@@ -29,7 +29,7 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		scrollHorizontallyMultiplier: 5,
 		className: "",
 		autoHeight: true,
-		maxHeight: 400,
+		maxHeight: null,
 		style: {}
 	};
 
@@ -70,7 +70,7 @@ export class CustomScrollbar extends Component<IProps, IState> {
 	public render(): ReactElement {
 		const styles = {
 			height: `${this.state.childrenHeight}px`,
-			maxHeight: `${this.props.maxHeight}px`,
+			maxHeight: `${this.props.maxHeight}${typeof this.props.maxHeight === "string" ? "" : "px"}`,
 			...this.props.style
 		};
 
