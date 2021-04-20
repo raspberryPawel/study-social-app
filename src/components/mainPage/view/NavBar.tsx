@@ -2,22 +2,70 @@ import {Input, InputAdornment} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import React, {Component, ReactElement} from "react";
 import {Link} from "react-router-dom";
+import styled from "styled-components";
 import notifications from "../../../assets/icons/bell.svg";
 import messages from "../../../assets/icons/comments.svg";
 import homeIcon from "../../../assets/icons/house.svg";
 import search from "../../../assets/icons/search.svg";
 import logo from "../../../assets/images/logo.png";
-import "./NavBar.scss";
+import {defaultBoxShadow, white} from "../../../assets/variables";
 import {NavDropdown} from "./navbar/NavDropdown";
+
+const NavElement = styled.nav`
+	padding: 0px 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 50px;
+	position: relative;
+	z-index: 1000;
+
+	background-color: ${white};
+	box-shadow: ${
+		defaultBoxShadow
+	};
+
+	.homeIcon {
+		height: 20px;
+	}
+
+	.searchInput {
+		width: 50%;
+		max-width: 500px;
+		margin: 0 30px;
+	}
+`;
+
+const FirstNavSection = styled.div`
+	width: 400px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+`;
+
+const EndNavSection = styled(FirstNavSection)`
+	justify-content: end;
+
+	button:nth-child(2), button:nth-child(3) {
+		background-color: rgb(245, 245, 245);
+		border-radius: 100%;
+		width: 40px;
+		height: 40px;
+		min-width: unset;
+		margin-left: 15px;
+	}
+`;
+
 
 export class NavBar extends Component {
 	public render(): ReactElement {
 		return (
-			<nav className={"NavBar"}>
-				<div className={"startSection"}>
+			<NavElement>
+				<FirstNavSection>
 					<img src={logo} alt={"logo"} style={{height: 40}} />
 					<NavDropdown />
-				</div>
+				</FirstNavSection>
 
 				<Input
 					className={"searchInput"}
@@ -29,7 +77,7 @@ export class NavBar extends Component {
 					}
 				/>
 
-				<div className={"endSection"}>
+				<EndNavSection>
 					<Link to="/">
 						<Button onClick={() => {console.log("siemaneczko");}}>
 							<img src={homeIcon} className={"homeIcon"} alt={"home icon"} />
@@ -46,9 +94,8 @@ export class NavBar extends Component {
 					>
 						<img src={notifications} className={"homeIcon"} alt={"home icon"} />
 					</Button>
-				</div>
-			</nav>
+				</EndNavSection>
+			</NavElement>
 		);
 	}
-
 }

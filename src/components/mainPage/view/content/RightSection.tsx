@@ -1,21 +1,23 @@
-import React, {Component, ReactElement} from "react";
+import React, {FC} from "react";
+import styled from "styled-components";
 import {LatestPublications} from "./LatestPublications";
 import {ResumeYourWork} from "./ResumeYourWork";
-import "./RightSection.scss";
 import {Workspaces} from "./Workspaces";
 
-interface IProps {}
+const RightSectionContainer = styled.div`
+	width: calc(100% - 250px);
+	padding-top: 20px;
 
-interface IState {}
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+`;
 
-export class RightSection extends Component<IProps, IState> {
-	public render(): ReactElement {
-		return (
-			<div className={"RightSection"}>
-				<LatestPublications />
-				<Workspaces />
-				<ResumeYourWork />
-			</div>
-		);
-	}
-}
+export const RightSection: FC = () => (
+	<RightSectionContainer className={"RightSection"}>
+		<LatestPublications />
+		<Workspaces />
+		<ResumeYourWork />
+	</RightSectionContainer>
+);

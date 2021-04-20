@@ -2,11 +2,11 @@ import React, {Component, ReactElement} from "react";
 import styled from "styled-components";
 import document from "../../../../assets/icons/document.svg";
 import placeholder from "../../../../assets/images/placehoder.png";
+import {defaultBoxShadow} from "../../../../assets/variables";
 import {CustomScrollbar} from "../../../../common/CustomScrollbar";
 import {SectionTitle} from "../../../../common/SectionTitle";
 import {Workspace} from "../../../../interfaces/Workspace";
 import {SingleWorkspace} from "./SingleWorkspace";
-import "./Workspaces.scss";
 
 interface IProps {}
 
@@ -60,7 +60,7 @@ const WorkspacesMain = styled.div`
 	width: 80%;
 	display: flex;
 	flex-direction: column;
-	box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
+	box-shadow: ${defaultBoxShadow};
 `;
 
 const WorkspacesContainer = styled.div`
@@ -80,7 +80,6 @@ export class Workspaces extends Component<IProps, IState> {
 						{workspaces.map((workspace: Workspace) => <SingleWorkspace workspace={workspace} />)}
 					</WorkspacesContainer>
 				</CustomScrollbar>
-
 			</WorkspacesMain>
 		);
 	}

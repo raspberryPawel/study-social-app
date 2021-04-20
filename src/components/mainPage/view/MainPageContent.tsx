@@ -14,8 +14,8 @@ const Content = styled.div`
 	height: auto;
 `;
 
-export const MainPageContent: FC<IProps> = props => (
-	<Content className={"MainPageContent"}>
+export const MainPageContent: FC<IProps> = () => (
+	<Content>
 		<LeftSection />
 		<RightSection />
 	</Content>

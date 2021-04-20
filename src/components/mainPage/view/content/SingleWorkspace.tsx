@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import styled from "styled-components";
+import {defaultBoxShadow} from "../../../../assets/variables";
 import {DotSeparator} from "../../../../common/DotSeparator";
 import {Workspace} from "../../../../interfaces/Workspace";
 
@@ -56,10 +57,8 @@ const IconContainer = styled.div`
 	align-items: center;
 
 	background-color: white;
-	box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
-	-webkit-box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
-
+	box-shadow: ${defaultBoxShadow};
+	
 	img {
 		width: 70%;
 	}

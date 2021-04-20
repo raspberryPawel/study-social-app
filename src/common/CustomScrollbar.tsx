@@ -10,6 +10,7 @@ interface IProps {
 	style?: CSSProperties,
 	autoHeight?: boolean,
 	maxHeight?: number | string,
+	onHeightReady?: (height: number) => void,
 }
 
 interface IState {
@@ -30,6 +31,7 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		className: "",
 		autoHeight: true,
 		maxHeight: null,
+		onHeightReady: (height: number) => {},
 		style: {}
 	};
 
@@ -67,6 +69,11 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		}
 	};
 
+	protected onHeightReady = (height: number) => {
+		if (this.props.onHeightReady) this.props.onHeightReady(height);
+		this.setState({childrenHeight: height});
+	};
+
 	public render(): ReactElement {
 		const styles = {
 			height: `${this.state.childrenHeight}px`,
@@ -83,7 +90,7 @@ export class CustomScrollbar extends Component<IProps, IState> {
 				onMouseOver={this.onMouseOver}
 				onMouseLeave={this.onMouseLeave}
 			>
-				<ReactHeight onHeightReady={(height: number) => this.setState({childrenHeight: height})}>
+				<ReactHeight onHeightReady={this.onHeightReady}>
 					{this.props.children}
 				</ReactHeight>
 			</Scrollbars>

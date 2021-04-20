@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import styled from "styled-components";
+import {defaultBoxShadow} from "../../../../assets/variables";
 import {DotSeparator} from "../../../../common/DotSeparator";
 import {Work} from "../../../../interfaces/Work";
 
@@ -16,7 +17,7 @@ const WorkContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
+	box-shadow: ${defaultBoxShadow};
 `;
 
 const Title = styled.div`
