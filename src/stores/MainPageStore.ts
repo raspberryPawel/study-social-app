@@ -1,8 +1,6 @@
 import {action, makeAutoObservable, observable} from "mobx";
 import {MainPageApi} from "../api/MainPageApi";
-import {Fee} from "../interfaces/Fee";
 import {LatestPublication} from "../interfaces/LatestPublication";
-import {Proposal} from "../interfaces/Proposal";
 import {User} from "../interfaces/User";
 import {Work} from "../interfaces/Work";
 
@@ -15,8 +13,6 @@ export class MainPageStore {
 	@observable public currentFirstIndex: number = 0;
 	@observable public currentLoggedUser: User | null = null;
 	@observable public latestPublications: LatestPublication[] | null = null;
-	@observable public proposals: Proposal[] | null = null;
-	@observable public fees: Fee[] | null = null;
 
 	constructor() {
 		makeAutoObservable(this);
@@ -28,8 +24,6 @@ export class MainPageStore {
 		await this.getLoggedUser();
 		await this.getYourWorks();
 		await this.getLatestPublications();
-		await this.getProposals();
-		await this.getFees();
 	};
 
 	public get resumeYourWorks(): Work[] {
@@ -66,15 +60,5 @@ export class MainPageStore {
 		this.filteredWorks = this.works.filter(work => work.name.includes(text));
 		this.currentFirstIndex = 0;
 		this.pagesCount = Math.ceil(this.filteredWorks.length / this.countPerPage);
-	};
-
-	@action
-	public getProposals = async () => {
-		this.proposals = await MainPageApi.getProposals();
-	};
-
-	@action
-	public getFees = async () => {
-		this.fees = await MainPageApi.getFees();
 	};
 }

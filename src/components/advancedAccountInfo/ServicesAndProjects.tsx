@@ -40,4 +40,4 @@ export const ServicesAndProjectsElement: FC<IProps> = ({mainPageStore}) => {
 	);
 };
 
-export const ServicesAndProjects = inject("mainPageStore")(observer(ServicesAndProjectsElement));
+export const ServicesAndProjects = inject("advancedAccountInfo")(observer(ServicesAndProjectsElement));

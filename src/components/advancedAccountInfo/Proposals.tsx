@@ -9,19 +9,19 @@ import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
 import {Proposal} from "../../interfaces/Proposal";
-import {MainPageStore} from "../../stores/MainPageStore";
+import {AdvancedAccountInfo} from "../../stores/AdvancedAccountInfo";
 import {SingleAdvancedAccountInfoElement} from "./SingleAdvancedAccountInfoElement";
 
 interface IProps {
-	mainPageStore?: MainPageStore;
+	advancedAccountInfo?: AdvancedAccountInfo;
 }
 
 export const ProposalsElement: FC<IProps> = ({
-	mainPageStore
+	advancedAccountInfo
 }) => {
-	if (!mainPageStore || !mainPageStore.proposals) return null;
+	if (!advancedAccountInfo || !advancedAccountInfo.proposals) return null;
 
-	const proposals = mainPageStore.proposals.slice(0, 5);
+	const proposals = advancedAccountInfo.proposals.slice(0, 5);
 	return (
 		<SingleAdvancedAccountInfoElement>
 			<strong>Proposals</strong>
@@ -61,4 +61,4 @@ export const ProposalsElement: FC<IProps> = ({
 };
 
 
-export const Proposals = inject("mainPageStore")(observer(ProposalsElement));
+export const Proposals = inject("advancedAccountInfo")(observer(ProposalsElement));

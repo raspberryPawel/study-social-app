@@ -7,31 +7,16 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
-import styled from "styled-components";
 import {Fee} from "../../interfaces/Fee";
-import {MainPageStore} from "../../stores/MainPageStore";
+import {AdvancedAccountInfo} from "../../stores/AdvancedAccountInfo";
 import {SingleAdvancedAccountInfoElement} from "./SingleAdvancedAccountInfoElement";
 
 interface IProps {
-	mainPageStore?: MainPageStore;
+	advancedAccountInfo?: AdvancedAccountInfo;
 }
 
-
-const FeesContainer = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	margin: 0 0 20px 0;
-
-	strong {
-		font-weight: 400;
-		margin: 20px 0;
-	}
-`;
-
-
-export const AmountOfFeesElement: FC<IProps> = ({mainPageStore}) => {
-	if (!mainPageStore || !mainPageStore.fees) return null;
+export const AmountOfFeesElement: FC<IProps> = ({advancedAccountInfo}) => {
+	if (!advancedAccountInfo || !advancedAccountInfo.fees) return null;
 
 	return (
 		<SingleAdvancedAccountInfoElement>
@@ -48,7 +33,7 @@ export const AmountOfFeesElement: FC<IProps> = ({mainPageStore}) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{mainPageStore.fees.map((row: Fee) => (
+						{advancedAccountInfo.fees.map((row: Fee) => (
 							<TableRow key={row.id}>
 								<TableCell>{row.year}</TableCell>
 								<TableCell>CS {row.costCenter}</TableCell>
@@ -63,4 +48,4 @@ export const AmountOfFeesElement: FC<IProps> = ({mainPageStore}) => {
 	);
 };
 
-export const AmountOfFees = inject("mainPageStore")(observer(AmountOfFeesElement));
+export const AmountOfFees = inject("advancedAccountInfo")(observer(AmountOfFeesElement));
