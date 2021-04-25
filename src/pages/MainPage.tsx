@@ -5,7 +5,7 @@ import {MainPageContent} from "../components/mainPage/view/MainPageContent";
 export class MainPage extends Component {
 	public render(): ReactElement {
 		return (
-			<CustomScrollbar style={{height: "calc(100vh - 40px)", position: "absolute"}}>
+			<CustomScrollbar style={{height: "calc(100vh - 60px)", position: "absolute"}}>
 				<MainPageContent />
 			</CustomScrollbar>
 		);

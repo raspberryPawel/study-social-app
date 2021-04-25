@@ -24,7 +24,7 @@ const PublicationsClass: FC<IProps> = ({
 	const {latestPublications} = mainPageStore;
 	return (
 		<PublicationsContainer>
-			<CustomScrollbar maxHeight={"calc(100vh - 70px)"}>
+			<CustomScrollbar maxHeight={"100%"}>
 				{latestPublications?.map(
 					publication => <SinglePublication key={publication.id} publication={publication} />)}
 			</CustomScrollbar>

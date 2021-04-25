@@ -4,9 +4,6 @@ import styled from "styled-components";
 import {LeftSection} from "./content/LeftSection";
 import {RightSection} from "./content/RightSection";
 
-interface IProps {
-}
-
 const Content = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -14,7 +11,7 @@ const Content = styled.div`
 	height: auto;
 `;
 
-export const MainPageContent: FC<IProps> = () => (
+export const MainPageContent: FC = () => (
 	<Content>
 		<LeftSection />
 		<RightSection />

@@ -1,23 +1,34 @@
 import React, {FC} from "react";
+import {Route, Switch} from "react-router-dom";
 import styled from "styled-components";
-import {LatestPublications} from "./LatestPublications";
-import {ResumeYourWork} from "./ResumeYourWork";
-import {Workspaces} from "./Workspaces";
+import {NotFoundPage} from "../../../../pages/NotFoundPage";
+import {Publications} from "../../../../pages/Publications";
+import {AdvancedAccountInfoContainer} from "../../AdvancedAccountInfoContainer";
+import {RightSectionContent} from "./RightSectionContent";
 
 const RightSectionContainer = styled.div`
 	width: calc(100% - 250px);
+	height: calc(100vh - 60px);
 	padding-top: 20px;
 
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
 `;
 
 export const RightSection: FC = () => (
 	<RightSectionContainer className={"RightSection"}>
-		<LatestPublications />
-		<Workspaces />
-		<ResumeYourWork />
+		<Switch>
+			<Route exact path="/account">
+				<AdvancedAccountInfoContainer />
+			</Route>
+			<Route exact path="/publications">
+				<Publications />
+			</Route>
+			<Route exact path="/">
+				<RightSectionContent />
+			</Route>
+			<Route component={NotFoundPage} />
+		</Switch>
 	</RightSectionContainer>
 );

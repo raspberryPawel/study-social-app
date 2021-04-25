@@ -1,4 +1,4 @@
-import {Input, InputAdornment} from "@material-ui/core";
+import {Badge, Input, InputAdornment} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import React, {Component, ReactElement} from "react";
 import {Link} from "react-router-dom";
@@ -55,6 +55,11 @@ const EndNavSection = styled(FirstNavSection)`
 		min-width: unset;
 		margin-left: 15px;
 	}
+	
+	.MuiBadge-root{
+		top: -10px;
+		right: -5px;
+	}
 `;
 
 
@@ -88,11 +93,13 @@ export class NavBar extends Component {
 							onClick={() => {console.log("siemaneczko");}}
 					>
 						<img src={messages} className={"homeIcon"} alt={"home icon"} />
+						<Badge badgeContent={3} color="primary"/>
 					</Button>
 					<Button style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
 							onClick={() => {console.log("siemaneczko");}}
 					>
 						<img src={notifications} className={"homeIcon"} alt={"home icon"} />
+						<Badge badgeContent={4} color="primary"/>
 					</Button>
 				</EndNavSection>
 			</NavElement>
