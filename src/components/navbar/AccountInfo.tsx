@@ -1,15 +1,15 @@
 import {Avatar} from "@material-ui/core";
+import {blue} from "@material-ui/core/colors";
 import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import logout from "../../../../assets/icons/logout.svg";
-import privacy from "../../../../assets/icons/privacy.svg";
-import settings from "../../../../assets/icons/settings.svg";
-import {blue} from "../../../../assets/variables";
-import {ButtonElement} from "../../../../common/ButtonElement";
-import {SectionSeparator} from "../../../../common/SectionSeparator";
-import {MainPageStore} from "../../../../stores/MainPageStore";
+import logout from "../../assets/icons/logout.svg";
+import privacy from "../../assets/icons/privacy.svg";
+import settings from "../../assets/icons/settings.svg";
+import {ButtonElement} from "../../common/ButtonElement";
+import {SectionSeparator} from "../../common/SectionSeparator";
+import {MainPageStore} from "../../stores/MainPageStore";
 
 const AccountInfoContainer = styled.div`
 	.logoutButton {
@@ -43,7 +43,7 @@ const AccountDetails = styled.div`
 	}
 
 	a {
-		color: ${blue};
+		color: ${blue["300"]} !important;
 		font-size: 12px;
 		cursor: pointer;
 	}

@@ -3,8 +3,8 @@ import React, {FC} from "react";
 import {Link} from "react-router-dom";
 
 import styled from "styled-components";
-import {ButtonElement} from "../../../../common/ButtonElement";
-import {MainPageStore} from "../../../../stores/MainPageStore";
+import {ButtonElement} from "../../common/ButtonElement";
+import {MainPageStore} from "../../stores/MainPageStore";
 import "./LatestPublications.scss";
 
 import {SinglePublication} from "./SinglePublication";

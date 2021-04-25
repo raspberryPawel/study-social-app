@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import styled from "styled-components";
 
-import {LeftSection} from "./content/LeftSection";
-import {RightSection} from "./content/RightSection";
+import {LeftSection} from "./LeftSection";
+import {RightSection} from "./RightSection";
 
 const Content = styled.div`
 	display: flex;

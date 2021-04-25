@@ -1,9 +1,9 @@
 import {Avatar} from "@material-ui/core";
+import {blue} from "@material-ui/core/colors";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import {blue} from "../../../../assets/variables";
-import {User} from "../../../../interfaces/User";
+import {User} from "../../interfaces/User";
 
 interface IProps {
 	user: User
@@ -13,8 +13,9 @@ const AdvancedAccountInfoContainer = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
 	margin-bottom: 20px;
+	box-sizing: border-box;
+	padding: 0 10px;
 `;
 
 const AvatarContainer = styled.div`
@@ -24,7 +25,7 @@ const AvatarContainer = styled.div`
 	align-items: center;
 
 	a {
-		color: ${blue};
+		color: ${blue["300"]} !important;
 		font-size: 12px;
 		cursor: pointer;
 		margin-top: 10px;

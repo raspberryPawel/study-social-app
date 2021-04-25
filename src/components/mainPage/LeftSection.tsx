@@ -3,18 +3,18 @@ import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
 
 import {Link} from "react-router-dom";
-import ecosystem from "../../../../assets/icons/ecosystem.svg";
-import entities from "../../../../assets/icons/entities2.svg";
-import network from "../../../../assets/icons/network.svg";
-import addNewPublication from "../../../../assets/icons/plus.svg";
+import ecosystem from "../../assets/icons/ecosystem.svg";
+import entities from "../../assets/icons/entities2.svg";
+import network from "../../assets/icons/network.svg";
+import addNewPublication from "../../assets/icons/plus.svg";
 
-import publications from "../../../../assets/icons/publications.svg";
+import publications from "../../assets/icons/publications.svg";
 
-import addNewPerson from "../../../../assets/icons/user-plus.svg";
-import {ButtonElement} from "../../../../common/ButtonElement";
-import {SectionSeparator} from "../../../../common/SectionSeparator";
-import {DropdownOption} from "../../../../interfaces/DropdownOption";
-import {MainPageStore} from "../../../../stores/MainPageStore";
+import addNewPerson from "../../assets/icons/user-plus.svg";
+import {ButtonElement} from "../../common/ButtonElement";
+import {SectionSeparator} from "../../common/SectionSeparator";
+import {DropdownOption} from "../../interfaces/DropdownOption";
+import {MainPageStore} from "../../stores/MainPageStore";
 import "./LeftSection.scss";
 
 const options: DropdownOption[] = [

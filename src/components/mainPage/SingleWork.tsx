@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import styled from "styled-components";
-import {defaultBoxShadow} from "../../../../assets/variables";
-import {DotSeparator} from "../../../../common/DotSeparator";
-import {Work} from "../../../../interfaces/Work";
+import {defaultBoxShadow} from "../../assets/variables";
+import {DotSeparator} from "../../common/DotSeparator";
+import {Work} from "../../interfaces/Work";
 
 interface IProps {
 	work: Work

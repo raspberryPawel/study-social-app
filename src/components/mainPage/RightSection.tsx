@@ -1,15 +1,16 @@
 import React, {FC} from "react";
 import {Route, Switch} from "react-router-dom";
 import styled from "styled-components";
-import {NotFoundPage} from "../../../../pages/NotFoundPage";
-import {Publications} from "../../../../pages/Publications";
-import {AdvancedAccountInfoContainer} from "../../AdvancedAccountInfoContainer";
+import {AdvancedAccountInfoPage} from "../../containers/AdvancedAccountInfoPage";
+import {NotFoundPage} from "../../containers/NotFoundPage";
+import {Publications} from "../../containers/Publications";
 import {RightSectionContent} from "./RightSectionContent";
 
 const RightSectionContainer = styled.div`
 	width: calc(100% - 250px);
 	height: calc(100vh - 60px);
-	padding-top: 20px;
+	box-sizing: border-box;
+	padding: 20px;
 
 	display: flex;
 	flex-direction: column;
@@ -20,7 +21,7 @@ export const RightSection: FC = () => (
 	<RightSectionContainer className={"RightSection"}>
 		<Switch>
 			<Route exact path="/account">
-				<AdvancedAccountInfoContainer />
+				<AdvancedAccountInfoPage />
 			</Route>
 			<Route exact path="/publications">
 				<Publications />

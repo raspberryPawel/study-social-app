@@ -2,7 +2,7 @@ import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
 import styled from "styled-components";
 import {CustomScrollbar} from "../common/CustomScrollbar";
-import {SinglePublication} from "../components/mainPage/view/content/SinglePublication";
+import {SinglePublication} from "../components/mainPage/SinglePublication";
 import {MainPageStore} from "../stores/MainPageStore";
 
 interface IProps {

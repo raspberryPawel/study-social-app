@@ -3,9 +3,9 @@ import Pagination from "@material-ui/lab/Pagination";
 import {inject, observer} from "mobx-react";
 import React, {ChangeEvent, FC, useState} from "react";
 import styled from "styled-components";
-import {SectionTitle} from "../../../../common/SectionTitle";
-import {Work} from "../../../../interfaces/Work";
-import {MainPageStore} from "../../../../stores/MainPageStore";
+import {SectionTitle} from "../../common/SectionTitle";
+import {Work} from "../../interfaces/Work";
+import {MainPageStore} from "../../stores/MainPageStore";
 import {SingleWork} from "./SingleWork";
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IProps {
 
 const ResumeYourWorkMain = styled.div`
 	margin-top: 20px;
-	width: 80%;
+	width: 95%;
 	min-height: 400px;
 	display: flex;
 	flex-direction: column;

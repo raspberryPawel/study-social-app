@@ -2,8 +2,8 @@ import {Avatar} from "@material-ui/core";
 import React, {FC} from "react";
 
 import styled from "styled-components";
-import personImage from "../../../../assets/images/enxampleperson.png";
-import {LatestPublication} from "../../../../interfaces/LatestPublication";
+import personImage from "../../assets/images/enxampleperson.png";
+import {LatestPublication} from "../../interfaces/LatestPublication";
 
 interface IProps {
 	publication: LatestPublication

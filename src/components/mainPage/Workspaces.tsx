@@ -1,11 +1,11 @@
 import React, {Component, ReactElement} from "react";
 import styled from "styled-components";
-import document from "../../../../assets/icons/document.svg";
-import placeholder from "../../../../assets/images/placehoder.png";
-import {defaultBoxShadow} from "../../../../assets/variables";
-import {CustomScrollbar} from "../../../../common/CustomScrollbar";
-import {SectionTitle} from "../../../../common/SectionTitle";
-import {Workspace} from "../../../../interfaces/Workspace";
+import document from "../../assets/icons/document.svg";
+import placeholder from "../../assets/images/placehoder.png";
+import {defaultBoxShadow} from "../../assets/variables";
+import {CustomScrollbar} from "../../common/CustomScrollbar";
+import {SectionTitle} from "../../common/SectionTitle";
+import {Workspace} from "../../interfaces/Workspace";
 import {SingleWorkspace} from "./SingleWorkspace";
 
 interface IProps {}
@@ -57,7 +57,7 @@ const workspaces: Workspace[] = [
 
 const WorkspacesMain = styled.div`
 	margin-top: 20px;
-	width: 80%;
+	width: 95%;
 	display: flex;
 	flex-direction: column;
 	box-shadow: ${defaultBoxShadow};

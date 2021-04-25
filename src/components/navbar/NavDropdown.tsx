@@ -2,19 +2,19 @@ import {ClickAwayListener} from "@material-ui/core";
 import React, {Component, ReactElement} from "react";
 import "react-dropdown/style.css";
 import styled from "styled-components";
-import administration from "../../../../assets/icons/administration.svg";
-import arrow from "../../../../assets/icons/arrow-down.svg";
+import administration from "../../assets/icons/administration.svg";
+import arrow from "../../assets/icons/arrow-down.svg";
 
-import document from "../../../../assets/icons/document.svg";
-import entities from "../../../../assets/icons/entities.svg";
-import corporate from "../../../../assets/icons/entities2.svg";
-import home from "../../../../assets/icons/house.svg";
-import groupNorms from "../../../../assets/icons/open-book.svg";
-import peoples from "../../../../assets/icons/people.svg";
-import publications from "../../../../assets/icons/publications.svg";
-import {DropdownOption} from "../../../../interfaces/DropdownOption";
+import document from "../../assets/icons/document.svg";
+import entities from "../../assets/icons/entities.svg";
+import corporate from "../../assets/icons/entities2.svg";
+import home from "../../assets/icons/house.svg";
+import groupNorms from "../../assets/icons/open-book.svg";
+import peoples from "../../assets/icons/people.svg";
+import publications from "../../assets/icons/publications.svg";
+import {DropdownOption} from "../../interfaces/DropdownOption";
 
-import {DropdownSections} from "../../../../interfaces/DropdownSections";
+import {DropdownSections} from "../../interfaces/DropdownSections";
 import {AccountInfo} from "./AccountInfo";
 import {DropdownView} from "./DropdownView";
 

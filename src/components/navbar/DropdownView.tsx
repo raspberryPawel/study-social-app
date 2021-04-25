@@ -3,13 +3,13 @@ import {TextField} from "@material-ui/core";
 import React, {ChangeEvent, FC, useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import {white} from "../../../../assets/variables";
+import {white} from "../../assets/variables";
 
-import {ButtonElement} from "../../../../common/ButtonElement";
-import {CustomScrollbar} from "../../../../common/CustomScrollbar";
-import {SectionSeparator} from "../../../../common/SectionSeparator";
-import {DropdownOption} from "../../../../interfaces/DropdownOption";
-import {DropdownSections} from "../../../../interfaces/DropdownSections";
+import {ButtonElement} from "../../common/ButtonElement";
+import {CustomScrollbar} from "../../common/CustomScrollbar";
+import {SectionSeparator} from "../../common/SectionSeparator";
+import {DropdownOption} from "../../interfaces/DropdownOption";
+import {DropdownSections} from "../../interfaces/DropdownSections";
 
 interface IProps {
 	dropdownSections: DropdownSections[];

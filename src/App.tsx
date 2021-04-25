@@ -2,8 +2,8 @@ import {Provider} from "mobx-react";
 import React, {Component, ReactElement} from "react";
 import {BrowserRouter,} from "react-router-dom";
 import styled from "styled-components";
-import {NavBar} from "./components/mainPage/view/NavBar";
-import {MainPage} from "./pages/MainPage";
+import {MainPage} from "./containers/MainPage";
+import {NavBar} from "./containers/NavBar";
 import {RootStore} from "./stores/RootStore";
 
 const AppContainer = styled.div`

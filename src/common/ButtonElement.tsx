@@ -12,15 +12,18 @@ interface IProps {
 	additionalButtonClick?: () => void
 }
 
-const Element = styled.div<IProps>`
+const Element = styled.button<IProps>`
 	width: 100%;
 	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 	cursor: pointer;
 	padding: 5px 0;
+	background: inherit;
+	outline: none;
+	border: none;
 
 	&:hover {
 		text-decoration: none;
-		background-color: rgba(0, 0, 0, 0.04);
+		background-color: rgba(0, 0, 0, 0.04) !important;
 	}
 
 	span {

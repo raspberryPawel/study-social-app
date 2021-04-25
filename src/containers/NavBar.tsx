@@ -3,13 +3,13 @@ import Button from "@material-ui/core/Button";
 import React, {Component, ReactElement} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import notifications from "../../../assets/icons/bell.svg";
-import messages from "../../../assets/icons/comments.svg";
-import homeIcon from "../../../assets/icons/house.svg";
-import search from "../../../assets/icons/search.svg";
-import logo from "../../../assets/images/logo.png";
-import {defaultBoxShadow, white} from "../../../assets/variables";
-import {NavDropdown} from "./navbar/NavDropdown";
+import notifications from "../assets/icons/bell.svg";
+import messages from "../assets/icons/comments.svg";
+import homeIcon from "../assets/icons/house.svg";
+import search from "../assets/icons/search.svg";
+import logo from "../assets/images/logo.png";
+import {defaultBoxShadow, white} from "../assets/variables";
+import {NavDropdown} from "../components/navbar/NavDropdown";
 
 const NavElement = styled.nav`
 	padding: 0px 10px;
