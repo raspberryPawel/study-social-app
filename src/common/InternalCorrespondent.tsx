@@ -1,12 +1,11 @@
 import {Avatar} from "@material-ui/core";
 import {grey} from "@material-ui/core/colors";
 import React, {FC} from "react";
-import {Link} from "react-router-dom";
 import styled from "styled-components";
 import message from "../assets/icons/comments.svg";
 import profile from "../assets/icons/people.svg";
 import {User} from "../interfaces/User";
-import {ButtonElement} from "./ButtonElement";
+import {ButtonWithLink} from "./ButtonWithLink";
 
 interface IProps {
 	user: User
@@ -38,8 +37,18 @@ const InternalCorrespondentContainer = styled.div`
 		margin: 0 10px !important;
 	}
 
+	a {
+		margin-top: 0;
+	}
+
 	button {
-		width: 150px;
+		width: 110px;
+		display: flex;
+		justify-content: space-around;
+
+		span {
+			margin-left: 0;
+		}
 	}
 `;
 
@@ -52,8 +61,8 @@ export const InternalCorrespondent: FC<IProps> = ({user}) => (
 			<strong>{user.name}</strong>
 		</section>
 		<section>
-			<Link to={"/message"}> <ButtonElement icon={message} text={"Message"} /> </Link>
-			<Link to={"/profile"}> <ButtonElement icon={profile} text={"Profile"} /> </Link>
+			<ButtonWithLink link={"/message"} icon={message} text={"Message"} />
+			<ButtonWithLink link={"/profile"} icon={profile} text={"Profile"} />
 		</section>
 	</InternalCorrespondentContainer>
 );

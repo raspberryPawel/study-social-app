@@ -8,6 +8,7 @@ import {InternalReviews} from "../components/advancedAccountInfo/InternalReviews
 import {PanelInformations} from "../components/advancedAccountInfo/PanelInformations";
 import {Proposals} from "../components/advancedAccountInfo/Proposals";
 import {ServicesAndProjects} from "../components/advancedAccountInfo/ServicesAndProjects";
+import {TopButtons} from "../components/advancedAccountInfo/TopButtons";
 import {MainPageStore} from "../stores/MainPageStore";
 
 interface IProps {
@@ -21,6 +22,7 @@ export const AdvancedAccountInfoElement: FC<IProps> = ({
 
 	return (
 		<>
+			<TopButtons/>
 			<AdvancedAccountInfo user={mainPageStore.currentLoggedUser} />
 			<SectionSeparator />
 

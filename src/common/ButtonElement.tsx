@@ -75,7 +75,6 @@ export class ButtonElement extends Component<IProps> {
 						</Button>
 						: null}
 				</span>
-
 			</Element>
 		);
 	}

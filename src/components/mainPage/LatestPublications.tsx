@@ -1,9 +1,8 @@
 import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
-import {Link} from "react-router-dom";
 
 import styled from "styled-components";
-import {ButtonElement} from "../../common/ButtonElement";
+import {ButtonWithLink} from "../../common/ButtonWithLink";
 import {MainPageStore} from "../../stores/MainPageStore";
 import "./LatestPublications.scss";
 
@@ -38,9 +37,8 @@ export const LatestPublicationsClass: FC<IProps> = ({
 					{latestPublications?.slice(1, 4).map(
 						publication => <SinglePublication key={publication.id} publication={publication} />)}
 				</PublicationsContainer>
-				<Link to={"/publications"}>
-					<ButtonElement className={"morePublications"} text={"See more publications"} />
-				</Link>
+
+				<ButtonWithLink link={"/publications"} text={"See more publications"}/>
 			</div>
 		</div>
 	);

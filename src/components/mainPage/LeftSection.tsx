@@ -1,8 +1,6 @@
 import {Avatar, Paper} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
-
-import {Link} from "react-router-dom";
 import ecosystem from "../../assets/icons/ecosystem.svg";
 import entities from "../../assets/icons/entities2.svg";
 import network from "../../assets/icons/network.svg";
@@ -12,6 +10,7 @@ import publications from "../../assets/icons/publications.svg";
 
 import addNewPerson from "../../assets/icons/user-plus.svg";
 import {ButtonElement} from "../../common/ButtonElement";
+import {ButtonWithLink} from "../../common/ButtonWithLink";
 import {SectionSeparator} from "../../common/SectionSeparator";
 import {DropdownOption} from "../../interfaces/DropdownOption";
 import {MainPageStore} from "../../stores/MainPageStore";
@@ -59,14 +58,7 @@ export const LeftSectionElement: FC<IProps> = ({
 			<div className={"navOptions"}>
 				{options?.map(
 					(option: DropdownOption) =>
-						<Link to={option.link}>
-							<ButtonElement
-								className={"sectionElement"}
-								icon={option.icon}
-								text={option.title}
-								// onClick={() => this.props.changeSelectedOption(option)}
-							/>
-						</Link>
+						<ButtonWithLink link={option.link} icon={option.icon} text={option.title} />
 				)}
 			</div>
 		</div>

@@ -1,9 +1,8 @@
-import {Button} from "@material-ui/core";
 import React, {FC} from "react";
-import {Link} from "react-router-dom";
 
 import styled from "styled-components";
 import page404 from "../assets/icons/404.svg";
+import {ButtonWithLink} from "../common/ButtonWithLink";
 
 const NotFoundPageContainer = styled.div`
 	width: 100%;
@@ -50,9 +49,7 @@ export const NotFoundPage: FC = () => (
 				How you got here is a mystery. But you can click the button below
 				to go back to the homepage.
 			</p>
-			<Link to={"/"}>
-				<Button>Home</Button>
-			</Link>
+			<ButtonWithLink link={"/"} text={"Home"}/>
 		</section>
 	</NotFoundPageContainer>
 );
