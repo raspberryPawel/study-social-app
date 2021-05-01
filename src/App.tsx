@@ -24,6 +24,7 @@ export class App extends Component {
 					rootStore={RootStore}
 					mainPageStore={RootStore.mainPageStore}
 					advancedAccountInfo={RootStore.advancedAccountInfo}
+					entitiesStore={RootStore.entitiesStore}
 				>
 					<BrowserRouter>
 						<NavBar />

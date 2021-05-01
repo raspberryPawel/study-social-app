@@ -4,7 +4,7 @@ import React, {FC, useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {EditableText} from "../../common/EditableText";
-import {AdvancedAccountInfoMode} from "../../consts/Mode";
+import {AdvancedAccountInfoMode} from "../../consts/AdvancedAccountInfoMode";
 import {User} from "../../interfaces/User";
 import {AdvancedAccountInfoEditableSection} from "./AdvancedAccountInfoEditableSection";
 

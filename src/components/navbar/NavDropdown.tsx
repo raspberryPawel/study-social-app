@@ -35,18 +35,18 @@ const dropdownSections: DropdownSections[] = [
 		options: [
 			{title: "Home", icon: home, link: "/"},
 			{title: "Publications", icon: publications, link: "/publications"},
-			{title: "Peoples", icon: peoples, link: "/"},
-			{title: "Entities", icon: entities, link: "/"},
-			{title: "Administration", icon: administration, link: "/"}]
+			{title: "Peoples", icon: peoples, link: "/peoples"},
+			{title: "Entities", icon: entities, link: "/entities"},
+			{title: "Administration", icon: administration, link: "/administration"}]
 	},
 	{
 		title: "Workspaces",
 		options: [
-			{title: "Client contract", icon: document, link: "/"},
-			{title: "Supplier contract", icon: document, link: "/"},
-			{title: "Corporate", icon: corporate, link: "/"},
-			{title: "Group Norms", icon: groupNorms, link: "/"},
-			{title: "Real estate contracts", icon: document, link: "/"}
+			{title: "Client contract", icon: document, link: "/client-contract"},
+			{title: "Supplier contract", icon: document, link: "/supplier-contract"},
+			{title: "Corporate", icon: corporate, link: "/corporate"},
+			{title: "Group Norms", icon: groupNorms, link: "/group-norms"},
+			{title: "Real estate contracts", icon: document, link: "/real-estate-contracts"}
 		]
 	},
 	{

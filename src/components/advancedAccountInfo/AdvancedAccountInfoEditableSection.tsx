@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import React, {FC, useState} from "react";
 import styled from "styled-components";
 import iconEdit from "../../assets/icons/settings.svg";
-import {AdvancedAccountInfoMode} from "../../consts/Mode";
+import {AdvancedAccountInfoMode} from "../../consts/AdvancedAccountInfoMode";
 
 interface IProps {
 	changeMode: (mode: AdvancedAccountInfoMode) => void

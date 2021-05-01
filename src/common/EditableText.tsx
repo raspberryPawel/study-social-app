@@ -9,7 +9,7 @@ interface IProps {
 	onChange: (value: string) => void,
 }
 
-const EditableTextContainer = styled.div`
+const EditableTextContainer = styled.section`
 	margin-left: 20px;
 
 	input {
@@ -24,7 +24,7 @@ export const EditableText: FC<IProps> = ({editOnClick, isEditable, text, onChang
 
 	useEffect(() => {
 		if (!editOnClick) changeMode(isEditable || false);
-	}, [isEditable]);
+	}, [isEditable, editOnClick]);
 
 	const onElementClick = () => {
 		if (editOnClick && isEditable) changeMode(!isEditMode);

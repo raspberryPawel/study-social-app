@@ -18,8 +18,8 @@ import "./LeftSection.scss";
 
 const options: DropdownOption[] = [
 	{title: "Publications", icon: publications, link: "/publications"},
-	{title: "Ecosystem", icon: ecosystem, link: "/"},
-	{title: "Entities", icon: entities, link: "/"},
+	{title: "Ecosystem", icon: ecosystem, link: "/ecosystem"},
+	{title: "Entities", icon: entities, link: "/entities"},
 ];
 
 interface IProps {

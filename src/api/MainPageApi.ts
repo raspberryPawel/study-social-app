@@ -8,7 +8,7 @@ import {Post} from "../interfaces/Posts";
 import {User} from "../interfaces/User";
 import {Work} from "../interfaces/Work";
 
-const API_URL = "https://jsonplaceholder.cypress.io";
+export const API_URL = "https://jsonplaceholder.cypress.io";
 const OLD_API_URL = "https://jsonplaceholder.typicode.com";
 
 export class MainPageApi {

@@ -3,7 +3,7 @@ import {blue} from "@material-ui/core/colors";
 import React, {FC, useState} from "react";
 import styled from "styled-components";
 import {EditableText} from "../../common/EditableText";
-import {AdvancedAccountInfoMode} from "../../consts/Mode";
+import {AdvancedAccountInfoMode} from "../../consts/AdvancedAccountInfoMode";
 import {AdvancedAccountInfoEditableSection} from "./AdvancedAccountInfoEditableSection";
 
 interface SkillsSection {
@@ -43,11 +43,13 @@ const AccountSkills = styled.div`
 	flex-direction: column;
 	margin: 5px 0;
 
-	span {
+	em {
 		font-size: 0.9em;
 		margin-top: 2px;
 		margin-left: 20px;
 		font-weight: 300;
+		font-style: normal;
+		margin-bottom: 10px;
 	}
 `;
 
@@ -58,7 +60,7 @@ const SkillsContainer = styled.div`
 	flex-wrap: wrap;
 
 	div {
-		margin-top: 10px;
+		//margin-top: 10px;
 	}
 
 	span {
@@ -79,7 +81,7 @@ const SkillsContainer = styled.div`
 	}
 
 	.MuiFormControl-root {
-		margin: 2px 0 10px 10px;
+		margin-left: 10px;
 	}
 `;
 
@@ -114,7 +116,7 @@ export const AccountSkillsElement: FC = () => {
 			<AccountSkillsContainer>
 				{sections.map((section: SkillsSection) => (
 					<AccountSkills>
-						<span>{section.sectionName}</span>
+						<em>{section.sectionName}</em>
 						<SkillsContainer>
 							{section.elements.map((skill: string, index: number) => (
 								<EditableText editOnClick={true} isEditable={mode === EDIT} text={skill}

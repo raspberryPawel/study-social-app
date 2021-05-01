@@ -14,6 +14,7 @@ interface IProps {
 
 const PublicationsContainer = styled.div`
 	margin-top: 10px;
+	width: 100%;
 `;
 
 

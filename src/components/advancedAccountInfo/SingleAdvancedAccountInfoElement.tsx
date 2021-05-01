@@ -26,16 +26,3 @@ export const SingleAdvancedAccountInfoElement = styled.div`
 		font-weight: 300;
 	}
 `;
-
-const PanelInformationsContainer = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	margin: 20px 0;
-
-	strong {
-		font-weight: 400;
-		margin-bottom: 20px;
-	}
-
-`;
