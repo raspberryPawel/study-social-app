@@ -1,7 +1,7 @@
 import {blue, grey} from "@material-ui/core/colors";
 import Pagination from "@material-ui/lab/Pagination";
 import {inject, observer} from "mobx-react";
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import styled from "styled-components";
 import {defaultBoxShadow} from "../../assets/variables";
 import {ViewMode} from "../../consts/ViewMode";
@@ -61,8 +61,6 @@ const SingleEntity = styled.div<ISingleEntity>`
 `;
 
 export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
-	const [value, changeValue] = useState<string>("");
-
 	if (!entitiesStore || !entitiesStore.entities) return null;
 
 	const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
@@ -72,7 +70,7 @@ export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 	const getEntities = (): Entity[] => {
 		if (entitiesStore) {
 			const {entities, filteredEntities} = entitiesStore;
-			const targetEntities = value ? filteredEntities : entities;
+			const targetEntities = entitiesStore.filterInputValue ? filteredEntities : entities;
 
 			return (targetEntities || []).slice(entitiesStore.currentFirstIndex,
 				entitiesStore.currentFirstIndex + entitiesStore.countPerPage);
