@@ -23,6 +23,7 @@ export class EntitiesApi {
 			return {
 				id: todo.id,
 				name: todo.title,
+				company: users[randomUserIndex].company,
 				address: users[randomUserIndex].address,
 				photo: photos[randomPhotoIndex],
 			};

@@ -13,5 +13,11 @@ export interface Entity {
 			lng: string;
 		}
 	},
+	company: {
+		name: string;
+		catchPhrase: string;
+		bs: string;
+		role: string;
+	},
 	photo: Photo
 }

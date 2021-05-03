@@ -28,7 +28,7 @@ const DropdownViewContainer = styled.div`
 		overflow-y: auto;
 		position: absolute;
 		top: 100%;
-		width: 100%;
+		width: 240px;
 		z-index: 1000;
 		-webkit-overflow-scrolling: touch;
 	}
@@ -96,7 +96,7 @@ export const DropdownView: FC<IProps> = props => {
 
 	return (
 		<DropdownViewContainer>
-			<CustomScrollbar className={"DropdownView"} style={{position: "absolute"}}>
+			<CustomScrollbar className={"DropdownView"} style={{position: "absolute", width: 240}}>
 				<TextField className="filterInput" label="Filter" variant="outlined" onChange={onChange} />
 				{dropdownSections.map(createSection)}
 			</CustomScrollbar>

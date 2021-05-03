@@ -9,8 +9,10 @@ import SettingsEthernetRoundedIcon from "@material-ui/icons/SettingsEthernetRoun
 import ShareRoundedIcon from "@material-ui/icons/ShareRounded";
 import React, {FC} from "react";
 import styled from "styled-components";
+import {DropdownContainer} from "../../common/DropdownContainer";
 import {SectionSeparator} from "../../common/SectionSeparator";
 import {SeparatorVariant} from "../../consts/SeparatorVariant";
+import {AdvancedFiltersView} from "./AdvancedFiltersView";
 
 interface IProps {
 }
@@ -47,7 +49,15 @@ export const EntitiesFiltersSectionView = styled.div`
 	}
 `;
 
-export const FirstFiltersSection: FC<IProps> = ({}) => {
+export const FirstFiltersSection: FC<IProps> = () => {
+	const getButtonView = () => {
+		return (
+			<Button>
+				<FilterListRoundedIcon /> Filters
+			</Button>
+		);
+	};
+
 	return (
 		<EntitiesFiltersSectionView>
 			<Button variant="contained">
@@ -63,9 +73,10 @@ export const FirstFiltersSection: FC<IProps> = ({}) => {
 			<Button>
 				<ImportExportRoundedIcon /> Sort
 			</Button>
-			<Button>
-				<FilterListRoundedIcon /> Filters
-			</Button>
+
+			<DropdownContainer buttonView={getButtonView()}>
+				<AdvancedFiltersView />
+			</DropdownContainer>
 
 			<SectionSeparator variant={SeparatorVariant.VERTICAL} />
 

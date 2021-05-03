@@ -9,7 +9,7 @@ import {User} from "../interfaces/User";
 import {Work} from "../interfaces/Work";
 
 export const API_URL = "https://jsonplaceholder.cypress.io";
-const OLD_API_URL = "https://jsonplaceholder.typicode.com";
+// const OLD_API_URL = "https://jsonplaceholder.typicode.com";
 
 export class MainPageApi {
 	public static getComments = async (): Promise<Comment[]> => {

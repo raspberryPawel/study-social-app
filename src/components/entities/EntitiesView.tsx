@@ -88,7 +88,7 @@ export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 					return (
 						<SingleEntity viewMode={viewMode}>
 							<div>
-								<img src={entity.photo.url} alt="entity image" />
+								<img src={entity.photo.url} alt="entity" />
 							</div>
 							<div>
 								<strong>{name}</strong>

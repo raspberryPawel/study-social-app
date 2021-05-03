@@ -1,5 +1,5 @@
-import {ClickAwayListener} from "@material-ui/core";
-import React, {Component, ReactElement} from "react";
+import React, {FC, useState} from "react";
+
 import "react-dropdown/style.css";
 import styled from "styled-components";
 import administration from "../../assets/icons/administration.svg";
@@ -12,17 +12,15 @@ import home from "../../assets/icons/house.svg";
 import groupNorms from "../../assets/icons/open-book.svg";
 import peoples from "../../assets/icons/people.svg";
 import publications from "../../assets/icons/publications.svg";
+import {DropdownContainer} from "../../common/DropdownContainer";
 import {DropdownOption} from "../../interfaces/DropdownOption";
 
 import {DropdownSections} from "../../interfaces/DropdownSections";
 import {AccountInfo} from "./AccountInfo";
 import {DropdownView} from "./DropdownView";
 
-interface IProps {}
 
-interface IState {
-	isOpen: boolean,
-	selectedOption: DropdownOption
+interface IProps {
 }
 
 interface DropdownArrowProps {
@@ -59,16 +57,16 @@ const DropdownArrow = styled.img<DropdownArrowProps>`
 	transform: ${props => props.isOpen ? "rotate(180deg)" : "rotate(0deg)"}
 `;
 
-const DropdownContainer = styled.div`
-	position: relative;
-	margin-left: 40px;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-`;
+// const DropdownContainer = styled.div`
+// 	position: relative;
+// 	margin-left: 40px;
+// 	-webkit-touch-callout: none;
+// 	-webkit-user-select: none;
+// 	-khtml-user-select: none;
+// 	-moz-user-select: none;
+// 	-ms-user-select: none;
+// 	user-select: none;
+// `;
 
 const DropdownButton = styled.div`
 	position: relative;
@@ -100,46 +98,28 @@ const DropdownButton = styled.div`
 	}
 `;
 
-export class NavDropdown extends Component<IProps, IState> {
-	state = {
-		isOpen: false,
-		selectedOption: {title: "Home", icon: home, link: "/"}
-	};
+export const NavDropdown: FC<IProps> = props => {
+	const [isOpen, changeOpen] = useState<boolean>(false);
+	const [selectedOption, changeSelectedOption] = useState<DropdownOption>({title: "Home", icon: home, link: "/"});
 
-	protected toggleDropdown = () => {
-		const isOpen = !this.state.isOpen;
-		this.setState({isOpen});
-	};
-
-	protected onOutsideClick = () => {
-		if (this.state.isOpen)
-			this.setState({isOpen: false});
-	};
-
-	protected changeSelectedOption = (selectedOption: DropdownOption) => {
-		this.setState({selectedOption});
-	};
-
-	public render(): ReactElement {
-		const {selectedOption} = this.state;
+	const getButtonView = () => {
 		return (
-			<ClickAwayListener onClickAway={this.onOutsideClick}>
-				<DropdownContainer>
-					<DropdownButton onClick={this.toggleDropdown}>
-						<p>
-							<img src={selectedOption.icon} alt={"home icon"} />
-							{selectedOption.title}
-						</p>
-						<DropdownArrow src={arrow} isOpen={this.state.isOpen} />
-					</DropdownButton>
-					{
-						this.state.isOpen &&
-						<DropdownView dropdownSections={dropdownSections}
-									  changeSelectedOption={this.changeSelectedOption}
-						/>
-					}
-				</DropdownContainer>
-			</ClickAwayListener>
+			<DropdownButton>
+				<p>
+					<img src={selectedOption.icon} alt={"home icon"} />
+					{selectedOption.title}
+				</p>
+				<DropdownArrow src={arrow} isOpen={isOpen} />
+			</DropdownButton>
 		);
-	}
-}
+	};
+
+	return (
+		<DropdownContainer toggleDropdown={(isOpen: boolean) => changeOpen(isOpen)} buttonView={getButtonView()}>
+			<DropdownView dropdownSections={dropdownSections}
+						  changeSelectedOption={(selectedOption: DropdownOption) => changeSelectedOption(
+							  selectedOption)}
+			/>
+		</DropdownContainer>
+	);
+};
