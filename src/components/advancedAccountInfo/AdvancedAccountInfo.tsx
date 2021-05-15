@@ -4,7 +4,7 @@ import React, {FC, useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {EditableText} from "../../common/EditableText";
-import {AdvancedAccountInfoMode} from "../../consts/AdvancedAccountInfoMode";
+import {AccessType} from "../../consts/AccessType";
 import {User} from "../../interfaces/User";
 import {AdvancedAccountInfoEditableSection} from "./AdvancedAccountInfoEditableSection";
 
@@ -64,8 +64,8 @@ const AdditionalInfo = styled(AccountInfo)`
 
 
 export const AdvancedAccountInfo: FC<IProps> = ({user}) => {
-	const {EDIT} = AdvancedAccountInfoMode;
-	const [mode, changeMode] = useState<AdvancedAccountInfoMode>(AdvancedAccountInfoMode.READ);
+	const {EDIT} = AccessType;
+	const [mode, changeMode] = useState<AccessType>(AccessType.READ);
 
 	return (
 		<AdvancedAccountInfoEditableSection changeMode={changeMode}>

@@ -1,4 +1,3 @@
-import Button from "@material-ui/core/Button";
 import React, {Component} from "react";
 import styled from "styled-components";
 
@@ -70,9 +69,9 @@ export class ButtonElement extends Component<IProps> {
 					{icon && <img src={icon} alt={"icon"} />}
 					{text}
 					{additionalButtonIcon
-						? <Button className={"additionalButton"} onClick={additionalButtonClick}>
+						? <span className={"additionalButton"} onClick={additionalButtonClick}>
 							<img src={additionalButtonIcon} className={"additionalIcon"} alt={"icon"} />
-						</Button>
+						</span>
 						: null}
 				</span>
 			</Element>

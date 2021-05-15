@@ -2,10 +2,10 @@ import Button from "@material-ui/core/Button";
 import React, {FC, useState} from "react";
 import styled from "styled-components";
 import iconEdit from "../../assets/icons/settings.svg";
-import {AdvancedAccountInfoMode} from "../../consts/AdvancedAccountInfoMode";
+import {AccessType} from "../../consts/AccessType";
 
 interface IProps {
-	changeMode: (mode: AdvancedAccountInfoMode) => void
+	changeMode: (mode: AccessType) => void
 }
 
 const EditableSectionContainer = styled.div`
@@ -27,8 +27,8 @@ const EditableSectionContainer = styled.div`
 `;
 
 export const AdvancedAccountInfoEditableSection: FC<IProps> = ({changeMode, children}) => {
-	const {READ, EDIT} = AdvancedAccountInfoMode;
-	const [mode, changeLocalMode] = useState<AdvancedAccountInfoMode>(AdvancedAccountInfoMode.READ);
+	const {READ, EDIT} = AccessType;
+	const [mode, changeLocalMode] = useState<AccessType>(AccessType.READ);
 
 	const clickOnEditButton = () => {
 		const newMode = mode === READ ? EDIT : READ;

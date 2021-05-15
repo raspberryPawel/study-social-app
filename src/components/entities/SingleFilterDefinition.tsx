@@ -3,11 +3,11 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import {inject, observer} from "mobx-react";
 import React, {FC, ReactElement} from "react";
 import styled from "styled-components";
-import {FilterDefinition} from "../interfaces/FilterDefinition";
-import {EntitiesStore} from "../stores/EntitiesStore";
-import {Condition} from "./Condition";
-import {FilterByProperty} from "./FilterByProperty";
-import {LogicalOperation} from "./LogicalOperation";
+import {Condition} from "../../consts/Condition";
+import {FilterByProperty} from "../../consts/FilterByProperty";
+import {LogicalOperation} from "../../consts/LogicalOperation";
+import {FilterDefinition} from "../../interfaces/FilterDefinition";
+import {EntitiesStore} from "../../stores/EntitiesStore";
 
 interface IProps {
 	entitiesStore?: EntitiesStore,

@@ -70,7 +70,7 @@ export const DropdownView: FC<IProps> = props => {
 
 	const createSection = (section: DropdownSections) => {
 			return (
-				<DropdownViewContainer>
+				<DropdownViewContainer key={section.title}>
 					{!section.options && <SectionSeparator />}
 					<SectionTitle>{section.title}</SectionTitle>
 
@@ -78,7 +78,7 @@ export const DropdownView: FC<IProps> = props => {
 						? section.options?.map(
 							(option: DropdownOption) => {
 								return option.title.toLowerCase().includes(value.toLowerCase()) ?
-									<Link to={option.link}>
+									<Link to={option.link} key={option.title}>
 										<ButtonElement
 											icon={option.icon}
 											text={option.title}
@@ -103,3 +103,5 @@ export const DropdownView: FC<IProps> = props => {
 		</DropdownViewContainer>
 	);
 };
+
+//<ButtonWithLink icon={option.icon} link={option.link} text={option.title}/>

@@ -8,9 +8,9 @@ import {defaultBoxShadow} from "../../assets/variables";
 import {Condition} from "../../consts/Condition";
 import {FilterByProperty} from "../../consts/FilterByProperty";
 import {LogicalOperation} from "../../consts/LogicalOperation";
-import {SingleFilterDefinition} from "../../consts/SingleFilterDefinition";
 import {FilterDefinition} from "../../interfaces/FilterDefinition";
 import {EntitiesStore} from "../../stores/EntitiesStore";
+import {SingleFilterDefinition} from "./SingleFilterDefinition";
 
 interface IProps {
 	entitiesStore?: EntitiesStore
@@ -84,7 +84,7 @@ const AdvancedFilters: FC<IProps> = ({entitiesStore}) => {
 			<strong>Rows are filtered by the following conditions starting from the top</strong>
 			{entitiesStore.filterDefinitions.map((filter: FilterDefinition) => {
 				return (
-					<SingleFilterDefinition filterDefinition={filter} getMenuItems={getMenuItems} />
+					<SingleFilterDefinition key={filter.id} filterDefinition={filter} getMenuItems={getMenuItems} />
 				);
 			})}
 

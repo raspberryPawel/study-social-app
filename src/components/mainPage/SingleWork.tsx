@@ -5,7 +5,9 @@ import {DotSeparator} from "../../common/DotSeparator";
 import {Work} from "../../interfaces/Work";
 
 interface IProps {
-	work: Work
+	work: Work,
+	showCompanyDetails?: boolean;
+	showWorkspaceDefinitionDetails?: boolean;
 }
 
 const WorkContainer = styled.div`
@@ -38,11 +40,20 @@ const Info = styled.div`
 const Workspace = styled.span`
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 `;
 
 const WorkspaceIcon = styled.img`
 	width: 15px;
 	margin-right: 10px;
+`;
+
+const WorkspaceDefinitionContainer = styled(Workspace)<{ color: string }>`
+	color: ${(props) => props.color};
+
+	svg {
+		fill: ${(props) => props.color};
+	}
 `;
 
 export const SingleWork: FC<IProps> = props => {
@@ -51,6 +62,7 @@ export const SingleWork: FC<IProps> = props => {
 		body,
 		workspaceName,
 		lastUpdateDate,
+		workspaceDefinition,
 		icon,
 		user,
 	} = props.work;
@@ -75,8 +87,21 @@ export const SingleWork: FC<IProps> = props => {
 				<div>{user.company.name}</div>
 				<DotSeparator />
 				<Workspace>
-					<WorkspaceIcon src={icon} alt="workspace-icon" />
-					<div>{workspaceName}</div>
+					{
+						props.showCompanyDetails && <>
+							<WorkspaceIcon src={icon} alt="workspace-icon" />
+							<div>{workspaceName}</div>
+						</>
+					}
+
+					{
+						props.showWorkspaceDefinitionDetails && <>
+							<WorkspaceDefinitionContainer color={workspaceDefinition.color}>
+								{workspaceDefinition.icon && React.createElement(workspaceDefinition.icon)}
+								{workspaceDefinition.name}
+							</WorkspaceDefinitionContainer>
+						</>
+					}
 				</Workspace>
 				<DotSeparator />
 				<span>Updated {getLastUpdateText()} by {user.name}</span>

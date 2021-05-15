@@ -1,4 +1,4 @@
-import {action, makeAutoObservable, observable} from "mobx";
+import {action, makeAutoObservable, observable, runInAction} from "mobx";
 import {EntitiesApi} from "../api/EntitiesApi";
 import {Condition} from "../consts/Condition";
 import {FilterByProperty} from "../consts/FilterByProperty";
@@ -7,8 +7,8 @@ import {Entity} from "../interfaces/Entity";
 import {FilterDefinition} from "../interfaces/FilterDefinition";
 
 export class EntitiesStore {
-	@observable public entities: Entity[] | null = null;
-	@observable public filteredEntities: Entity[] | null = null;
+	@observable public entities: Entity[] = [];
+	@observable public filteredEntities: Entity[] = [];
 	@observable public filterInputValue: string = "";
 	@observable public filterDefinitions: FilterDefinition[] = [];
 	@observable public pagesCount: number = 10;
@@ -22,6 +22,7 @@ export class EntitiesStore {
 		this.getData();
 	}
 
+	@action
 	private getData = async () => {
 		await this.getEntities();
 	};
@@ -46,6 +47,7 @@ export class EntitiesStore {
 		this.pagesCount = Math.ceil(this.filteredEntities.length / this.countPerPage);
 	};
 
+	@action
 	protected getCondition = (id: number): FilterDefinition | undefined => {
 		return this.filterDefinitions.find((definition) => definition.id === id);
 	};
@@ -86,7 +88,11 @@ export class EntitiesStore {
 
 	@action
 	public getEntities = async () => {
-		this.entities = await EntitiesApi.getEntities();
-		this.pagesCount = Math.ceil(this.entities.length / this.countPerPage);
+		const entities = await EntitiesApi.getEntities();
+
+		runInAction(() => {
+			this.entities = entities;
+			this.pagesCount = Math.ceil(entities.length / this.countPerPage);
+		});
 	};
 }

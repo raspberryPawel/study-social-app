@@ -70,7 +70,7 @@ export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 	const getEntities = (): Entity[] => {
 		if (entitiesStore) {
 			const {entities, filteredEntities} = entitiesStore;
-			const targetEntities = entitiesStore.filterInputValue ? filteredEntities : entities;
+			const targetEntities = entitiesStore.filterInputValue ? [...filteredEntities] : [...entities];
 
 			return (targetEntities || []).slice(entitiesStore.currentFirstIndex,
 				entitiesStore.currentFirstIndex + entitiesStore.countPerPage);
@@ -86,7 +86,7 @@ export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 					const name = `${entity.name[0].toUpperCase()}${entity.name.slice(1, entity.name.length)}`;
 
 					return (
-						<SingleEntity viewMode={viewMode}>
+						<SingleEntity viewMode={viewMode} key={entity.id}>
 							<div>
 								<img src={entity.photo.url} alt="entity" />
 							</div>

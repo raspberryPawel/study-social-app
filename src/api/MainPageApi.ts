@@ -1,14 +1,18 @@
 import axios from "axios";
+import document from "../assets/icons/document.svg";
 import contract from "../assets/icons/document.svg";
 import examplePerson from "../assets/images/enxampleperson.png";
+import {EntitiesFiltersDefinitions} from "../consts/EntitiesFiltersDefinitions";
 import {Comment} from "../interfaces/Comment";
 import {LatestPublication} from "../interfaces/LatestPublication";
 import {Photo} from "../interfaces/Photo";
 import {Post} from "../interfaces/Posts";
 import {User} from "../interfaces/User";
 import {Work} from "../interfaces/Work";
+import {Workspace} from "../interfaces/Workspace";
 
 export const API_URL = "https://jsonplaceholder.cypress.io";
+
 // const OLD_API_URL = "https://jsonplaceholder.typicode.com";
 
 export class MainPageApi {
@@ -46,8 +50,10 @@ export class MainPageApi {
 		const users: User[] = await MainPageApi.getUsers();
 		const works: Work[] = comments.map((comment: Comment) => {
 			const randomIndex = Math.floor(Math.random() * users.length);
+			const randomWorkspaceDefinitionIndex = Math.floor(Math.random() * EntitiesFiltersDefinitions.length);
 			return {
 				...comment,
+				workspaceDefinition: EntitiesFiltersDefinitions[randomWorkspaceDefinitionIndex],
 				user: users[randomIndex],
 				icon: contract,
 				workspaceName: "Company",
@@ -56,6 +62,31 @@ export class MainPageApi {
 		});
 
 		return works;
+	};
+
+
+	public static getWorkspaces = async (): Promise<Workspace[]> => {
+		const comments: Comment[] = await MainPageApi.getComments();
+		const users: User[] = await MainPageApi.getUsers();
+		const photos: Photo[] = await MainPageApi.getPhotos();
+
+
+		const works: Workspace[] = comments.map((comment: Comment) => {
+			const randomPhotoIndex = Math.floor(Math.random() * photos.length);
+			const randomIndex = Math.floor(Math.random() * users.length);
+			return {
+				id: `${comment.id}`,
+				title: comment.name.slice(0, 20),
+				description: comment.body,
+				photo: photos[randomPhotoIndex],
+				usersCount: randomIndex,
+				workspaceName: users[randomIndex].company.name,
+				lastUpdateDate: new Date(),
+				icon: document
+			};
+		});
+
+		return works.slice(0, 10);
 	};
 
 	public static getLatestPublications = async (user: User): Promise<LatestPublication[]> => {

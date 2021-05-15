@@ -44,7 +44,7 @@ export const LeftSectionElement: FC<IProps> = ({
 					</div>
 				</section>
 				<SectionSeparator />
-
+{/*//change to button with link and add additional button to button with link*/}
 				<ButtonElement className={"accountElement"} icon={network} text={"Your network"}
 							   additionalButtonIcon={addNewPerson}
 							   additionalButtonClick={() => {}}
@@ -58,7 +58,7 @@ export const LeftSectionElement: FC<IProps> = ({
 			<div className={"navOptions"}>
 				{options?.map(
 					(option: DropdownOption) =>
-						<ButtonWithLink link={option.link} icon={option.icon} text={option.title} />
+						<ButtonWithLink key={option.title} link={option.link} icon={option.icon} text={option.title} />
 				)}
 			</div>
 		</div>

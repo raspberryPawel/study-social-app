@@ -6,6 +6,7 @@ interface IProps {
 	editOnClick?: boolean,
 	isEditable?: boolean,
 	text: string,
+	multiline?: boolean,
 	onChange: (value: string) => void,
 }
 
@@ -19,7 +20,7 @@ const EditableTextContainer = styled.section`
 		font-weight: 300;
 	}
 `;
-export const EditableText: FC<IProps> = ({editOnClick, isEditable, text, onChange}) => {
+export const EditableText: FC<IProps> = ({editOnClick, multiline, isEditable, text, onChange}) => {
 	const [isEditMode, changeMode] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -47,6 +48,8 @@ export const EditableText: FC<IProps> = ({editOnClick, isEditable, text, onChang
 					defaultValue={text}
 					onChange={(e: ChangeEvent) => onChange((e.target as HTMLInputElement).value)}
 					onBlur={onBlur}
+					multiline={multiline}
+					rowsMax={3}
 				/>
 				: <span onClick={onElementClick}>{text}</span>}
 		</EditableTextContainer>

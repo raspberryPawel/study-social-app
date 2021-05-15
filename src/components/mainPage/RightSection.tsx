@@ -5,7 +5,8 @@ import {AdvancedAccountInfoPage} from "../../containers/AdvancedAccountInfoPage"
 import {Entities} from "../../containers/Entities";
 import {NotFoundPage} from "../../containers/NotFoundPage";
 import {Publications} from "../../containers/Publications";
-import {RightSectionContent} from "./RightSectionContent";
+import {SingleWorkspaceView} from "../../containers/Workspaces";
+import {MainSectionContent} from "./MainSectionContent";
 
 const RightSectionContainer = styled.div`
 	width: calc(100% - 250px);
@@ -21,6 +22,9 @@ const RightSectionContainer = styled.div`
 export const RightSection: FC = () => (
 	<RightSectionContainer className={"RightSection"}>
 		<Switch>
+			<Route exact path="/workspace/:id">
+				<SingleWorkspaceView />
+			</Route>
 			<Route exact path="/entities">
 				<Entities />
 			</Route>
@@ -31,7 +35,7 @@ export const RightSection: FC = () => (
 				<Publications />
 			</Route>
 			<Route exact path="/">
-				<RightSectionContent />
+				<MainSectionContent />
 			</Route>
 			<Route component={NotFoundPage} />
 		</Switch>

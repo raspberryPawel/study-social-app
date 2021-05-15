@@ -3,7 +3,7 @@ import {blue} from "@material-ui/core/colors";
 import React, {FC, useState} from "react";
 import styled from "styled-components";
 import {EditableText} from "../../common/EditableText";
-import {AdvancedAccountInfoMode} from "../../consts/AdvancedAccountInfoMode";
+import {AccessType} from "../../consts/AccessType";
 import {AdvancedAccountInfoEditableSection} from "./AdvancedAccountInfoEditableSection";
 
 interface SkillsSection {
@@ -86,8 +86,8 @@ const SkillsContainer = styled.div`
 `;
 
 export const AccountSkillsElement: FC = () => {
-	const {EDIT} = AdvancedAccountInfoMode;
-	const [mode, changeMode] = useState<AdvancedAccountInfoMode>(AdvancedAccountInfoMode.READ);
+	const {EDIT} = AccessType;
+	const [mode, changeMode] = useState<AccessType>(AccessType.READ);
 	const [sections, changeSections] = useState<SkillsSection[]>(defaultSections);
 
 	const addNewElement = (event: React.FocusEvent<HTMLInputElement>, sectionName: string) => {

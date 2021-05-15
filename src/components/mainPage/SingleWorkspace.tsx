@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {defaultBoxShadow} from "../../assets/variables";
 import {DotSeparator} from "../../common/DotSeparator";
@@ -24,7 +25,7 @@ const WorkspaceContainer = styled.div`
 		font-weight: 500;
 	}
 
-	section {
+	main {
 		width: 100%;
 		height: 80px;
 		position: absolute;
@@ -58,17 +59,17 @@ const IconContainer = styled.div`
 
 	background-color: white;
 	box-shadow: ${defaultBoxShadow};
-	
+
 	img {
 		width: 70%;
 	}
 `;
 
-const WorkspaceInfo = styled.div`
+const WorkspaceInfo = styled.section`
 	height: 40px;
 	padding-left: 15px;
 	padding-bottom: 10px;
-	
+
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -89,12 +90,12 @@ const DateSpan = styled.span`
 
 export const SingleWorkspace: FC<IProps> = props => {
 	const {
-		imageUrl,
+		id,
+		photo,
 		usersCount,
 		workspaceName,
 		lastUpdateDate,
 		icon, title
-
 	} = props.workspace;
 
 	const getLastUpdateText = (): string => {
@@ -111,23 +112,25 @@ export const SingleWorkspace: FC<IProps> = props => {
 
 	return (
 		<WorkspaceContainer>
-			<BgImage src={imageUrl} alt="workspace-image" />
+			<BgImage src={photo.url} alt="workspace-image" />
 			<IconContainer>
 				<img src={icon} alt="workspace-icon" />
 			</IconContainer>
-			<p>{title}</p>
-			<section>
+			<Link to={`/workspace/${id}`}>
+				<p>{title.slice(0, 20)}{title.length > 20 ? "..." : ""}</p>
+			</Link>
+			<main>
 				<WorkspaceInfo>
-					<span>
+						<span>
 						<img src={icon} alt="workspace-icon" />
-						{workspaceName}
+							{workspaceName}
 					</span>
-					<DotSeparator/>
+					<DotSeparator />
 					<span>{usersCount} users</span>
 				</WorkspaceInfo>
 
 				<DateSpan>Last update: {getLastUpdateText()}</DateSpan>
-			</section>
+			</main>
 		</WorkspaceContainer>
 	);
 };
