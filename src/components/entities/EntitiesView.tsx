@@ -9,7 +9,7 @@ import {Entity} from "../../interfaces/Entity";
 import {EntitiesStore} from "../../stores/EntitiesStore";
 
 interface IProps {
-	entitiesStore?: EntitiesStore,
+	entitiesStore?: EntitiesStore;
 	viewMode: ViewMode;
 }
 
@@ -28,8 +28,8 @@ const SingleEntity = styled.div<ISingleEntity>`
 	display: flex;
 	flex-direction: row;
 
-	width: ${props => props.viewMode === ViewMode.MOSAIC ? "300px" : "100%"};
-	margin: ${props => props.viewMode === ViewMode.MOSAIC ? "10px 10px" : "2px 10px"};
+	width: ${(props) => (props.viewMode === ViewMode.MOSAIC ? "300px" : "100%")};
+	margin: ${(props) => (props.viewMode === ViewMode.MOSAIC ? "10px 10px" : "2px 10px")};
 	padding: 10px;
 	border-radius: 10px;
 
@@ -42,7 +42,7 @@ const SingleEntity = styled.div<ISingleEntity>`
 	}
 
 	img {
-		width: ${props => props.viewMode === ViewMode.MOSAIC ? " 90px" : "60px"};
+		width: ${(props) => (props.viewMode === ViewMode.MOSAIC ? " 90px" : "60px")};
 		margin-right: 10px;
 	}
 
@@ -72,8 +72,10 @@ export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 			const {entities, filteredEntities} = entitiesStore;
 			const targetEntities = entitiesStore.filterInputValue ? [...filteredEntities] : [...entities];
 
-			return (targetEntities || []).slice(entitiesStore.currentFirstIndex,
-				entitiesStore.currentFirstIndex + entitiesStore.countPerPage);
+			return (targetEntities || []).slice(
+				entitiesStore.currentFirstIndex,
+				entitiesStore.currentFirstIndex + entitiesStore.countPerPage
+			);
 		}
 
 		return [];
@@ -93,18 +95,19 @@ export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 							<div>
 								<strong>{name}</strong>
 								<em>
-									{entity.address.suite}{", "}
-									{entity.address.street}{", "}
-									{entity.address.city}{", "}
+									{entity.address.suite}
+									{", "}
+									{entity.address.street}
+									{", "}
+									{entity.address.city}
+									{", "}
 								</em>
 							</div>
 						</SingleEntity>
 					);
 				})}
 			</EntitiesContainer>
-			<Pagination count={entitiesStore?.pagesCount}
-						onChange={handleChange}
-			/>
+			<Pagination count={entitiesStore?.pagesCount} onChange={handleChange} />
 		</>
 	);
 };

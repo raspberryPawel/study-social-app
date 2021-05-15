@@ -42,7 +42,7 @@ export class EntitiesStore {
 	public changeFilterInputValue = (value: string) => {
 		this.filterInputValue = value;
 
-		this.filteredEntities = (this.entities || []).filter(entity => entity.name.includes(value));
+		this.filteredEntities = (this.entities || []).filter((entity) => entity.name.includes(value));
 		this.currentFirstIndex = 0;
 		this.pagesCount = Math.ceil(this.filteredEntities.length / this.countPerPage);
 	};
@@ -55,7 +55,8 @@ export class EntitiesStore {
 	@action
 	public removeFilterDefinition = (id: number) => {
 		const filterDefinitionIndex = this.filterDefinitions.findIndex(
-			(filterDefinition: FilterDefinition) => filterDefinition.id === id);
+			(filterDefinition: FilterDefinition) => filterDefinition.id === id
+		);
 
 		this.filterDefinitions.splice(filterDefinitionIndex, 1);
 	};

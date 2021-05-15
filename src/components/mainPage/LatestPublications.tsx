@@ -17,10 +17,7 @@ const PublicationsContainer = styled.div`
 	width: 100%;
 `;
 
-
-export const LatestPublicationsClass: FC<IProps> = ({
-	mainPageStore
-}) => {
+export const LatestPublicationsClass: FC<IProps> = ({mainPageStore}) => {
 	if (!mainPageStore || !mainPageStore.latestPublications) return null;
 
 	const {latestPublications} = mainPageStore;
@@ -35,11 +32,12 @@ export const LatestPublicationsClass: FC<IProps> = ({
 				<strong className={"section-title"}>Latest publications</strong>
 
 				<PublicationsContainer>
-					{latestPublications?.slice(1, 4).map(
-						publication => <SinglePublication key={publication.id} publication={publication} />)}
+					{latestPublications?.slice(1, 4).map((publication) => (
+						<SinglePublication key={publication.id} publication={publication} />
+					))}
 				</PublicationsContainer>
 
-				<ButtonWithLink link={"/publications"} text={"See more publications"}/>
+				<ButtonWithLink link={"/publications"} text={"See more publications"} />
 			</div>
 		</div>
 	);

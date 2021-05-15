@@ -16,9 +16,7 @@ interface IProps {
 	advancedAccountInfo?: AdvancedAccountInfo;
 }
 
-export const InternalReviewsElement: FC<IProps> = ({
-	advancedAccountInfo
-}) => {
+export const InternalReviewsElement: FC<IProps> = ({advancedAccountInfo}) => {
 	if (!advancedAccountInfo || !advancedAccountInfo.proposals) return null;
 
 	const reviews = advancedAccountInfo.proposals.slice(0, 5);
@@ -57,6 +55,5 @@ export const InternalReviewsElement: FC<IProps> = ({
 		</SingleAdvancedAccountInfoElement>
 	);
 };
-
 
 export const InternalReviews = inject("advancedAccountInfo")(observer(InternalReviewsElement));

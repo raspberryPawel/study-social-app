@@ -19,12 +19,10 @@ import {DropdownSections} from "../../interfaces/DropdownSections";
 import {AccountInfo} from "./AccountInfo";
 import {DropdownView} from "./DropdownView";
 
-
-interface IProps {
-}
+interface IProps {}
 
 interface DropdownArrowProps {
-	isOpen: boolean
+	isOpen: boolean;
 }
 
 const dropdownSections: DropdownSections[] = [
@@ -35,7 +33,8 @@ const dropdownSections: DropdownSections[] = [
 			{title: "Publications", icon: publications, link: "/publications"},
 			{title: "Peoples", icon: peoples, link: "/peoples"},
 			{title: "Entities", icon: entities, link: "/entities"},
-			{title: "Administration", icon: administration, link: "/administration"}]
+			{title: "Administration", icon: administration, link: "/administration"},
+		],
 	},
 	{
 		title: "Workspaces",
@@ -44,17 +43,17 @@ const dropdownSections: DropdownSections[] = [
 			{title: "Supplier contract", icon: document, link: "/supplier-contract"},
 			{title: "Corporate", icon: corporate, link: "/corporate"},
 			{title: "Group Norms", icon: groupNorms, link: "/group-norms"},
-			{title: "Real estate contracts", icon: document, link: "/real-estate-contracts"}
-		]
+			{title: "Real estate contracts", icon: document, link: "/real-estate-contracts"},
+		],
 	},
 	{
 		title: "Account",
 		component: <AccountInfo />,
-	}
+	},
 ];
 
 const DropdownArrow = styled.img<DropdownArrowProps>`
-	transform: ${props => props.isOpen ? "rotate(180deg)" : "rotate(0deg)"}
+	transform: ${(props) => (props.isOpen ? "rotate(180deg)" : "rotate(0deg)")};
 `;
 
 // const DropdownContainer = styled.div`
@@ -98,7 +97,7 @@ const DropdownButton = styled.div`
 	}
 `;
 
-export const NavDropdown: FC<IProps> = props => {
+export const NavDropdown: FC<IProps> = () => {
 	const [isOpen, changeOpen] = useState<boolean>(false);
 	const [selectedOption, changeSelectedOption] = useState<DropdownOption>({title: "Home", icon: home, link: "/"});
 
@@ -116,9 +115,9 @@ export const NavDropdown: FC<IProps> = props => {
 
 	return (
 		<DropdownContainer toggleDropdown={(isOpen: boolean) => changeOpen(isOpen)} buttonView={getButtonView()}>
-			<DropdownView dropdownSections={dropdownSections}
-						  changeSelectedOption={(selectedOption: DropdownOption) => changeSelectedOption(
-							  selectedOption)}
+			<DropdownView
+				dropdownSections={dropdownSections}
+				changeSelectedOption={(selectedOption: DropdownOption) => changeSelectedOption(selectedOption)}
 			/>
 		</DropdownContainer>
 	);

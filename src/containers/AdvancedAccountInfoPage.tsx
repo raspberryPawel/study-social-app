@@ -15,14 +15,12 @@ interface IProps {
 	mainPageStore?: MainPageStore;
 }
 
-export const AdvancedAccountInfoElement: FC<IProps> = ({
-	mainPageStore
-}) => {
+export const AdvancedAccountInfoElement: FC<IProps> = ({mainPageStore}) => {
 	if (!mainPageStore || !mainPageStore.currentLoggedUser) return null;
 
 	return (
 		<>
-			<TopButtons/>
+			<TopButtons />
 			<AdvancedAccountInfo user={mainPageStore.currentLoggedUser} />
 			<SectionSeparator />
 

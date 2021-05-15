@@ -1,4 +1,4 @@
 export enum ViewMode {
 	MOSAIC = "mosaic",
-	LIST = "list"
+	LIST = "list",
 }

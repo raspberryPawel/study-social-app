@@ -4,10 +4,9 @@ import {EntitiesView} from "../components/entities/EntitiesView";
 import {EntitiesHeader} from "../components/entities/Header";
 import {ViewMode} from "../consts/ViewMode";
 
-interface IProps {
-}
+interface IProps {}
 
-export const Entities: FC<IProps> = props => {
+export const Entities: FC<IProps> = () => {
 	const {MOSAIC} = ViewMode;
 	const [viewMode, changeViewMode] = useState<ViewMode>(MOSAIC);
 

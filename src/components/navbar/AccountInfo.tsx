@@ -14,7 +14,7 @@ import {MainPageStore} from "../../stores/MainPageStore";
 const AccountInfoContainer = styled.div`
 	.logoutButton {
 		position: sticky;
-		bottom: 0px;
+		bottom: 0;
 		background-color: white;
 
 		border-top: 0.5px solid rgba(135, 139, 145, 0.5);
@@ -53,16 +53,16 @@ interface IProps {
 	mainPageStore?: MainPageStore;
 }
 
-export const AccountInfoElement: FC<IProps> = ({
-	mainPageStore
-}) => {
+export const AccountInfoElement: FC<IProps> = ({mainPageStore}) => {
 	if (!mainPageStore || !mainPageStore.currentLoggedUser) return null;
 
 	return (
 		<AccountInfoContainer>
 			<AccountSection className={"account"}>
-				<Avatar alt={mainPageStore.currentLoggedUser.name} src={mainPageStore.currentLoggedUser.imageUrl}
-						style={{width: 40, height: 40}}
+				<Avatar
+					alt={mainPageStore.currentLoggedUser.name}
+					src={mainPageStore.currentLoggedUser.imageUrl}
+					style={{width: 40, height: 40}}
 				/>
 				<AccountDetails>
 					<span>{mainPageStore.currentLoggedUser.name}</span>

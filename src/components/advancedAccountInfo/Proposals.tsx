@@ -16,9 +16,7 @@ interface IProps {
 	advancedAccountInfo?: AdvancedAccountInfo;
 }
 
-export const ProposalsElement: FC<IProps> = ({
-	advancedAccountInfo
-}) => {
+export const ProposalsElement: FC<IProps> = ({advancedAccountInfo}) => {
 	if (!advancedAccountInfo || !advancedAccountInfo.proposals) return null;
 
 	const proposals = advancedAccountInfo.proposals.slice(0, 5);
@@ -59,6 +57,5 @@ export const ProposalsElement: FC<IProps> = ({
 		</SingleAdvancedAccountInfoElement>
 	);
 };
-
 
 export const Proposals = inject("advancedAccountInfo")(observer(ProposalsElement));

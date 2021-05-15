@@ -2,47 +2,46 @@ import React, {PropsWithChildren, useEffect, useState} from "react";
 import Pagination from "@material-ui/lab/Pagination";
 
 interface IProps<T> {
-    list: T[],
-    renderListElement: (element: T) => JSX.Element,
-    countPerPage?: number,
+	list: T[];
+	renderListElement: (element: T) => JSX.Element;
+	countPerPage?: number;
 }
 
-export const PaginationView = <T, >(props: PropsWithChildren<IProps<T>>) => {
-    const {list, countPerPage, renderListElement} = props;
-    const defaultCountPerPage = 10;
+export const PaginationView = <T,>(props: PropsWithChildren<IProps<T>>) => {
+	const {list, countPerPage, renderListElement} = props;
+	const defaultCountPerPage = 10;
 
-    const [pageNumber, changePageNumber] = useState<number>(1);
-    const [pagesCount, changePagesCount] = useState<number>(1);
+	const [pageNumber, changePageNumber] = useState<number>(1);
+	const [pagesCount, changePagesCount] = useState<number>(1);
 
-    const getCountPerPage = () => countPerPage || defaultCountPerPage;
+	const getCountPerPage = () => countPerPage || defaultCountPerPage;
 
-    useEffect(() => {
-        const nextPagesCount = Math.ceil(list.length / getCountPerPage());
+	useEffect(() => {
+		const nextPagesCount = Math.ceil(list.length / getCountPerPage());
 
-        if (pagesCount !== nextPagesCount) {
-            changePagesCount(nextPagesCount);
-        }
+		if (pagesCount !== nextPagesCount) {
+			changePagesCount(nextPagesCount);
+		}
 
-        changePageNumber(1);
-    }, [list]);
+		changePageNumber(1);
 
-    const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
-        changePageNumber(page);
-    };
+		// eslint-disable-next-line
+	}, [list]);
 
-    const getIndex = () => {
-        return pageNumber === 1 ? 0 : (pageNumber - 1) * getCountPerPage();
-    };
+	const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
+		changePageNumber(page);
+	};
 
-    return (
-        <div>
-            <>
-                {list
-                    .slice(getIndex(), getIndex() + getCountPerPage())
-                    .map((element: T) => renderListElement(element)
-                    )}
-            </>
-            <Pagination page={pageNumber} count={pagesCount} onChange={handleChange}/>
-        </div>
-    );
+	const getIndex = () => {
+		return pageNumber === 1 ? 0 : (pageNumber - 1) * getCountPerPage();
+	};
+
+	return (
+		<div>
+			<>
+				{list.slice(getIndex(), getIndex() + getCountPerPage()).map((element: T) => renderListElement(element))}
+			</>
+			<Pagination page={pageNumber} count={pagesCount} onChange={handleChange} />
+		</div>
+	);
 };

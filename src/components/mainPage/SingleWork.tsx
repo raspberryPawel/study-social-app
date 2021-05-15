@@ -5,7 +5,7 @@ import {DotSeparator} from "../../common/DotSeparator";
 import {Work} from "../../interfaces/Work";
 
 interface IProps {
-	work: Work,
+	work: Work;
 	showCompanyDetails?: boolean;
 	showWorkspaceDefinitionDetails?: boolean;
 }
@@ -23,11 +23,11 @@ const WorkContainer = styled.div`
 `;
 
 const Title = styled.div`
-	font-size: 1.3em
+	font-size: 1.3em;
 `;
 
 const Content = styled.div`
-	font-size: 1em
+	font-size: 1em;
 `;
 
 const Info = styled.div`
@@ -48,7 +48,7 @@ const WorkspaceIcon = styled.img`
 	margin-right: 10px;
 `;
 
-const WorkspaceDefinitionContainer = styled(Workspace)<{ color: string }>`
+const WorkspaceDefinitionContainer = styled(Workspace)<{color: string}>`
 	color: ${(props) => props.color};
 
 	svg {
@@ -56,27 +56,16 @@ const WorkspaceDefinitionContainer = styled(Workspace)<{ color: string }>`
 	}
 `;
 
-export const SingleWork: FC<IProps> = props => {
-	const {
-		name,
-		body,
-		workspaceName,
-		lastUpdateDate,
-		workspaceDefinition,
-		icon,
-		user,
-	} = props.work;
+export const SingleWork: FC<IProps> = (props) => {
+	const {name, body, workspaceName, lastUpdateDate, workspaceDefinition, icon, user} = props.work;
 
 	const getLastUpdateText = (): string => {
 		const today = new Date();
 		const datesDifference = today.getTime() - lastUpdateDate.getTime();
 		const daysCount = Math.floor((datesDifference / (1000 * 60 * 60 * 24)) % 7);
-		if (daysCount === 0)
-			return "today";
-		else if (daysCount === 1)
-			return "yesterday";
-		else
-			return `${daysCount} days ago`;
+		if (daysCount === 0) return "today";
+		else if (daysCount === 1) return "yesterday";
+		else return `${daysCount} days ago`;
 	};
 
 	return (
@@ -87,24 +76,26 @@ export const SingleWork: FC<IProps> = props => {
 				<div>{user.company.name}</div>
 				<DotSeparator />
 				<Workspace>
-					{
-						props.showCompanyDetails && <>
+					{props.showCompanyDetails && (
+						<>
 							<WorkspaceIcon src={icon} alt="workspace-icon" />
 							<div>{workspaceName}</div>
 						</>
-					}
+					)}
 
-					{
-						props.showWorkspaceDefinitionDetails && <>
+					{props.showWorkspaceDefinitionDetails && (
+						<>
 							<WorkspaceDefinitionContainer color={workspaceDefinition.color}>
 								{workspaceDefinition.icon && React.createElement(workspaceDefinition.icon)}
 								{workspaceDefinition.name}
 							</WorkspaceDefinitionContainer>
 						</>
-					}
+					)}
 				</Workspace>
 				<DotSeparator />
-				<span>Updated {getLastUpdateText()} by {user.name}</span>
+				<span>
+					Updated {getLastUpdateText()} by {user.name}
+				</span>
 			</Info>
 		</WorkContainer>
 	);

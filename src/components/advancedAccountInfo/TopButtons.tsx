@@ -5,9 +5,7 @@ import document from "../../assets/icons/ecosystem.svg";
 import iconEdit from "../../assets/icons/settings.svg";
 import {ButtonWithLink} from "../../common/ButtonWithLink";
 
-interface IProps {
-}
-
+interface IProps {}
 
 const TopButtonsContainer = styled.div`
 	width: 100%;
@@ -36,10 +34,10 @@ const TopButtonsContainer = styled.div`
 	}
 `;
 
-export const TopButtons: FC<IProps> = props => (
+export const TopButtons: FC<IProps> = () => (
 	<TopButtonsContainer>
-		<ButtonWithLink link={"/404"} icon={message} text={"Message"}/>
-		<ButtonWithLink link={"/404"} icon={document} text={"Create a request"}/>
-		<ButtonWithLink link={"/404"} icon={iconEdit} text={"Add to cluster"}/>
+		<ButtonWithLink link={"/404"} icon={message} text={"Message"} />
+		<ButtonWithLink link={"/404"} icon={document} text={"Create a request"} />
+		<ButtonWithLink link={"/404"} icon={iconEdit} text={"Add to cluster"} />
 	</TopButtonsContainer>
 );

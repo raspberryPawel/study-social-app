@@ -3,11 +3,11 @@ import React, {ChangeEvent, FC, useEffect, useState} from "react";
 import styled from "styled-components";
 
 interface IProps {
-	editOnClick?: boolean,
-	isEditable?: boolean,
-	text: string,
-	multiline?: boolean,
-	onChange: (value: string) => void,
+	editOnClick?: boolean;
+	isEditable?: boolean;
+	text: string;
+	multiline?: boolean;
+	onChange: (value: string) => void;
 }
 
 const EditableTextContainer = styled.section`
@@ -42,8 +42,8 @@ export const EditableText: FC<IProps> = ({editOnClick, multiline, isEditable, te
 
 	return (
 		<EditableTextContainer>
-			{isEditMode
-				? <TextField
+			{isEditMode ? (
+				<TextField
 					autoFocus
 					defaultValue={text}
 					onChange={(e: ChangeEvent) => onChange((e.target as HTMLInputElement).value)}
@@ -51,7 +51,9 @@ export const EditableText: FC<IProps> = ({editOnClick, multiline, isEditable, te
 					multiline={multiline}
 					rowsMax={3}
 				/>
-				: <span onClick={onElementClick}>{text}</span>}
+			) : (
+				<span onClick={onElementClick}>{text}</span>
+			)}
 		</EditableTextContainer>
 	);
 };

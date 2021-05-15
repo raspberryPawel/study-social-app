@@ -26,36 +26,36 @@ export const EntitiesFiltersDefinitions: SingleEntitiesFiltersDefinition[] = [
 	{
 		icon: null,
 		color: grey["400"],
-		name: EntitiesFiltersName.ALL
+		name: EntitiesFiltersName.ALL,
 	},
 	{
 		icon: DomainIcon,
 		color: green["400"],
-		name: EntitiesFiltersName.SAS
+		name: EntitiesFiltersName.SAS,
 	},
 	{
 		icon: DomainIcon,
 		color: lightBlue["400"],
-		name: EntitiesFiltersName.SARL
+		name: EntitiesFiltersName.SARL,
 	},
 	{
 		icon: DomainIcon,
 		color: yellow["400"],
-		name: EntitiesFiltersName.SECONDARY_BUSINESS
+		name: EntitiesFiltersName.SECONDARY_BUSINESS,
 	},
 	{
 		icon: ForumIcon,
 		color: grey["400"],
-		name: EntitiesFiltersName.COMMUNITIES
+		name: EntitiesFiltersName.COMMUNITIES,
 	},
 	{
 		icon: DescriptionIcon,
 		color: grey["400"],
-		name: EntitiesFiltersName.POA
+		name: EntitiesFiltersName.POA,
 	},
 	{
 		icon: PeopleIcon,
 		color: grey["400"],
-		name: EntitiesFiltersName.SURVEY
+		name: EntitiesFiltersName.SURVEY,
 	},
 ];

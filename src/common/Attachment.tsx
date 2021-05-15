@@ -4,26 +4,25 @@ import styled from "styled-components";
 import file from "../assets/icons/document.svg";
 
 interface IProps {
-	name?: string
+	name?: string;
 }
 
 const AttachmentContainer = styled.div`
 	width: 100%;
-	
+
 	display: flex;
 	flex-direction: row;
 	margin: 5px 0;
 	padding: 5px 10px;
 	background-color: ${grey["100"]};
 	box-sizing: border-box;
-	
+
 	font-size: 0.9em;
 	font-weight: 300;
 
 	img {
 		width: 15px;
 		margin-right: 10px;
-
 	}
 `;
 

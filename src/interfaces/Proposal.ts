@@ -4,5 +4,5 @@ export interface Proposal {
 	city: string;
 	expertise: string;
 	date: Date;
-	company: string
+	company: string;
 }

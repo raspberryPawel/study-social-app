@@ -9,7 +9,7 @@ import {User} from "../../interfaces/User";
 import {AdvancedAccountInfoEditableSection} from "./AdvancedAccountInfoEditableSection";
 
 interface IProps {
-	user: User
+	user: User;
 }
 
 const AdvancedAccountInfoContainer = styled.div`
@@ -25,7 +25,7 @@ const AdvancedAccountInfoContainer = styled.div`
 	button {
 		position: absolute;
 		top: 0;
-		right: 10px
+		right: 10px;
 	}
 `;
 
@@ -55,13 +55,11 @@ const AccountInfo = styled.div`
 	}
 `;
 
-
 const AdditionalInfo = styled(AccountInfo)`
 	margin-left: 50px;
 	align-items: flex-end;
 	align-self: flex-end;
 `;
-
 
 export const AdvancedAccountInfo: FC<IProps> = ({user}) => {
 	const {EDIT} = AccessType;
@@ -71,36 +69,45 @@ export const AdvancedAccountInfo: FC<IProps> = ({user}) => {
 		<AdvancedAccountInfoEditableSection changeMode={changeMode}>
 			<AdvancedAccountInfoContainer>
 				<AvatarContainer>
-					<Avatar alt={user.name} src={user.imageUrl}
-							style={{width: 50, height: 50}}
-					/>
+					<Avatar alt={user.name} src={user.imageUrl} style={{width: 50, height: 50}} />
 					<Link to={"/account"}>See profile</Link>
 				</AvatarContainer>
 
 				<AccountInfo>
-					<EditableText isEditable={mode === EDIT} text={user.name}
-								  onChange={(value => user.name = value)}
+					<EditableText
+						isEditable={mode === EDIT}
+						text={user.name}
+						onChange={(value) => (user.name = value)}
 					/>
-					<EditableText isEditable={mode === EDIT} text={user.company.name}
-								  onChange={(value => user.company.name = value)}
+					<EditableText
+						isEditable={mode === EDIT}
+						text={user.company.name}
+						onChange={(value) => (user.company.name = value)}
 					/>
-					<EditableText isEditable={mode === EDIT} text={user.address.city}
-								  onChange={(value => user.address.city = value)}
+					<EditableText
+						isEditable={mode === EDIT}
+						text={user.address.city}
+						onChange={(value) => (user.address.city = value)}
 					/>
-					<EditableText isEditable={mode === EDIT} text={user.company.role}
-								  onChange={(value => user.company.role = value)}
+					<EditableText
+						isEditable={mode === EDIT}
+						text={user.company.role}
+						onChange={(value) => (user.company.role = value)}
 					/>
 				</AccountInfo>
 
 				<AdditionalInfo>
-					<EditableText isEditable={mode === EDIT} text={user.email}
-								  onChange={(value => user.email = value)}
+					<EditableText
+						isEditable={mode === EDIT}
+						text={user.email}
+						onChange={(value) => (user.email = value)}
 					/>
-					<EditableText isEditable={mode === EDIT} text={user.phone}
-								  onChange={(value => user.phone = value)}
+					<EditableText
+						isEditable={mode === EDIT}
+						text={user.phone}
+						onChange={(value) => (user.phone = value)}
 					/>
 				</AdditionalInfo>
-
 			</AdvancedAccountInfoContainer>
 		</AdvancedAccountInfoEditableSection>
 	);

@@ -48,7 +48,7 @@ export class MainPageApi {
 	public static getResumeYourWorks = async (): Promise<Work[]> => {
 		const comments: Comment[] = await MainPageApi.getComments();
 		const users: User[] = await MainPageApi.getUsers();
-		const works: Work[] = comments.map((comment: Comment) => {
+		return comments.map((comment: Comment) => {
 			const randomIndex = Math.floor(Math.random() * users.length);
 			const randomWorkspaceDefinitionIndex = Math.floor(Math.random() * EntitiesFiltersDefinitions.length);
 			return {
@@ -60,16 +60,12 @@ export class MainPageApi {
 				lastUpdateDate: new Date(),
 			};
 		});
-
-		return works;
 	};
-
 
 	public static getWorkspaces = async (): Promise<Workspace[]> => {
 		const comments: Comment[] = await MainPageApi.getComments();
 		const users: User[] = await MainPageApi.getUsers();
 		const photos: Photo[] = await MainPageApi.getPhotos();
-
 
 		const works: Workspace[] = comments.map((comment: Comment) => {
 			const randomPhotoIndex = Math.floor(Math.random() * photos.length);
@@ -82,7 +78,7 @@ export class MainPageApi {
 				usersCount: randomIndex,
 				workspaceName: users[randomIndex].company.name,
 				lastUpdateDate: new Date(),
-				icon: document
+				icon: document,
 			};
 		});
 
@@ -93,7 +89,7 @@ export class MainPageApi {
 		const posts: Post[] = await MainPageApi.getPosts(user.id);
 		const photos: Photo[] = await MainPageApi.getPhotos();
 
-		const publications: LatestPublication[] = posts.map((post: Post) => {
+		return posts.map((post: Post) => {
 			const randomPhotoIndex = Math.floor(Math.random() * photos.length);
 			return {
 				...post,
@@ -102,7 +98,5 @@ export class MainPageApi {
 				photo: photos[randomPhotoIndex],
 			};
 		});
-
-		return publications;
 	};
 }

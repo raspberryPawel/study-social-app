@@ -9,7 +9,7 @@ export class AdvancedAccountInfoApi {
 		const comments: Comment[] = await MainPageApi.getComments();
 		const users: User[] = await MainPageApi.getUsers();
 
-		const proposals: Proposal[] = comments.map((comment: Comment) => {
+		return comments.map((comment: Comment) => {
 			const randomUserIndex = Math.floor(Math.random() * users.length);
 			const user = users[randomUserIndex];
 			return {
@@ -22,15 +22,13 @@ export class AdvancedAccountInfoApi {
 				company: user.company.name,
 			};
 		});
-
-		return proposals;
 	};
 
 	public static getFees = async (): Promise<Fee[]> => {
 		const users: User[] = await MainPageApi.getUsers();
 		const max = 2021;
 		const min = 2000;
-		const fees: Fee[] = users.slice(0, 10).map((user: User, index: number) => {
+		return users.slice(0, 10).map((user: User, index: number) => {
 			return {
 				id: index,
 				year: Math.floor(Math.random() * (max - min) + min),
@@ -39,7 +37,5 @@ export class AdvancedAccountInfoApi {
 				lawFirm: user.company.name,
 			};
 		});
-
-		return fees;
 	};
 }

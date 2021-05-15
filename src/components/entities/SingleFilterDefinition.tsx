@@ -10,9 +10,9 @@ import {FilterDefinition} from "../../interfaces/FilterDefinition";
 import {EntitiesStore} from "../../stores/EntitiesStore";
 
 interface IProps {
-	entitiesStore?: EntitiesStore,
-	filterDefinition: FilterDefinition,
-	getMenuItems: <T>(values: Object, changeFn: (name: T) => void) => ReactElement[],
+	entitiesStore?: EntitiesStore;
+	filterDefinition: FilterDefinition;
+	getMenuItems: <T>(values: Object, changeFn: (name: T) => void) => ReactElement[];
 }
 
 const SingleFilterContainer = styled.div`
@@ -35,38 +35,43 @@ export const SingleFilterDefinitionView: FC<IProps> = ({entitiesStore, filterDef
 				<CloseRoundedIcon />
 			</Button>
 			<Select value={filterDefinition.logicalOperation} defaultValue={LogicalOperation.WHERE}>
-				{getMenuItems<LogicalOperation>(LogicalOperation,
-					(name: LogicalOperation) => entitiesStore?.changeLogicalOperation(filterDefinition.id,
-						name))}
+				{getMenuItems<LogicalOperation>(LogicalOperation, (name: LogicalOperation) =>
+					entitiesStore?.changeLogicalOperation(filterDefinition.id, name)
+				)}
 			</Select>
 
 			<Select value={filterDefinition.filterByProperty} defaultValue={FilterByProperty.COMPANY}>
-				{getMenuItems<FilterByProperty>(FilterByProperty,
-					(name: FilterByProperty) => entitiesStore?.changeFilterByProperty(filterDefinition.id,
-						name))}
+				{getMenuItems<FilterByProperty>(FilterByProperty, (name: FilterByProperty) =>
+					entitiesStore?.changeFilterByProperty(filterDefinition.id, name)
+				)}
 			</Select>
 
 			<Select value={filterDefinition.condition.conditionName} defaultValue={Condition.CONTAINS}>
-				{getMenuItems<Condition>(Condition,
-					(name: Condition) => entitiesStore?.changeCondition(filterDefinition.id, name))}
+				{getMenuItems<Condition>(Condition, (name: Condition) =>
+					entitiesStore?.changeCondition(filterDefinition.id, name)
+				)}
 			</Select>
-			<TextField placeholder={"text"} variant="filled"
-					   onChange={changeText}
-					   value={filterDefinition.condition.conditionValue[filterDefinition.condition.conditionName]}
+			<TextField
+				placeholder={"text"}
+				variant="filled"
+				onChange={changeText}
+				value={filterDefinition.condition.conditionValue[filterDefinition.condition.conditionName]}
 			/>
 
-			{filterDefinition.condition.conditionName === Condition.BETWEEN ?
+			{filterDefinition.condition.conditionName === Condition.BETWEEN ? (
 				<>
 					<Select value={"And"}>
 						<MenuItem key={"And"} value={"And"}>
 							{"And"}
 						</MenuItem>
 					</Select>
-					<TextField placeholder={"text"} variant="filled"
-							   onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeText(e, "In")}
+					<TextField
+						placeholder={"text"}
+						variant="filled"
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeText(e, "In")}
 					/>
 				</>
-				: null}
+			) : null}
 		</SingleFilterContainer>
 	);
 };

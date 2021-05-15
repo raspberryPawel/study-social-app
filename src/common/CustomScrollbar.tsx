@@ -7,15 +7,15 @@ interface IProps {
 	scrollHorizontallyOnWheel?: boolean;
 	scrollHorizontallyMultiplier?: number;
 	className?: string;
-	style?: CSSProperties,
-	autoHeight?: boolean,
-	maxHeight?: number | string,
-	onHeightReady?: (height: number) => void,
+	style?: CSSProperties;
+	autoHeight?: boolean;
+	maxHeight?: number | string;
+	onHeightReady?: (height: number) => void;
 }
 
 interface IState {
-	isFocused: boolean,
-	childrenHeight: number
+	isFocused: boolean;
+	childrenHeight: number;
 }
 
 export class CustomScrollbar extends Component<IProps, IState> {
@@ -31,8 +31,8 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		className: "",
 		autoHeight: true,
 		maxHeight: null,
-		onHeightReady: (height: number) => {},
-		style: {}
+		onHeightReady: (height: number) => height,
+		style: {},
 	};
 
 	protected onBodyWheel = (e: WheelEvent) => {
@@ -63,7 +63,7 @@ export class CustomScrollbar extends Component<IProps, IState> {
 	protected onWheel = (e: any) => {
 		if (this.props.scrollHorizontallyOnWheel && this.scrollbar) {
 			const scrollHorizontallyMultiplier = this.props.scrollHorizontallyMultiplier || 3;
-			const scroll = this.scrollbar.getScrollLeft() + (e.deltaY * scrollHorizontallyMultiplier);
+			const scroll = this.scrollbar.getScrollLeft() + e.deltaY * scrollHorizontallyMultiplier;
 
 			this.scrollbar?.scrollLeft(scroll);
 		}
@@ -78,21 +78,19 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		const styles = {
 			height: `${this.state.childrenHeight}px`,
 			maxHeight: `${this.props.maxHeight}${typeof this.props.maxHeight === "string" ? "" : "px"}`,
-			...this.props.style
+			...this.props.style,
 		};
 
 		return (
 			<Scrollbars
 				className={this.props.className}
-				ref={(node) => this.scrollbar = node}
+				ref={(node) => (this.scrollbar = node)}
 				onWheel={this.onWheel}
 				style={styles}
 				onMouseOver={this.onMouseOver}
 				onMouseLeave={this.onMouseLeave}
 			>
-				<ReactHeight onHeightReady={this.onHeightReady}>
-					{this.props.children}
-				</ReactHeight>
+				<ReactHeight onHeightReady={this.onHeightReady}>{this.props.children}</ReactHeight>
 			</Scrollbars>
 		);
 	}

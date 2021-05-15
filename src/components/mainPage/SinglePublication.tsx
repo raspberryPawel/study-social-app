@@ -6,7 +6,7 @@ import personImage from "../../assets/images/enxampleperson.png";
 import {LatestPublication} from "../../interfaces/LatestPublication";
 
 interface IProps {
-	publication: LatestPublication
+	publication: LatestPublication;
 }
 
 const SinglePublicationContainer = styled.div`
@@ -40,7 +40,8 @@ const InfoContainer = styled.div`
 	flex-direction: row;
 	font-size: 0.9em;
 
-	p, .avatar {
+	p,
+	.avatar {
 		margin: 0 5px 0 0;
 	}
 
@@ -53,14 +54,19 @@ const InfoContainer = styled.div`
 export const SinglePublication: FC<IProps> = ({publication}) => {
 	return (
 		<SinglePublicationContainer>
-			<div className="publication-image"><img src={publication.photo.url} alt="publication" /></div>
+			<div className="publication-image">
+				<img src={publication.photo.url} alt="publication" />
+			</div>
 			<div className="publication-content">
 				<strong className="title">{publication.title}</strong>
 				<InfoContainer>
 					<p>{publication.lastUpdateDate.toDateString()}</p>
 					<div className="author">
-						<Avatar alt={publication.user.name} src={personImage} className={"avatar"}
-								style={{width: 20, height: 20}}
+						<Avatar
+							alt={publication.user.name}
+							src={personImage}
+							className={"avatar"}
+							style={{width: 20, height: 20}}
 						/>
 						{publication.user.name}
 					</div>

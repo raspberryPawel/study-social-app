@@ -4,8 +4,8 @@ import styled from "styled-components";
 import {defaultBoxShadow} from "../assets/variables";
 
 interface IProps {
-	buttonView: React.ReactElement,
-	toggleDropdown?: (isOpen: boolean) => void,
+	buttonView: React.ReactElement;
+	toggleDropdown?: (isOpen: boolean) => void;
 }
 
 const DropdownContainerView = styled.div`
@@ -13,7 +13,6 @@ const DropdownContainerView = styled.div`
 	margin-left: 40px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
-	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
@@ -33,7 +32,7 @@ const DropdownView = styled.div`
 	-webkit-overflow-scrolling: touch;
 `;
 
-export const DropdownContainer: FC<IProps> = props => {
+export const DropdownContainer: FC<IProps> = (props) => {
 	const [isOpen, toggleDropdown] = useState(false);
 
 	const onOutsideClick = () => {
@@ -46,21 +45,13 @@ export const DropdownContainer: FC<IProps> = props => {
 	return (
 		<ClickAwayListener mouseEvent={"onMouseDown"} onClickAway={onOutsideClick}>
 			<DropdownContainerView>
-				{React.cloneElement(
-					props.buttonView,
-					{
-						onClick: () => {
-							toggleDropdown(!isOpen);
-							props.toggleDropdown?.(isOpen);
-						}
-					}
-				)}
-				{
-					isOpen &&
-					<DropdownView>
-						{props.children}
-					</DropdownView>
-				}
+				{React.cloneElement(props.buttonView, {
+					onClick: () => {
+						toggleDropdown(!isOpen);
+						props.toggleDropdown?.(isOpen);
+					},
+				})}
+				{isOpen && <DropdownView>{props.children}</DropdownView>}
 			</DropdownContainerView>
 		</ClickAwayListener>
 	);

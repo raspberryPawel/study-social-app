@@ -2,18 +2,19 @@ import React, {Component} from "react";
 import styled from "styled-components";
 
 interface IProps {
-	icon?: string,
-	text: string,
-	center?: boolean,
+	icon?: string;
+	text: string;
+	center?: boolean;
 	className?: string;
 	onClick?: () => void;
 	additionalButtonIcon?: string;
-	additionalButtonClick?: () => void
+	additionalButtonClick?: () => void;
 }
 
 const Element = styled.button<IProps>`
 	width: 100%;
-	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 	cursor: pointer;
 	padding: 5px 0;
 	background: inherit;
@@ -28,7 +29,7 @@ const Element = styled.button<IProps>`
 	span {
 		display: flex;
 		align-items: center;
-		justify-content: ${props => props.center ? "center" : "start"};
+		justify-content: ${(props) => (props.center ? "center" : "start")};
 		padding: 5px 0;
 		margin: 0;
 		position: relative;
@@ -51,7 +52,6 @@ const Element = styled.button<IProps>`
 	}
 `;
 
-
 export class ButtonElement extends Component<IProps> {
 	static defaultProps = {
 		additionalButtonClick: () => {},
@@ -68,11 +68,11 @@ export class ButtonElement extends Component<IProps> {
 				<span>
 					{icon && <img src={icon} alt={"icon"} />}
 					{text}
-					{additionalButtonIcon
-						? <span className={"additionalButton"} onClick={additionalButtonClick}>
+					{additionalButtonIcon ? (
+						<span className={"additionalButton"} onClick={additionalButtonClick}>
 							<img src={additionalButtonIcon} className={"additionalIcon"} alt={"icon"} />
 						</span>
-						: null}
+					) : null}
 				</span>
 			</Element>
 		);

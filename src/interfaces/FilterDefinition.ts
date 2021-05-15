@@ -3,13 +3,13 @@ import {FilterByProperty} from "../consts/FilterByProperty";
 import {LogicalOperation} from "../consts/LogicalOperation";
 
 export interface FilterDefinition {
-	id: number,
-	logicalOperation: LogicalOperation,
-	filterByProperty: FilterByProperty,
+	id: number;
+	logicalOperation: LogicalOperation;
+	filterByProperty: FilterByProperty;
 	condition: {
-		conditionName: Condition,
+		conditionName: Condition;
 		conditionValue: {
 			[key: string]: string;
-		}
-	},
+		};
+	};
 }

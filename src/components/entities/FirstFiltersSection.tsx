@@ -14,15 +14,12 @@ import {SectionSeparator} from "../../common/SectionSeparator";
 import {SeparatorVariant} from "../../consts/SeparatorVariant";
 import {AdvancedFiltersView} from "./AdvancedFiltersView";
 
-interface IProps {
-}
-
+interface IProps {}
 
 export const EntitiesFiltersSectionView = styled.div`
 	display: flex;
 
 	button {
-		padding: 5px;
 		padding: 5px;
 		font-weight: 300;
 		font-size: 0.75em;

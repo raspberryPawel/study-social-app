@@ -7,31 +7,33 @@ import React, {FC} from "react";
 import styled from "styled-components";
 import {defaultBoxShadow} from "../../assets/variables";
 
-interface IProps {
-}
+interface IProps {}
 
 interface Tile {
-	name: string,
-	description: string,
-	icon: OverridableComponent<SvgIconTypeMap>
+	name: string;
+	description: string;
+	icon: OverridableComponent<SvgIconTypeMap>;
 }
 
 const tiles: Tile[] = [
 	{
 		name: "Explore your entities",
-		description: "laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
-		icon: DomainIcon
+		description:
+			"laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
+		icon: DomainIcon,
 	},
 	{
 		name: "Structure the ownership",
-		description: "laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
-		icon: AccountTreeIcon
+		description:
+			"laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
+		icon: AccountTreeIcon,
 	},
 	{
 		name: "Define the calendar",
-		description: "laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
-		icon: DateRangeIcon
-	}
+		description:
+			"laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
+		icon: DateRangeIcon,
+	},
 ];
 
 const TilesContainer = styled.div`
@@ -73,26 +75,21 @@ const TileBg = styled.div`
 	}
 `;
 
-export const WorkspaceTiles: FC<IProps> = props => {
-		return (
-			<TilesContainer>
-				{tiles.map(tile =>
-					<SingleTile>
-						<TileBg>
-							{React.createElement(tile.icon, {fontSize: "large", color: "primary"})}
-						</TileBg>
+export const WorkspaceTiles: FC<IProps> = () => {
+	return (
+		<TilesContainer>
+			{tiles.map((tile) => (
+				<SingleTile>
+					<TileBg>{React.createElement(tile.icon, {fontSize: "large", color: "primary"})}</TileBg>
 
-						<section>
-							{React.createElement(tile.icon, {fontSize: "large", color: "primary"})}
-						</section>
+					<section>{React.createElement(tile.icon, {fontSize: "large", color: "primary"})}</section>
 
-						<section>
-							<strong>{tile.name}</strong>
-							<p>{tile.description}</p>
-						</section>
-					</SingleTile>
-				)}
-			</TilesContainer>
-		);
-	}
-;
+					<section>
+						<strong>{tile.name}</strong>
+						<p>{tile.description}</p>
+					</section>
+				</SingleTile>
+			))}
+		</TilesContainer>
+	);
+};

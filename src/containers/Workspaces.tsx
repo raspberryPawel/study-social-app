@@ -9,7 +9,7 @@ import {MainPageStore} from "../stores/MainPageStore";
 import {NotFoundPage} from "./NotFoundPage";
 
 interface IProps {
-	mainPageStore?: MainPageStore
+	mainPageStore?: MainPageStore;
 }
 
 const WorkspaceViewElement = styled.div`
@@ -17,20 +17,19 @@ const WorkspaceViewElement = styled.div`
 `;
 
 const WorkspaceView: FC<IProps> = ({mainPageStore}) => {
-	const {id} = useParams<{ id: string }>();
+	const {id} = useParams<{id: string}>();
 
 	if (!mainPageStore) return null;
-	const singleWorkspace = mainPageStore.workspaces.find(workspace => workspace.id === id);
+	const singleWorkspace = mainPageStore.workspaces.find((workspace) => workspace.id === id);
 
-	if (!singleWorkspace) return (
-		<NotFoundPage />
-	);
+	if (!singleWorkspace) return <NotFoundPage />;
 
 	return (
 		<WorkspaceViewElement>
-			<SingleEditableWorkspace workspace={singleWorkspace}
-									 changeWorkspaceTitle={mainPageStore.changeWorkspaceTitle}
-									 changeWorkspaceDescription={mainPageStore.changeWorkspaceDescription}
+			<SingleEditableWorkspace
+				workspace={singleWorkspace}
+				changeWorkspaceTitle={mainPageStore.changeWorkspaceTitle}
+				changeWorkspaceDescription={mainPageStore.changeWorkspaceDescription}
 			/>
 
 			<WorkspaceTiles />
@@ -38,6 +37,5 @@ const WorkspaceView: FC<IProps> = ({mainPageStore}) => {
 		</WorkspaceViewElement>
 	);
 };
-
 
 export const SingleWorkspaceView = inject("mainPageStore")(observer(WorkspaceView));

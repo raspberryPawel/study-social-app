@@ -16,17 +16,16 @@ const PublicationsContainer = styled.div`
 	overflow: hidden;
 `;
 
-const PublicationsClass: FC<IProps> = ({
-	mainPageStore
-}) => {
+const PublicationsClass: FC<IProps> = ({mainPageStore}) => {
 	if (!mainPageStore || !mainPageStore.latestPublications) return null;
 
 	const {latestPublications} = mainPageStore;
 	return (
 		<PublicationsContainer>
 			<CustomScrollbar maxHeight={"100%"}>
-				{latestPublications?.map(
-					publication => <SinglePublication key={publication.id} publication={publication} />)}
+				{latestPublications?.map((publication) => (
+					<SinglePublication key={publication.id} publication={publication} />
+				))}
 			</CustomScrollbar>
 		</PublicationsContainer>
 	);

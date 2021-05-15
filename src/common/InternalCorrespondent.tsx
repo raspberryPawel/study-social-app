@@ -8,7 +8,7 @@ import {User} from "../interfaces/User";
 import {ButtonWithLink} from "./ButtonWithLink";
 
 interface IProps {
-	user: User
+	user: User;
 }
 
 const InternalCorrespondentContainer = styled.div`
@@ -55,9 +55,7 @@ const InternalCorrespondentContainer = styled.div`
 export const InternalCorrespondent: FC<IProps> = ({user}) => (
 	<InternalCorrespondentContainer>
 		<section>
-			<Avatar alt={user.name} src={user.imageUrl}
-					style={{width: 25, height: 25}}
-			/>
+			<Avatar alt={user.name} src={user.imageUrl} style={{width: 25, height: 25}} />
 			<strong>{user.name}</strong>
 		</section>
 		<section>

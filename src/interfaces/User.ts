@@ -11,8 +11,8 @@ export interface User {
 		geo: {
 			lat: string;
 			lng: string;
-		}
-	}
+		};
+	};
 
 	phone: string;
 	website: string;
@@ -21,6 +21,6 @@ export interface User {
 		catchPhrase: string;
 		bs: string;
 		role: string;
-	},
-	imageUrl?: string,
+	};
+	imageUrl?: string;
 }

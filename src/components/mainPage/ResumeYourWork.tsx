@@ -9,86 +9,81 @@ import {SingleWork} from "./SingleWork";
 import {PaginationView} from "../../common/PaginationView";
 
 interface IProps {
-    mainPageStore?: MainPageStore;
+	mainPageStore?: MainPageStore;
 }
 
 const ResumeYourWorkMain = styled.div`
-  margin-top: 20px;
-  width: 95%;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 100px;
-  position: relative;
+	margin-top: 20px;
+	width: 95%;
+	min-height: 400px;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 100px;
+	position: relative;
 `;
 
 const ResumeYourWorkContainer = styled.div`
-  margin-top: 40px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+	margin-top: 40px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 `;
 
 const Filters = styled.div`
-  position: absolute;
-  top: -15px;
-  right: 0;
+	position: absolute;
+	top: -15px;
+	right: 0;
 
-  .filter-input {
-    width: 100%;
-    margin: 10px 0;
+	.filter-input {
+		width: 100%;
+		margin: 10px 0;
 
-    .MuiOutlinedInput-input {
-      padding: 10px 14px;
-    }
+		.MuiOutlinedInput-input {
+			padding: 10px 14px;
+		}
 
-    .MuiInputLabel-outlined {
-      transform: translate(14px, 15px) scale(1);
-    }
+		.MuiInputLabel-outlined {
+			transform: translate(14px, 15px) scale(1);
+		}
 
-    .MuiInputLabel-outlined.Mui-focused {
-      transform: translate(14px, -6px) scale(0.75);
-    }
-  }
+		.MuiInputLabel-outlined.Mui-focused {
+			transform: translate(14px, -6px) scale(0.75);
+		}
+	}
 `;
 
-const ResumeYourWorkClass: FC<IProps> = ({
-                                             mainPageStore
-                                         }) => {
-    const [value, changeValue] = useState<string>("");
+const ResumeYourWorkClass: FC<IProps> = ({mainPageStore}) => {
+	const [value, changeValue] = useState<string>("");
 
-    const onInputChange = (e: ChangeEvent) => {
-        const inputValue = (e.target as HTMLInputElement).value;
-        changeValue(inputValue);
-        mainPageStore?.filterWorks(inputValue);
-    };
+	const onInputChange = (e: ChangeEvent) => {
+		const inputValue = (e.target as HTMLInputElement).value;
+		changeValue(inputValue);
+		mainPageStore?.filterWorks(inputValue);
+	};
 
-    const getWorks = (): Work[] => {
-        if (mainPageStore) {
-            const {resumeYourWorks, filteredWorks} = mainPageStore;
+	const getWorks = (): Work[] => {
+		if (mainPageStore) {
+			const {resumeYourWorks, filteredWorks} = mainPageStore;
 
-            return value ? filteredWorks : resumeYourWorks;
-        }
+			return value ? filteredWorks : resumeYourWorks;
+		}
 
-        return [];
-    };
+		return [];
+	};
 
-    const renderListElement = (work: Work) => <SingleWork key={work.id} work={work} showCompanyDetails/>
+	const renderListElement = (work: Work) => <SingleWork key={work.id} work={work} showCompanyDetails />;
 
-    return (
-        <ResumeYourWorkMain>
-            <SectionTitle title={"Resume your work"}/>
-            <Filters>
-                <TextField className="filter-input" placeholder="Filter" variant="outlined" onChange={onInputChange}/>
-            </Filters>
-            <ResumeYourWorkContainer>
-                <PaginationView<Work>
-                    list={getWorks()}
-                    renderListElement={renderListElement}
-                />
-            </ResumeYourWorkContainer>
-        </ResumeYourWorkMain>
-    );
+	return (
+		<ResumeYourWorkMain>
+			<SectionTitle title={"Resume your work"} />
+			<Filters>
+				<TextField className="filter-input" placeholder="Filter" variant="outlined" onChange={onInputChange} />
+			</Filters>
+			<ResumeYourWorkContainer>
+				<PaginationView<Work> list={getWorks()} renderListElement={renderListElement} />
+			</ResumeYourWorkContainer>
+		</ResumeYourWorkMain>
+	);
 };
 
 export const ResumeYourWork = inject("mainPageStore")(observer(ResumeYourWorkClass));

@@ -13,7 +13,7 @@ import {EntitiesStore} from "../../stores/EntitiesStore";
 import {SingleFilterDefinition} from "./SingleFilterDefinition";
 
 interface IProps {
-	entitiesStore?: EntitiesStore
+	entitiesStore?: EntitiesStore;
 }
 
 const AdvancedFiltersContainer = styled.div`
@@ -30,7 +30,7 @@ const AdvancedFiltersContainer = styled.div`
 	strong {
 		font-weight: inherit;
 		font-size: 0.8em;
-		color: ${grey["600"]}
+		color: ${grey["600"]};
 	}
 
 	.MuiFilledInput-input {
@@ -39,7 +39,8 @@ const AdvancedFiltersContainer = styled.div`
 		font-size: 0.8em;
 	}
 
-	.MuiSelect-select.MuiSelect-select, .MuiMenuItem-root {
+	.MuiSelect-select.MuiSelect-select,
+	.MuiMenuItem-root {
 		font-size: 0.8em;
 	}
 
@@ -51,7 +52,8 @@ const AdvancedFiltersContainer = styled.div`
 		padding: 0;
 	}
 
-	.MuiInput-root, .MuiFormControl-root {
+	.MuiInput-root,
+	.MuiFormControl-root {
 		margin-right: 10px;
 	}
 
@@ -61,31 +63,26 @@ const AdvancedFiltersContainer = styled.div`
 	}
 `;
 
-
 const AdvancedFilters: FC<IProps> = ({entitiesStore}) => {
 	const [logicalOperator, changeOperator] = useState<LogicalOperation>(LogicalOperation.WHERE);
 
 	if (!entitiesStore || !entitiesStore.filterDefinitions) return null;
 
 	function getMenuItems<T>(values: Object, changeFn: (name: T) => void): React.ReactElement[] {
-		return (
-			Object.values(values).map((name) => {
-				return (
-					<MenuItem onClick={() => changeFn(name)} key={name} value={name}>
-						{name}
-					</MenuItem>
-				);
-			})
-		);
-	};
+		return Object.values(values).map((name) => {
+			return (
+				<MenuItem onClick={() => changeFn(name)} key={name} value={name}>
+					{name}
+				</MenuItem>
+			);
+		});
+	}
 
 	return (
 		<AdvancedFiltersContainer>
 			<strong>Rows are filtered by the following conditions starting from the top</strong>
 			{entitiesStore.filterDefinitions.map((filter: FilterDefinition) => {
-				return (
-					<SingleFilterDefinition key={filter.id} filterDefinition={filter} getMenuItems={getMenuItems} />
-				);
+				return <SingleFilterDefinition key={filter.id} filterDefinition={filter} getMenuItems={getMenuItems} />;
 			})}
 
 			<div>
@@ -93,19 +90,20 @@ const AdvancedFilters: FC<IProps> = ({entitiesStore}) => {
 					{getMenuItems<LogicalOperation>(LogicalOperation, changeOperator)}
 				</Select>
 
-				<Button onClick={() => {
-					entitiesStore?.addNewFilterDefinition({
-						id: entitiesStore?.nextFilterId,
-						logicalOperation: logicalOperator,
-						filterByProperty: FilterByProperty.COMPANY,
-						condition: {
-							conditionName: Condition.CONTAINS,
-							conditionValue: {
-								[Condition.CONTAINS]: "",
-							}
-						}
-					});
-				}}
+				<Button
+					onClick={() => {
+						entitiesStore?.addNewFilterDefinition({
+							id: entitiesStore?.nextFilterId,
+							logicalOperation: logicalOperator,
+							filterByProperty: FilterByProperty.COMPANY,
+							condition: {
+								conditionName: Condition.CONTAINS,
+								conditionValue: {
+									[Condition.CONTAINS]: "",
+								},
+							},
+						});
+					}}
 				>
 					<AddRoundedIcon /> Add new filter
 				</Button>

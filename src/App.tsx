@@ -1,6 +1,6 @@
 import {Provider} from "mobx-react";
 import React, {Component, ReactElement} from "react";
-import {BrowserRouter,} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import styled from "styled-components";
 import {MainPage} from "./containers/MainPage";
 import {NavBar} from "./containers/NavBar";

@@ -10,10 +10,11 @@ import {CustomScrollbar} from "../../common/CustomScrollbar";
 import {SectionSeparator} from "../../common/SectionSeparator";
 import {DropdownOption} from "../../interfaces/DropdownOption";
 import {DropdownSections} from "../../interfaces/DropdownSections";
+import {grey} from "@material-ui/core/colors";
 
 interface IProps {
 	dropdownSections: DropdownSections[];
-	changeSelectedOption: (selectedOption: DropdownOption) => void
+	changeSelectedOption: (selectedOption: DropdownOption) => void;
 }
 
 const DropdownViewContainer = styled.div`
@@ -52,13 +53,13 @@ const DropdownViewContainer = styled.div`
 `;
 
 const SectionTitle = styled.p`
-	color: $light-grey;
+	color: ${grey["600"]};
 	font-size: 13px;
 	padding-left: 5px;
 	margin: 5px 0;
 `;
 
-export const DropdownView: FC<IProps> = props => {
+export const DropdownView: FC<IProps> = (props) => {
 	const [value, changeValue] = useState<string>("");
 	const {dropdownSections} = props;
 
@@ -69,31 +70,27 @@ export const DropdownView: FC<IProps> = props => {
 	};
 
 	const createSection = (section: DropdownSections) => {
-			return (
-				<DropdownViewContainer key={section.title}>
-					{!section.options && <SectionSeparator />}
-					<SectionTitle>{section.title}</SectionTitle>
+		return (
+			<DropdownViewContainer key={section.title}>
+				{!section.options && <SectionSeparator />}
+				<SectionTitle>{section.title}</SectionTitle>
 
-					{section.options
-						? section.options?.map(
-							(option: DropdownOption) => {
-								return option.title.toLowerCase().includes(value.toLowerCase()) ?
-									<Link to={option.link} key={option.title}>
-										<ButtonElement
-											icon={option.icon}
-											text={option.title}
-											onClick={() => props.changeSelectedOption(option)}
-										/>
-									</Link>
-									: null;
-							})
-						: section.component
-					}
-				</DropdownViewContainer>
-			);
-		}
-	;
-
+				{section.options
+					? section.options?.map((option: DropdownOption) => {
+							return option.title.toLowerCase().includes(value.toLowerCase()) ? (
+								<Link to={option.link} key={option.title}>
+									<ButtonElement
+										icon={option.icon}
+										text={option.title}
+										onClick={() => props.changeSelectedOption(option)}
+									/>
+								</Link>
+							) : null;
+					  })
+					: section.component}
+			</DropdownViewContainer>
+		);
+	};
 	return (
 		<DropdownViewContainer>
 			<CustomScrollbar className={"DropdownView"} style={{position: "absolute", width: 240}}>

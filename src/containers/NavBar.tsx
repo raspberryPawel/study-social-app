@@ -12,7 +12,7 @@ import {defaultBoxShadow, white} from "../assets/variables";
 import {NavDropdown} from "../components/navbar/NavDropdown";
 
 const NavElement = styled.nav`
-	padding: 0px 10px;
+	padding: 0 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -21,9 +21,7 @@ const NavElement = styled.nav`
 	z-index: 1000;
 
 	background-color: ${white};
-	box-shadow: ${
-		defaultBoxShadow
-	};
+	box-shadow: ${defaultBoxShadow};
 
 	.homeIcon {
 		height: 20px;
@@ -47,7 +45,8 @@ const FirstNavSection = styled.div`
 const EndNavSection = styled(FirstNavSection)`
 	justify-content: end;
 
-	button:nth-child(2), button:nth-child(3) {
+	button:nth-child(2),
+	button:nth-child(3) {
 		background-color: rgb(245, 245, 245);
 		border-radius: 100%;
 		width: 40px;
@@ -55,13 +54,12 @@ const EndNavSection = styled(FirstNavSection)`
 		min-width: unset;
 		margin-left: 15px;
 	}
-	
-	.MuiBadge-root{
+
+	.MuiBadge-root {
 		top: -10px;
 		right: -5px;
 	}
 `;
-
 
 export class NavBar extends Component {
 	public render(): ReactElement {
@@ -84,22 +82,32 @@ export class NavBar extends Component {
 
 				<EndNavSection>
 					<Link to="/">
-						<Button onClick={() => {console.log("siemaneczko");}}>
+						<Button
+							onClick={() => {
+								console.log("siemaneczko");
+							}}
+						>
 							<img src={homeIcon} className={"homeIcon"} alt={"home icon"} />
 						</Button>
 					</Link>
 
-					<Button style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
-							onClick={() => {console.log("siemaneczko");}}
+					<Button
+						style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
+						onClick={() => {
+							console.log("siemaneczko");
+						}}
 					>
 						<img src={messages} className={"homeIcon"} alt={"home icon"} />
-						<Badge badgeContent={3} color="primary"/>
+						<Badge badgeContent={3} color="primary" />
 					</Button>
-					<Button style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
-							onClick={() => {console.log("siemaneczko");}}
+					<Button
+						style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
+						onClick={() => {
+							console.log("siemaneczko");
+						}}
 					>
 						<img src={notifications} className={"homeIcon"} alt={"home icon"} />
-						<Badge badgeContent={4} color="primary"/>
+						<Badge badgeContent={4} color="primary" />
 					</Button>
 				</EndNavSection>
 			</NavElement>

@@ -5,7 +5,7 @@ import iconEdit from "../../assets/icons/settings.svg";
 import {AccessType} from "../../consts/AccessType";
 
 interface IProps {
-	changeMode: (mode: AccessType) => void
+	changeMode: (mode: AccessType) => void;
 }
 
 const EditableSectionContainer = styled.div`

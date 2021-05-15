@@ -14,9 +14,7 @@ interface IProps {
 	entitiesStore?: EntitiesStore;
 }
 
-const EntitiesSecondFiltersSectionView = styled(EntitiesFiltersSectionView)`
-
-`;
+const EntitiesSecondFiltersSectionView = styled(EntitiesFiltersSectionView)``;
 export const SecondFiltersSectionClass: FC<IProps> = ({entitiesStore}) => {
 	if (!entitiesStore) return null;
 

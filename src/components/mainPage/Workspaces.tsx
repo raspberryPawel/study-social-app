@@ -9,7 +9,7 @@ import {MainPageStore} from "../../stores/MainPageStore";
 import {SingleWorkspace} from "./SingleWorkspace";
 
 interface IProps {
-	mainPageStore?: MainPageStore
+	mainPageStore?: MainPageStore;
 }
 
 interface IState {}
@@ -87,9 +87,9 @@ class WorkspacesClass extends Component<IProps, IState> {
 				<SectionTitle title={"Workspaces"} />
 				<CustomScrollbar scrollHorizontallyOnWheel style={{width: "100%", height: 300}}>
 					<WorkspacesContainer>
-						{this.props.mainPageStore.workspaces.map((workspace: Workspace) => <SingleWorkspace key={workspace.id}
-																				   workspace={workspace}
-						/>)}
+						{this.props.mainPageStore.workspaces.map((workspace: Workspace) => (
+							<SingleWorkspace key={workspace.id} workspace={workspace} />
+						))}
 					</WorkspacesContainer>
 				</CustomScrollbar>
 			</WorkspacesMain>

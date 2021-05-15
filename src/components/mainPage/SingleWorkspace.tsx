@@ -6,7 +6,7 @@ import {DotSeparator} from "../../common/DotSeparator";
 import {Workspace} from "../../interfaces/Workspace";
 
 interface IProps {
-	workspace: Workspace
+	workspace: Workspace;
 }
 
 const WorkspaceContainer = styled.div`
@@ -88,26 +88,16 @@ const DateSpan = styled.span`
 	padding-left: 15px;
 `;
 
-export const SingleWorkspace: FC<IProps> = props => {
-	const {
-		id,
-		photo,
-		usersCount,
-		workspaceName,
-		lastUpdateDate,
-		icon, title
-	} = props.workspace;
+export const SingleWorkspace: FC<IProps> = (props) => {
+	const {id, photo, usersCount, workspaceName, lastUpdateDate, icon, title} = props.workspace;
 
 	const getLastUpdateText = (): string => {
 		const today = new Date();
 		const datesDifference = today.getTime() - lastUpdateDate.getTime();
 		const daysCount = Math.floor((datesDifference / (1000 * 60 * 60 * 24)) % 7);
-		if (daysCount === 0)
-			return "today";
-		else if (daysCount === 1)
-			return "yesterday";
-		else
-			return `${daysCount} days ago`;
+		if (daysCount === 0) return "today";
+		else if (daysCount === 1) return "yesterday";
+		else return `${daysCount} days ago`;
 	};
 
 	return (
@@ -117,13 +107,16 @@ export const SingleWorkspace: FC<IProps> = props => {
 				<img src={icon} alt="workspace-icon" />
 			</IconContainer>
 			<Link to={`/workspace/${id}`}>
-				<p>{title.slice(0, 20)}{title.length > 20 ? "..." : ""}</p>
+				<p>
+					{title.slice(0, 20)}
+					{title.length > 20 ? "..." : ""}
+				</p>
 			</Link>
 			<main>
 				<WorkspaceInfo>
-						<span>
+					<span>
 						<img src={icon} alt="workspace-icon" />
-							{workspaceName}
+						{workspaceName}
 					</span>
 					<DotSeparator />
 					<span>{usersCount} users</span>

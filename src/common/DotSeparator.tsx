@@ -6,4 +6,4 @@ const Separator = styled.span`
 	padding: 0 10px;
 `;
 
-export const DotSeparator: FC = props => <Separator>•</Separator>;
+export const DotSeparator: FC = () => <Separator>•</Separator>;

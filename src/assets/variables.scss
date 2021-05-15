@@ -8,25 +8,25 @@ $tablet-width: 768px;
 $desktop-width: 1024px;
 
 @mixin phone {
-	@media (max-width: #{$tablet-width - 1px}) {
-		@content;
-	}
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
 }
 
 @mixin tablet {
-	@media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
-		@content;
-	}
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
 }
 
 @mixin desktop {
-	@media (min-width: #{$desktop-width}) {
-		@content;
-	}
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
 }
 
 @mixin boxShadow {
-	box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
-	-webkit-box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 0px 8px 11px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 8px 11px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 8px 11px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 8px 11px -10px rgba(0, 0, 0, 0.75);
 }

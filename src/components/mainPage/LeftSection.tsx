@@ -26,44 +26,50 @@ interface IProps {
 	mainPageStore?: MainPageStore;
 }
 
-export const LeftSectionElement: FC<IProps> = ({
-	mainPageStore
-}) => {
+export const LeftSectionElement: FC<IProps> = ({mainPageStore}) => {
 	if (!mainPageStore || !mainPageStore.currentLoggedUser) return null;
 
 	return (
 		<div className={"LeftSection"}>
 			<Paper className={"accountInfo"}>
 				<section className={"account"}>
-					<Avatar alt={mainPageStore.currentLoggedUser.name} src={mainPageStore.currentLoggedUser.imageUrl}
-							style={{width: 60, height: 60}}
+					<Avatar
+						alt={mainPageStore.currentLoggedUser.name}
+						src={mainPageStore.currentLoggedUser.imageUrl}
+						style={{width: 60, height: 60}}
 					/>
 					<div className={"accountDetails"}>
 						<strong>{mainPageStore.currentLoggedUser.name}</strong>
-						<em>{mainPageStore.currentLoggedUser.username} - {mainPageStore.currentLoggedUser.company.name}</em>
+						<em>
+							{mainPageStore.currentLoggedUser.username} - {mainPageStore.currentLoggedUser.company.name}
+						</em>
 					</div>
 				</section>
 				<SectionSeparator />
-{/*//change to button with link and add additional button to button with link*/}
-				<ButtonElement className={"accountElement"} icon={network} text={"Your network"}
-							   additionalButtonIcon={addNewPerson}
-							   additionalButtonClick={() => {}}
+				{/*//change to button with link and add additional button to button with link*/}
+				<ButtonElement
+					className={"accountElement"}
+					icon={network}
+					text={"Your network"}
+					additionalButtonIcon={addNewPerson}
+					additionalButtonClick={() => {}}
 				/>
-				<ButtonElement className={"accountElement"} icon={publications} text={"Your publications"}
-							   additionalButtonIcon={addNewPublication}
-							   additionalButtonClick={() => {}}
+				<ButtonElement
+					className={"accountElement"}
+					icon={publications}
+					text={"Your publications"}
+					additionalButtonIcon={addNewPublication}
+					additionalButtonClick={() => {}}
 				/>
 			</Paper>
 
 			<div className={"navOptions"}>
-				{options?.map(
-					(option: DropdownOption) =>
-						<ButtonWithLink key={option.title} link={option.link} icon={option.icon} text={option.title} />
-				)}
+				{options?.map((option: DropdownOption) => (
+					<ButtonWithLink key={option.title} link={option.link} icon={option.icon} text={option.title} />
+				))}
 			</div>
 		</div>
 	);
 };
-
 
 export const LeftSection = inject("mainPageStore")(observer(LeftSectionElement));

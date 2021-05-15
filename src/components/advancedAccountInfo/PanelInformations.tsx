@@ -4,8 +4,7 @@ import styled from "styled-components";
 import {Attachment} from "../../common/Attachment";
 import {SingleAdvancedAccountInfoElement} from "./SingleAdvancedAccountInfoElement";
 
-interface IProps {
-}
+interface IProps {}
 
 const PanelInformation = styled.div`
 	width: 100%;
@@ -28,7 +27,7 @@ const PanelInformation = styled.div`
 	}
 `;
 
-export const PanelInformations: FC<IProps> = props => {
+export const PanelInformations: FC<IProps> = () => {
 	return (
 		<SingleAdvancedAccountInfoElement>
 			<strong>Panel Information</strong>

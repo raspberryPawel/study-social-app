@@ -8,11 +8,10 @@ import {EditableText} from "../../common/EditableText";
 import {AccessType} from "../../consts/AccessType";
 import {Workspace} from "../../interfaces/Workspace";
 
-
 interface IProps {
-	workspace: Workspace,
-	changeWorkspaceTitle: (id: string, value: string) => void,
-	changeWorkspaceDescription: (id: string, value: string) => void,
+	workspace: Workspace;
+	changeWorkspaceTitle: (id: string, value: string) => void;
+	changeWorkspaceDescription: (id: string, value: string) => void;
 }
 
 const WorkspaceContainer = styled.div`
@@ -56,7 +55,8 @@ const WorkspaceInfo = styled.section`
 	display: flex;
 	flex-direction: column;
 
-	p, strong {
+	p,
+	strong {
 		margin: 5px;
 	}
 
@@ -66,7 +66,7 @@ const WorkspaceInfo = styled.section`
 
 	p {
 		font-size: 0.9em;
-		color: ${grey["700"]}
+		color: ${grey["700"]};
 	}
 
 	button {
@@ -78,24 +78,20 @@ const WorkspaceInfo = styled.section`
 	.MuiFormControl-root {
 		width: 90%;
 
-		textarea, input {
+		textarea,
+		input {
 			font-weight: 400;
 			font-size: 0.9em;
-			color: ${grey["700"]}
+			color: ${grey["700"]};
 		}
 	}
 `;
 
-export const SingleEditableWorkspace: FC<IProps> = props => {
+export const SingleEditableWorkspace: FC<IProps> = (props) => {
 	const {EDIT, READ} = AccessType;
 	const [accessType, changeType] = useState<AccessType>(READ);
 
-	const {
-		id,
-		photo,
-		description,
-		icon, title
-	} = props.workspace;
+	const {id, photo, description, icon, title} = props.workspace;
 
 	const clickOnEditButton = () => {
 		const newMode = accessType === READ ? EDIT : READ;
@@ -109,14 +105,23 @@ export const SingleEditableWorkspace: FC<IProps> = props => {
 			<main>
 				<img src={icon} alt="workspace-icon" />
 				<WorkspaceInfo>
-					<strong><EditableText isEditable={accessType === EDIT} text={title}
-										  onChange={(value: string) => {props.changeWorkspaceTitle(id, value);}}
-					/></strong>
+					<strong>
+						<EditableText
+							isEditable={accessType === EDIT}
+							text={title}
+							onChange={(value: string) => {
+								props.changeWorkspaceTitle(id, value);
+							}}
+						/>
+					</strong>
 					<p>
-						<EditableText multiline isEditable={accessType === EDIT} text={description}
-									  onChange={(value: string) => {
-										  props.changeWorkspaceDescription(id, value);
-									  }}
+						<EditableText
+							multiline
+							isEditable={accessType === EDIT}
+							text={description}
+							onChange={(value: string) => {
+								props.changeWorkspaceDescription(id, value);
+							}}
 						/>
 					</p>
 

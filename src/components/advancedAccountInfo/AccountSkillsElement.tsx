@@ -14,19 +14,19 @@ interface SkillsSection {
 const defaultSections: SkillsSection[] = [
 	{
 		sectionName: "Expertise",
-		elements: ["Mergers and acquisition"]
+		elements: ["Mergers and acquisition"],
 	},
 	{
 		sectionName: "Specialties",
-		elements: ["Cross border operation", "Transaction over 500M$"]
+		elements: ["Cross border operation", "Transaction over 500M$"],
 	},
 	{
 		sectionName: "Admission to practice law",
-		elements: ["Paris bar association", "Tunisian bar association"]
+		elements: ["Paris bar association", "Tunisian bar association"],
 	},
 	{
 		sectionName: "Countries",
-		elements: ["Tunisia"]
+		elements: ["Tunisia"],
 	},
 ];
 
@@ -69,7 +69,7 @@ const SkillsContainer = styled.div`
 		color: ${blue["700"]};
 		background-color: ${blue["50"]};
 		padding: 2px 10px;
-		margin-left: 0px;
+		margin-left: 0;
 		border-radius: 5px;
 	}
 
@@ -95,7 +95,7 @@ export const AccountSkillsElement: FC = () => {
 		const inputValue = input.value;
 		if (inputValue.length) {
 			const allSections = [...sections];
-			const currentSection = allSections.find(section => section.sectionName === sectionName);
+			const currentSection = allSections.find((section) => section.sectionName === sectionName);
 
 			currentSection?.elements.push(inputValue);
 			input.value = "";
@@ -105,7 +105,7 @@ export const AccountSkillsElement: FC = () => {
 
 	const onSkillEdit = (value: string, sectionName: string, index: number) => {
 		const allSections = [...sections];
-		const currentSection = allSections.find(section => section.sectionName === sectionName);
+		const currentSection = allSections.find((section) => section.sectionName === sectionName);
 
 		if (currentSection) currentSection.elements[index] = value;
 		changeSections(allSections);
@@ -119,19 +119,21 @@ export const AccountSkillsElement: FC = () => {
 						<em>{section.sectionName}</em>
 						<SkillsContainer>
 							{section.elements.map((skill: string, index: number) => (
-								<EditableText editOnClick={true} isEditable={mode === EDIT} text={skill}
-											  onChange={(value: string) => onSkillEdit(value, section.sectionName,
-												  index)}
+								<EditableText
+									editOnClick={true}
+									isEditable={mode === EDIT}
+									text={skill}
+									onChange={(value: string) => onSkillEdit(value, section.sectionName, index)}
 								/>
 							))}
-							{mode === EDIT
-								? <TextField
+							{mode === EDIT ? (
+								<TextField
 									placeholder={"New element"}
-									onBlur={(e: React.FocusEvent<HTMLInputElement>) => addNewElement(e,
-										section.sectionName)}
+									onBlur={(e: React.FocusEvent<HTMLInputElement>) =>
+										addNewElement(e, section.sectionName)
+									}
 								/>
-								: null
-							}
+							) : null}
 						</SkillsContainer>
 					</AccountSkills>
 				))}

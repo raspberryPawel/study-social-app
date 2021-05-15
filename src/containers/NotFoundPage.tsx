@@ -28,7 +28,7 @@ const NotFoundPageContainer = styled.div`
 
 	h1 {
 		font-size: 7.5em;
-		margin: 15px 0px;
+		margin: 15px 0;
 		font-weight: 500;
 	}
 
@@ -45,11 +45,11 @@ export const NotFoundPage: FC = () => (
 		<section>
 			<h1>404</h1>
 			<h2>UH OH! You're lost.</h2>
-			<p>The page you are looking for does not exist.
-				How you got here is a mystery. But you can click the button below
-				to go back to the homepage.
+			<p>
+				The page you are looking for does not exist. How you got here is a mystery. But you can click the button
+				below to go back to the homepage.
 			</p>
-			<ButtonWithLink link={"/"} text={"Home"}/>
+			<ButtonWithLink link={"/"} text={"Home"} />
 		</section>
 	</NotFoundPageContainer>
 );

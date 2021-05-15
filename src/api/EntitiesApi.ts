@@ -16,7 +16,7 @@ export class EntitiesApi {
 		const photos: Photo[] = await MainPageApi.getPhotos();
 		const users: User[] = await MainPageApi.getUsers();
 
-		const entities: Entity[] = todos.map((todo: Todo) => {
+		return todos.map((todo: Todo) => {
 			const randomUserIndex = Math.floor(Math.random() * users.length);
 			const randomPhotoIndex = Math.floor(Math.random() * photos.length);
 
@@ -28,7 +28,5 @@ export class EntitiesApi {
 				photo: photos[randomPhotoIndex],
 			};
 		});
-
-		return entities;
 	};
 }

@@ -1,7 +1,7 @@
 import {Photo} from "./Photo";
 
 export interface Entity {
-	id: number,
+	id: number;
 	name: string;
 	address: {
 		street: string;
@@ -11,13 +11,13 @@ export interface Entity {
 		geo: {
 			lat: string;
 			lng: string;
-		}
-	},
+		};
+	};
 	company: {
 		name: string;
 		catchPhrase: string;
 		bs: string;
 		role: string;
-	},
-	photo: Photo
+	};
+	photo: Photo;
 }
