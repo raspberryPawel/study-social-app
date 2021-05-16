@@ -10,6 +10,7 @@ import {defaultBoxShadow} from "../../assets/variables";
 interface IProps {}
 
 interface Tile {
+	id: number;
 	name: string;
 	description: string;
 	icon: OverridableComponent<SvgIconTypeMap>;
@@ -17,18 +18,21 @@ interface Tile {
 
 const tiles: Tile[] = [
 	{
+		id: 1,
 		name: "Explore your entities",
 		description:
 			"laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
 		icon: DomainIcon,
 	},
 	{
+		id: 2,
 		name: "Structure the ownership",
 		description:
 			"laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
 		icon: AccountTreeIcon,
 	},
 	{
+		id: 3,
 		name: "Define the calendar",
 		description:
 			"laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium",
@@ -79,7 +83,7 @@ export const WorkspaceTiles: FC<IProps> = () => {
 	return (
 		<TilesContainer>
 			{tiles.map((tile) => (
-				<SingleTile>
+				<SingleTile key={tile.id}>
 					<TileBg>{React.createElement(tile.icon, {fontSize: "large", color: "primary"})}</TileBg>
 
 					<section>{React.createElement(tile.icon, {fontSize: "large", color: "primary"})}</section>

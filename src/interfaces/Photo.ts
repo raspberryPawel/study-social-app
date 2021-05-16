@@ -3,5 +3,6 @@ export interface Photo {
 	id: number;
 	title: string;
 	url: string;
+	download_url: string;
 	thumbnailUrl: string;
 }

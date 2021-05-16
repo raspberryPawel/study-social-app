@@ -40,7 +40,7 @@ export const EntitiesFiltersDefinitions: SingleEntitiesFiltersDefinition[] = [
 	},
 	{
 		icon: DomainIcon,
-		color: yellow["400"],
+		color: yellow["800"],
 		name: EntitiesFiltersName.SECONDARY_BUSINESS,
 	},
 	{

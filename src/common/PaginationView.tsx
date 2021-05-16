@@ -37,11 +37,17 @@ export const PaginationView = <T,>(props: PropsWithChildren<IProps<T>>) => {
 	};
 
 	return (
-		<div>
+		<>
 			<>
 				{list.slice(getIndex(), getIndex() + getCountPerPage()).map((element: T) => renderListElement(element))}
 			</>
-			<Pagination page={pageNumber} count={pagesCount} onChange={handleChange} />
-		</div>
+
+			<Pagination
+				page={pageNumber}
+				count={pagesCount}
+				onChange={handleChange}
+				style={{width: "100%", display: "flex", justifyContent: "center"}}
+			/>
+		</>
 	);
 };

@@ -11,9 +11,6 @@ export class EntitiesStore {
 	@observable public filteredEntities: Entity[] = [];
 	@observable public filterInputValue: string = "";
 	@observable public filterDefinitions: FilterDefinition[] = [];
-	@observable public pagesCount: number = 10;
-	@observable public countPerPage: number = 10;
-	@observable public currentFirstIndex: number = 0;
 	@observable public nextFilterId: number = 0;
 
 	constructor() {
@@ -28,11 +25,6 @@ export class EntitiesStore {
 	};
 
 	@action
-	public changePage = (page: number) => {
-		this.currentFirstIndex = page === 1 ? 0 : (page - 1) * this.countPerPage;
-	};
-
-	@action
 	public addNewFilterDefinition = (definition: FilterDefinition) => {
 		this.filterDefinitions.push(definition);
 		this.nextFilterId++;
@@ -41,10 +33,7 @@ export class EntitiesStore {
 	@action
 	public changeFilterInputValue = (value: string) => {
 		this.filterInputValue = value;
-
 		this.filteredEntities = (this.entities || []).filter((entity) => entity.name.includes(value));
-		this.currentFirstIndex = 0;
-		this.pagesCount = Math.ceil(this.filteredEntities.length / this.countPerPage);
 	};
 
 	@action
@@ -93,7 +82,6 @@ export class EntitiesStore {
 
 		runInAction(() => {
 			this.entities = entities;
-			this.pagesCount = Math.ceil(entities.length / this.countPerPage);
 		});
 	};
 }

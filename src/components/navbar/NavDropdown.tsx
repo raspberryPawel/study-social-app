@@ -1,71 +1,21 @@
 import React, {FC, useState} from "react";
 
-import "react-dropdown/style.css";
 import styled from "styled-components";
-import administration from "../../assets/icons/administration.svg";
 import arrow from "../../assets/icons/arrow-down.svg";
-
-import document from "../../assets/icons/document.svg";
-import entities from "../../assets/icons/entities.svg";
-import corporate from "../../assets/icons/entities2.svg";
-import home from "../../assets/icons/house.svg";
-import groupNorms from "../../assets/icons/open-book.svg";
-import peoples from "../../assets/icons/people.svg";
-import publications from "../../assets/icons/publications.svg";
 import {DropdownContainer} from "../../common/DropdownContainer";
 import {DropdownOption} from "../../interfaces/DropdownOption";
-
-import {DropdownSections} from "../../interfaces/DropdownSections";
-import {AccountInfo} from "./AccountInfo";
 import {DropdownView} from "./DropdownView";
+import {dropdownSections} from "../../consts/DropdownSections";
+import {inject, observer} from "mobx-react";
+import {MainPageStore} from "../../stores/MainPageStore";
 
-interface IProps {}
-
-interface DropdownArrowProps {
-	isOpen: boolean;
+interface IProps {
+	mainPageStore?: MainPageStore;
 }
 
-const dropdownSections: DropdownSections[] = [
-	{
-		title: "Platform",
-		options: [
-			{title: "Home", icon: home, link: "/"},
-			{title: "Publications", icon: publications, link: "/publications"},
-			{title: "Peoples", icon: peoples, link: "/peoples"},
-			{title: "Entities", icon: entities, link: "/entities"},
-			{title: "Administration", icon: administration, link: "/administration"},
-		],
-	},
-	{
-		title: "Workspaces",
-		options: [
-			{title: "Client contract", icon: document, link: "/client-contract"},
-			{title: "Supplier contract", icon: document, link: "/supplier-contract"},
-			{title: "Corporate", icon: corporate, link: "/corporate"},
-			{title: "Group Norms", icon: groupNorms, link: "/group-norms"},
-			{title: "Real estate contracts", icon: document, link: "/real-estate-contracts"},
-		],
-	},
-	{
-		title: "Account",
-		component: <AccountInfo />,
-	},
-];
-
-const DropdownArrow = styled.img<DropdownArrowProps>`
+const DropdownArrow = styled.img<{isOpen: boolean}>`
 	transform: ${(props) => (props.isOpen ? "rotate(180deg)" : "rotate(0deg)")};
 `;
-
-// const DropdownContainer = styled.div`
-// 	position: relative;
-// 	margin-left: 40px;
-// 	-webkit-touch-callout: none;
-// 	-webkit-user-select: none;
-// 	-khtml-user-select: none;
-// 	-moz-user-select: none;
-// 	-ms-user-select: none;
-// 	user-select: none;
-// `;
 
 const DropdownButton = styled.div`
 	position: relative;
@@ -90,6 +40,9 @@ const DropdownButton = styled.div`
 		display: flex;
 		align-items: center;
 
+		font-size: 0.8em;
+		font-weight: 400;
+
 		img {
 			height: 15px;
 			padding: 0 10px;
@@ -97,28 +50,32 @@ const DropdownButton = styled.div`
 	}
 `;
 
-export const NavDropdown: FC<IProps> = () => {
+const Dropdown: FC<IProps> = ({mainPageStore}) => {
 	const [isOpen, changeOpen] = useState<boolean>(false);
-	const [selectedOption, changeSelectedOption] = useState<DropdownOption>({title: "Home", icon: home, link: "/"});
 
 	const getButtonView = () => {
 		return (
 			<DropdownButton>
 				<p>
-					<img src={selectedOption.icon} alt={"home icon"} />
-					{selectedOption.title}
+					<img src={mainPageStore?.currentDropdownOption?.icon} alt={"home icon"} />
+					{mainPageStore?.currentDropdownOption?.title}
 				</p>
 				<DropdownArrow src={arrow} isOpen={isOpen} />
 			</DropdownButton>
 		);
 	};
 
+	if (!mainPageStore) return null;
 	return (
 		<DropdownContainer toggleDropdown={(isOpen: boolean) => changeOpen(isOpen)} buttonView={getButtonView()}>
 			<DropdownView
 				dropdownSections={dropdownSections}
-				changeSelectedOption={(selectedOption: DropdownOption) => changeSelectedOption(selectedOption)}
+				changeSelectedOption={(selectedOption: DropdownOption) =>
+					mainPageStore.changeCurrentDropdownSection(selectedOption)
+				}
 			/>
 		</DropdownContainer>
 	);
 };
+
+export const NavDropdown = inject("mainPageStore")(observer(Dropdown));

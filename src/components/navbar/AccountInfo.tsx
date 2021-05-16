@@ -7,20 +7,9 @@ import styled from "styled-components";
 import logout from "../../assets/icons/logout.svg";
 import privacy from "../../assets/icons/privacy.svg";
 import settings from "../../assets/icons/settings.svg";
-import {ButtonElement} from "../../common/ButtonElement";
 import {SectionSeparator} from "../../common/SectionSeparator";
 import {MainPageStore} from "../../stores/MainPageStore";
-
-const AccountInfoContainer = styled.div`
-	.logoutButton {
-		position: sticky;
-		bottom: 0;
-		background-color: white;
-
-		border-top: 0.5px solid rgba(135, 139, 145, 0.5);
-		margin: -6px 0;
-	}
-`;
+import {ButtonWithLink} from "../../common/ButtonWithLink";
 
 const AccountSection = styled.section`
 	display: flex;
@@ -57,11 +46,11 @@ export const AccountInfoElement: FC<IProps> = ({mainPageStore}) => {
 	if (!mainPageStore || !mainPageStore.currentLoggedUser) return null;
 
 	return (
-		<AccountInfoContainer>
+		<div>
 			<AccountSection className={"account"}>
 				<Avatar
 					alt={mainPageStore.currentLoggedUser.name}
-					src={mainPageStore.currentLoggedUser.imageUrl}
+					src={mainPageStore.currentLoggedUser.photo.url}
 					style={{width: 40, height: 40}}
 				/>
 				<AccountDetails>
@@ -70,11 +59,13 @@ export const AccountInfoElement: FC<IProps> = ({mainPageStore}) => {
 				</AccountDetails>
 			</AccountSection>
 
-			<ButtonElement icon={privacy} text={"Privacy"} />
-			<ButtonElement icon={settings} text={"Settings"} />
+			<ButtonWithLink link={"/privacy"} icon={privacy} text={"Privacy"} />
+			<ButtonWithLink link={"/settings"} icon={settings} text={"Settings"} />
+
 			<SectionSeparator />
-			<ButtonElement className={"logoutButton"} icon={logout} text={"Logout"} center />
-		</AccountInfoContainer>
+
+			<ButtonWithLink link={"/logout"} icon={logout} text={"Logout"} />
+		</div>
 	);
 };
 

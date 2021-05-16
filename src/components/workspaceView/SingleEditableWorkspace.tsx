@@ -5,6 +5,7 @@ import React, {FC, useState} from "react";
 import styled from "styled-components";
 import {defaultBoxShadow} from "../../assets/variables";
 import {EditableText} from "../../common/EditableText";
+import {WorkspaceImage} from "../../common/WorkspaceImage";
 import {AccessType} from "../../consts/AccessType";
 import {Workspace} from "../../interfaces/Workspace";
 
@@ -38,13 +39,6 @@ const WorkspaceContainer = styled.div`
 			height: 50px;
 		}
 	}
-`;
-
-const BgImage = styled.img`
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
-	z-index: 0;
 `;
 
 const WorkspaceInfo = styled.section`
@@ -101,7 +95,7 @@ export const SingleEditableWorkspace: FC<IProps> = (props) => {
 
 	return (
 		<WorkspaceContainer>
-			<BgImage src={photo.url} alt="workspace-image" />
+			<WorkspaceImage height={"200px"} src={photo.url} alt="workspace-image" />
 			<main>
 				<img src={icon} alt="workspace-icon" />
 				<WorkspaceInfo>

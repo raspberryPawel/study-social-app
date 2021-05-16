@@ -7,21 +7,45 @@ interface IProps {
 	link: string;
 	icon?: string;
 	text: string;
+	onClick?: () => void;
+	endAdornment?: JSX.Element;
 }
 
 const Container = styled.div`
 	button {
-		text-transform: inherit;
+		width: 100%;
+		font-size: 0.8em;
 		font-weight: 400;
+
+		text-transform: inherit;
+
+		display: flex;
+		justify-content: space-between !important;
+		align-items: center !important;
+
+		img {
+			height: 15px;
+			padding: 0 10px;
+		}
 	}
 `;
 
-export const ButtonWithLink: FC<IProps> = ({link, icon, text}) => (
+const Wrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+export const ButtonWithLink: FC<IProps> = ({link, icon, text, onClick, endAdornment}) => (
 	<Container>
 		<Link to={link}>
-			<Button>
-				{icon && <img src={icon} alt="icon edit" />}
-				<span>{text}</span>
+			<Button onClick={() => onClick?.()}>
+				<Wrapper>
+					{icon && <img src={icon} alt="icon edit" />}
+					<span>{text}</span>
+				</Wrapper>
+
+				{endAdornment}
 			</Button>
 		</Link>
 	</Container>

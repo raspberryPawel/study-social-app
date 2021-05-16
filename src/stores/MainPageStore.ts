@@ -5,15 +5,17 @@ import {LatestPublication} from "../interfaces/LatestPublication";
 import {User} from "../interfaces/User";
 import {Work} from "../interfaces/Work";
 import {Workspace} from "../interfaces/Workspace";
+import {defaultSection} from "../consts/DropdownSections";
+import {DropdownOption} from "../interfaces/DropdownOption";
 
 export class MainPageStore {
 	@observable private works: Work[] = [];
 	@observable private filteredInputValue: string = "";
 	@observable public filteredWorks: Work[] = [];
-	@observable public pagesCount: number = 10;
-	@observable public countPerPage: number = 10;
 	@observable public currentLoggedUser: User | null = null;
 	@observable public latestPublications: LatestPublication[] | null = null;
+
+	@observable public currentDropdownOption: DropdownOption = defaultSection;
 
 	//workspaces
 	@observable public workspaces: Workspace[] = [];
@@ -52,7 +54,6 @@ export class MainPageStore {
 
 		runInAction(() => {
 			this.works = works;
-			this.pagesCount = Math.ceil(works.length / this.countPerPage);
 		});
 	}
 
@@ -79,8 +80,7 @@ export class MainPageStore {
 	@action
 	public filterWorks = (text: string) => {
 		this.filteredInputValue = text;
-		this.filteredWorks = this.works.filter((work) => work.name.includes(text));
-		this.pagesCount = Math.ceil(this.filteredWorks.length / this.countPerPage);
+		this.filteredWorks = this.works.filter((work) => work.name.toLowerCase().includes(text.toLowerCase()));
 	};
 
 	@action
@@ -112,5 +112,10 @@ export class MainPageStore {
 		}
 
 		this.workspacesFilters = filters;
+	};
+
+	@action
+	public changeCurrentDropdownSection = (section: DropdownOption) => {
+		this.currentDropdownOption = section;
 	};
 }

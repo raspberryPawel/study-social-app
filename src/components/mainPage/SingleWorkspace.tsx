@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {defaultBoxShadow} from "../../assets/variables";
 import {DotSeparator} from "../../common/DotSeparator";
 import {Workspace} from "../../interfaces/Workspace";
+import {WorkspaceImage} from "../../common/WorkspaceImage";
 
 interface IProps {
 	workspace: Workspace;
@@ -32,16 +33,6 @@ const WorkspaceContainer = styled.div`
 		bottom: 0;
 		z-index: 1;
 	}
-`;
-
-const BgImage = styled.img`
-	position: absolute;
-	width: 100%;
-	height: 130px;
-	object-fit: cover;
-	top: 0;
-	left: 0;
-	z-index: 0;
 `;
 
 const IconContainer = styled.div`
@@ -102,7 +93,7 @@ export const SingleWorkspace: FC<IProps> = (props) => {
 
 	return (
 		<WorkspaceContainer>
-			<BgImage src={photo.url} alt="workspace-image" />
+			<WorkspaceImage height={"130px"} src={photo.url} alt="workspace-image" />
 			<IconContainer>
 				<img src={icon} alt="workspace-icon" />
 			</IconContainer>

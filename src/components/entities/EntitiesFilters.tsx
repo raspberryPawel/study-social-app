@@ -3,7 +3,10 @@ import styled from "styled-components";
 import {FirstFiltersSection} from "./FirstFiltersSection";
 import {SecondFiltersSection} from "./SecondFiltersSection";
 
-interface IProps {}
+interface IProps {
+	changeFullScreen: () => void;
+	fullScreenMode: boolean;
+}
 
 const EntitiesFiltersView = styled.div`
 	width: 100%;
@@ -17,10 +20,10 @@ const EntitiesFiltersView = styled.div`
 	}
 `;
 
-export const EntitiesFilters: FC<IProps> = () => {
+export const EntitiesFilters: FC<IProps> = ({changeFullScreen, fullScreenMode}) => {
 	return (
 		<EntitiesFiltersView>
-			<FirstFiltersSection />
+			<FirstFiltersSection changeFullScreen={changeFullScreen} fullScreenMode={fullScreenMode} />
 			<SecondFiltersSection />
 		</EntitiesFiltersView>
 	);

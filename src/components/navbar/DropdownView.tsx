@@ -1,16 +1,14 @@
 import {TextField} from "@material-ui/core";
 
 import React, {ChangeEvent, FC, useState} from "react";
-import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {white} from "../../assets/variables";
-
-import {ButtonElement} from "../../common/ButtonElement";
-import {CustomScrollbar} from "../../common/CustomScrollbar";
+import CustomScrollbar from "../../common/CustomScrollbar";
 import {SectionSeparator} from "../../common/SectionSeparator";
 import {DropdownOption} from "../../interfaces/DropdownOption";
 import {DropdownSections} from "../../interfaces/DropdownSections";
 import {grey} from "@material-ui/core/colors";
+import {ButtonWithLink} from "../../common/ButtonWithLink";
 
 interface IProps {
 	dropdownSections: DropdownSections[];
@@ -39,7 +37,9 @@ const DropdownViewContainer = styled.div`
 		margin: 10px 5%;
 
 		.MuiOutlinedInput-input {
-			padding: 10px 14px;
+			padding: 5px 15px;
+			font-size: 0.9em;
+			font-weight: 400;
 		}
 
 		.MuiInputLabel-outlined {
@@ -78,13 +78,13 @@ export const DropdownView: FC<IProps> = (props) => {
 				{section.options
 					? section.options?.map((option: DropdownOption) => {
 							return option.title.toLowerCase().includes(value.toLowerCase()) ? (
-								<Link to={option.link} key={option.title}>
-									<ButtonElement
-										icon={option.icon}
-										text={option.title}
-										onClick={() => props.changeSelectedOption(option)}
-									/>
-								</Link>
+								<ButtonWithLink
+									key={option.title}
+									link={option.link}
+									icon={option.icon}
+									text={option.title}
+									onClick={() => props.changeSelectedOption(option)}
+								/>
 							) : null;
 					  })
 					: section.component}
@@ -94,11 +94,15 @@ export const DropdownView: FC<IProps> = (props) => {
 	return (
 		<DropdownViewContainer>
 			<CustomScrollbar className={"DropdownView"} style={{position: "absolute", width: 240}}>
-				<TextField className="filterInput" label="Filter" variant="outlined" onChange={onChange} />
+				<TextField
+					size={"small"}
+					className="filterInput"
+					placeholder="Filter"
+					variant="outlined"
+					onChange={onChange}
+				/>
 				{dropdownSections.map(createSection)}
 			</CustomScrollbar>
 		</DropdownViewContainer>
 	);
 };
-
-//<ButtonWithLink icon={option.icon} link={option.link} text={option.title}/>

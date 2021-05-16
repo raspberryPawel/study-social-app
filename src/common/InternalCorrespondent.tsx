@@ -55,7 +55,7 @@ const InternalCorrespondentContainer = styled.div`
 export const InternalCorrespondent: FC<IProps> = ({user}) => (
 	<InternalCorrespondentContainer>
 		<section>
-			<Avatar alt={user.name} src={user.imageUrl} style={{width: 25, height: 25}} />
+			<Avatar alt={user.name} src={user.photo.url} style={{width: 25, height: 25}} />
 			<strong>{user.name}</strong>
 		</section>
 		<section>

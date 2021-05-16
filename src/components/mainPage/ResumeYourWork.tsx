@@ -1,12 +1,11 @@
-import {TextField} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
-import React, {ChangeEvent, FC, useState} from "react";
+import React, {FC, useState} from "react";
 import styled from "styled-components";
-import {SectionTitle} from "../../common/SectionTitle";
 import {Work} from "../../interfaces/Work";
 import {MainPageStore} from "../../stores/MainPageStore";
 import {SingleWork} from "./SingleWork";
 import {PaginationView} from "../../common/PaginationView";
+import {SectionHeaderWithFilterInput} from "../../common/SectionHeaderWithFilterInput";
 
 interface IProps {
 	mainPageStore?: MainPageStore;
@@ -30,13 +29,17 @@ const ResumeYourWorkContainer = styled.div`
 `;
 
 const Filters = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
 	position: absolute;
 	top: -15px;
 	right: 0;
 
 	.filter-input {
 		width: 100%;
-		margin: 10px 0;
+		margin: 10px 10px;
 
 		.MuiOutlinedInput-input {
 			padding: 10px 14px;
@@ -55,10 +58,9 @@ const Filters = styled.div`
 const ResumeYourWorkClass: FC<IProps> = ({mainPageStore}) => {
 	const [value, changeValue] = useState<string>("");
 
-	const onInputChange = (e: ChangeEvent) => {
-		const inputValue = (e.target as HTMLInputElement).value;
-		changeValue(inputValue);
-		mainPageStore?.filterWorks(inputValue);
+	const onInputChange = (value: string) => {
+		changeValue(value);
+		mainPageStore?.filterWorks(value);
 	};
 
 	const getWorks = (): Work[] => {
@@ -75,10 +77,8 @@ const ResumeYourWorkClass: FC<IProps> = ({mainPageStore}) => {
 
 	return (
 		<ResumeYourWorkMain>
-			<SectionTitle title={"Resume your work"} />
-			<Filters>
-				<TextField className="filter-input" placeholder="Filter" variant="outlined" onChange={onInputChange} />
-			</Filters>
+			<SectionHeaderWithFilterInput title={"Latest Updates"} onChange={onInputChange} />
+
 			<ResumeYourWorkContainer>
 				<PaginationView<Work> list={getWorks()} renderListElement={renderListElement} />
 			</ResumeYourWorkContainer>

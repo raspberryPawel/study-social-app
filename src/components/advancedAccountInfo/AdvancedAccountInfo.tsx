@@ -69,7 +69,7 @@ export const AdvancedAccountInfo: FC<IProps> = ({user}) => {
 		<AdvancedAccountInfoEditableSection changeMode={changeMode}>
 			<AdvancedAccountInfoContainer>
 				<AvatarContainer>
-					<Avatar alt={user.name} src={user.imageUrl} style={{width: 50, height: 50}} />
+					<Avatar alt={user.name} src={user.photo.url} style={{width: 50, height: 50}} />
 					<Link to={"/account"}>See profile</Link>
 				</AvatarContainer>
 

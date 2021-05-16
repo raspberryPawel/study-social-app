@@ -58,7 +58,7 @@ export const SingleFilterDefinitionView: FC<IProps> = ({entitiesStore, filterDef
 				value={filterDefinition.condition.conditionValue[filterDefinition.condition.conditionName]}
 			/>
 
-			{filterDefinition.condition.conditionName === Condition.BETWEEN ? (
+			{filterDefinition.condition.conditionName === Condition.ENDS_BEFORE ? (
 				<>
 					<Select value={"And"}>
 						<MenuItem key={"And"} value={"And"}>

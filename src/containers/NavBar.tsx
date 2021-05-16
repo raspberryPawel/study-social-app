@@ -1,15 +1,23 @@
-import {Badge, Input, InputAdornment} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import React, {Component, ReactElement} from "react";
-import {Link} from "react-router-dom";
+import {Input, InputAdornment} from "@material-ui/core";
+import React, {FC} from "react";
+
 import styled from "styled-components";
-import notifications from "../assets/icons/bell.svg";
-import messages from "../assets/icons/comments.svg";
 import homeIcon from "../assets/icons/house.svg";
-import search from "../assets/icons/search.svg";
 import logo from "../assets/images/logo.png";
-import {defaultBoxShadow, white} from "../assets/variables";
+import {defaultBoxShadow} from "../assets/variables";
 import {NavDropdown} from "../components/navbar/NavDropdown";
+import {ButtonWithLink} from "../common/ButtonWithLink";
+import {ButtonWithBadge} from "../common/ButtonWithBadge";
+import SmsIcon from "@material-ui/icons/Sms";
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
+import {inject, observer} from "mobx-react";
+import {MainPageStore} from "../stores/MainPageStore";
+import {defaultSection} from "../consts/DropdownSections";
+
+interface IProps {
+	mainPageStore?: MainPageStore;
+}
 
 const NavElement = styled.nav`
 	padding: 0 10px;
@@ -20,12 +28,8 @@ const NavElement = styled.nav`
 	position: relative;
 	z-index: 1000;
 
-	background-color: ${white};
+	background-color: white;
 	box-shadow: ${defaultBoxShadow};
-
-	.homeIcon {
-		height: 20px;
-	}
 
 	.searchInput {
 		width: 50%;
@@ -45,14 +49,8 @@ const FirstNavSection = styled.div`
 const EndNavSection = styled(FirstNavSection)`
 	justify-content: end;
 
-	button:nth-child(2),
-	button:nth-child(3) {
-		background-color: rgb(245, 245, 245);
-		border-radius: 100%;
-		width: 40px;
-		height: 40px;
-		min-width: unset;
-		margin-left: 15px;
+	button {
+		justify-content: center !important;
 	}
 
 	.MuiBadge-root {
@@ -61,56 +59,37 @@ const EndNavSection = styled(FirstNavSection)`
 	}
 `;
 
-export class NavBar extends Component {
-	public render(): ReactElement {
-		return (
-			<NavElement>
-				<FirstNavSection>
-					<img src={logo} alt={"logo"} style={{height: 40}} />
-					<NavDropdown />
-				</FirstNavSection>
+const NavBarView: FC<IProps> = ({mainPageStore}) => (
+	<NavElement>
+		<FirstNavSection>
+			<img src={logo} alt={"logo"} style={{height: 40}} />
+			<NavDropdown />
+		</FirstNavSection>
 
-				<Input
-					className={"searchInput"}
-					placeholder={"Search something..."}
-					endAdornment={
-						<InputAdornment position="end">
-							<img src={search} alt={"search icon"} />
-						</InputAdornment>
-					}
-				/>
+		<Input
+			className={"searchInput"}
+			placeholder={"Search something..."}
+			endAdornment={
+				<InputAdornment position="end">
+					<SearchRoundedIcon />
+				</InputAdornment>
+			}
+		/>
 
-				<EndNavSection>
-					<Link to="/">
-						<Button
-							onClick={() => {
-								console.log("siemaneczko");
-							}}
-						>
-							<img src={homeIcon} className={"homeIcon"} alt={"home icon"} />
-						</Button>
-					</Link>
+		<EndNavSection>
+			<ButtonWithLink
+				link={"/"}
+				text={""}
+				icon={homeIcon}
+				onClick={() => {
+					mainPageStore?.changeCurrentDropdownSection(defaultSection);
+				}}
+			/>
 
-					<Button
-						style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
-						onClick={() => {
-							console.log("siemaneczko");
-						}}
-					>
-						<img src={messages} className={"homeIcon"} alt={"home icon"} />
-						<Badge badgeContent={3} color="primary" />
-					</Button>
-					<Button
-						style={{backgroundColor: "#f5f5f5", borderRadius: "100%"}}
-						onClick={() => {
-							console.log("siemaneczko");
-						}}
-					>
-						<img src={notifications} className={"homeIcon"} alt={"home icon"} />
-						<Badge badgeContent={4} color="primary" />
-					</Button>
-				</EndNavSection>
-			</NavElement>
-		);
-	}
-}
+			<ButtonWithBadge badgeContent={3} icon={SmsIcon} rounded />
+			<ButtonWithBadge badgeContent={5} icon={NotificationsActiveIcon} rounded />
+		</EndNavSection>
+	</NavElement>
+);
+
+export const NavBar = inject("mainPageStore")(observer(NavBarView));

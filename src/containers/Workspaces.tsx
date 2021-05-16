@@ -18,10 +18,9 @@ const WorkspaceViewElement = styled.div`
 
 const WorkspaceView: FC<IProps> = ({mainPageStore}) => {
 	const {id} = useParams<{id: string}>();
+	const singleWorkspace = mainPageStore?.workspaces.find((workspace) => workspace.id === id);
 
 	if (!mainPageStore) return null;
-	const singleWorkspace = mainPageStore.workspaces.find((workspace) => workspace.id === id);
-
 	if (!singleWorkspace) return <NotFoundPage />;
 
 	return (

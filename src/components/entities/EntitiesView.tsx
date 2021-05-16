@@ -1,5 +1,4 @@
 import {blue, grey} from "@material-ui/core/colors";
-import Pagination from "@material-ui/lab/Pagination";
 import {inject, observer} from "mobx-react";
 import React, {FC} from "react";
 import styled from "styled-components";
@@ -7,6 +6,7 @@ import {defaultBoxShadow} from "../../assets/variables";
 import {ViewMode} from "../../consts/ViewMode";
 import {Entity} from "../../interfaces/Entity";
 import {EntitiesStore} from "../../stores/EntitiesStore";
+import {PaginationView} from "../../common/PaginationView";
 
 interface IProps {
 	entitiesStore?: EntitiesStore;
@@ -22,6 +22,7 @@ const EntitiesContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: center;
 `;
 
 const SingleEntity = styled.div<ISingleEntity>`
@@ -63,52 +64,44 @@ const SingleEntity = styled.div<ISingleEntity>`
 export const EntitiesViewClass: FC<IProps> = ({entitiesStore, viewMode}) => {
 	if (!entitiesStore || !entitiesStore.entities) return null;
 
-	const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
-		entitiesStore?.changePage(page);
-	};
-
 	const getEntities = (): Entity[] => {
 		if (entitiesStore) {
 			const {entities, filteredEntities} = entitiesStore;
 			const targetEntities = entitiesStore.filterInputValue ? [...filteredEntities] : [...entities];
 
-			return (targetEntities || []).slice(
-				entitiesStore.currentFirstIndex,
-				entitiesStore.currentFirstIndex + entitiesStore.countPerPage
-			);
+			return targetEntities || [];
 		}
 
 		return [];
 	};
 
-	return (
-		<>
-			<EntitiesContainer>
-				{getEntities().map((entity: Entity) => {
-					const name = `${entity.name[0].toUpperCase()}${entity.name.slice(1, entity.name.length)}`;
+	const renderListElement = (entity: Entity) => {
+		const name = `${entity.name[0].toUpperCase()}${entity.name.slice(1, entity.name.length)}`;
 
-					return (
-						<SingleEntity viewMode={viewMode} key={entity.id}>
-							<div>
-								<img src={entity.photo.url} alt="entity" />
-							</div>
-							<div>
-								<strong>{name}</strong>
-								<em>
-									{entity.address.suite}
-									{", "}
-									{entity.address.street}
-									{", "}
-									{entity.address.city}
-									{", "}
-								</em>
-							</div>
-						</SingleEntity>
-					);
-				})}
-			</EntitiesContainer>
-			<Pagination count={entitiesStore?.pagesCount} onChange={handleChange} />
-		</>
+		return (
+			<SingleEntity viewMode={viewMode} key={entity.id}>
+				<div>
+					<img src={entity.photo.url} alt="entity" />
+				</div>
+				<div>
+					<strong>{name}</strong>
+					<em>
+						{entity.address.suite}
+						{", "}
+						{entity.address.street}
+						{", "}
+						{entity.address.city}
+						{", "}
+					</em>
+				</div>
+			</SingleEntity>
+		);
+	};
+
+	return (
+		<EntitiesContainer>
+			<PaginationView<Entity> list={getEntities()} renderListElement={renderListElement} countPerPage={20} />
+		</EntitiesContainer>
 	);
 };
 

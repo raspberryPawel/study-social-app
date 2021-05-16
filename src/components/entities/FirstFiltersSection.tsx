@@ -5,7 +5,6 @@ import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordO
 import FilterListRoundedIcon from "@material-ui/icons/FilterListRounded";
 import ImportExportRoundedIcon from "@material-ui/icons/ImportExportRounded";
 import MoreHorizOutlinedIcon from "@material-ui/icons/MoreHorizOutlined";
-import SettingsEthernetRoundedIcon from "@material-ui/icons/SettingsEthernetRounded";
 import ShareRoundedIcon from "@material-ui/icons/ShareRounded";
 import React, {FC} from "react";
 import styled from "styled-components";
@@ -13,8 +12,13 @@ import {DropdownContainer} from "../../common/DropdownContainer";
 import {SectionSeparator} from "../../common/SectionSeparator";
 import {SeparatorVariant} from "../../consts/SeparatorVariant";
 import {AdvancedFiltersView} from "./AdvancedFiltersView";
+import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
+import UnfoldLessRoundedIcon from "@material-ui/icons/UnfoldLessRounded";
 
-interface IProps {}
+interface IProps {
+	changeFullScreen: () => void;
+	fullScreenMode: boolean;
+}
 
 export const EntitiesFiltersSectionView = styled.div`
 	display: flex;
@@ -46,7 +50,7 @@ export const EntitiesFiltersSectionView = styled.div`
 	}
 `;
 
-export const FirstFiltersSection: FC<IProps> = () => {
+export const FirstFiltersSection: FC<IProps> = ({changeFullScreen, fullScreenMode}) => {
 	const getButtonView = () => {
 		return (
 			<Button>
@@ -77,8 +81,8 @@ export const FirstFiltersSection: FC<IProps> = () => {
 
 			<SectionSeparator variant={SeparatorVariant.VERTICAL} />
 
-			<Button className={"expandButton"}>
-				<SettingsEthernetRoundedIcon />
+			<Button className={"expandButton"} onClick={changeFullScreen}>
+				{fullScreenMode ? <UnfoldLessRoundedIcon /> : <UnfoldMoreRoundedIcon />}
 			</Button>
 
 			<SectionSeparator variant={SeparatorVariant.VERTICAL} />

@@ -1,7 +1,6 @@
 import axios from "axios";
 import document from "../assets/icons/document.svg";
 import contract from "../assets/icons/document.svg";
-import examplePerson from "../assets/images/enxampleperson.png";
 import {EntitiesFiltersDefinitions} from "../consts/EntitiesFiltersDefinitions";
 import {Comment} from "../interfaces/Comment";
 import {LatestPublication} from "../interfaces/LatestPublication";
@@ -12,6 +11,7 @@ import {Work} from "../interfaces/Work";
 import {Workspace} from "../interfaces/Workspace";
 
 export const API_URL = "https://jsonplaceholder.cypress.io";
+export const IMAGES_API_URL = "https://picsum.photos/v2";
 
 // const OLD_API_URL = "https://jsonplaceholder.typicode.com";
 
@@ -28,8 +28,10 @@ export class MainPageApi {
 
 	public static getLoggedUser = async (): Promise<User> => {
 		const user = await axios.get(`${API_URL}/users?id=1`);
+		const photo = await MainPageApi.getPhotos(1);
+
 		const loggedUser = user.data[0];
-		loggedUser.imageUrl = examplePerson;
+		loggedUser.photo = photo[0];
 		loggedUser.company.role = "Partner";
 
 		return loggedUser;
@@ -40,9 +42,13 @@ export class MainPageApi {
 		return posts.data;
 	};
 
-	public static getPhotos = async (): Promise<Photo[]> => {
-		const photos = await axios.get(`${API_URL}/photos?albumId=1`);
-		return photos.data;
+	public static getPhotos = async (limit: number = 100): Promise<Photo[]> => {
+		const photos = await axios.get(`${IMAGES_API_URL}/list?limit=${limit}`);
+
+		return photos.data.map((photo: Photo) => ({
+			...photo,
+			url: photo.download_url,
+		}));
 	};
 
 	public static getResumeYourWorks = async (): Promise<Work[]> => {

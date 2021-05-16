@@ -10,8 +10,11 @@ import {MainSectionContent} from "./MainSectionContent";
 
 const RightSectionContainer = styled.div`
 	width: calc(100% - 250px);
+	max-width: 1100px;
 	height: calc(100vh - 60px);
 	box-sizing: border-box;
+
+	margin: 0 auto;
 	padding: 20px;
 
 	display: flex;

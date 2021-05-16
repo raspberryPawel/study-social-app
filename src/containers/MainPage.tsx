@@ -1,5 +1,5 @@
 import React, {Component, ReactElement} from "react";
-import {CustomScrollbar} from "../common/CustomScrollbar";
+import CustomScrollbar from "../common/CustomScrollbar";
 import {MainPageContent} from "../components/mainPage/MainPageContent";
 
 export class MainPage extends Component {

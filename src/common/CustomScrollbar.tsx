@@ -1,6 +1,5 @@
 import React, {Component, CSSProperties, ReactElement} from "react";
 import {Scrollbars} from "react-custom-scrollbars";
-// @ts-ignore @todo add types
 import {ReactHeight} from "react-height";
 
 interface IProps {
@@ -18,7 +17,7 @@ interface IState {
 	childrenHeight: number;
 }
 
-export class CustomScrollbar extends Component<IProps, IState> {
+class CustomScrollbar extends Component<IProps, IState> {
 	state = {
 		isFocused: false,
 		childrenHeight: 0,
@@ -95,3 +94,5 @@ export class CustomScrollbar extends Component<IProps, IState> {
 		);
 	}
 }
+
+export default CustomScrollbar;

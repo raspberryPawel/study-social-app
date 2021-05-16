@@ -1,6 +1,4 @@
-import {Button, InputAdornment, OutlinedInput} from "@material-ui/core";
-import ArrowDropDownOutlinedIcon from "@material-ui/icons/ArrowDropDownOutlined";
-import BlurOnRoundedIcon from "@material-ui/icons/BlurOnRounded";
+import {InputAdornment, OutlinedInput} from "@material-ui/core";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import {inject, observer} from "mobx-react";
 import React, {ChangeEvent, FC} from "react";
@@ -9,6 +7,7 @@ import {SectionSeparator} from "../../common/SectionSeparator";
 import {SeparatorVariant} from "../../consts/SeparatorVariant";
 import {EntitiesStore} from "../../stores/EntitiesStore";
 import {EntitiesFiltersSectionView} from "./FirstFiltersSection";
+import {FollowedButton} from "../../common/FollowedButton";
 
 interface IProps {
 	entitiesStore?: EntitiesStore;
@@ -40,9 +39,7 @@ export const SecondFiltersSectionClass: FC<IProps> = ({entitiesStore}) => {
 
 			<SectionSeparator variant={SeparatorVariant.VERTICAL} />
 
-			<Button variant="outlined">
-				<BlurOnRoundedIcon /> Followed <ArrowDropDownOutlinedIcon />
-			</Button>
+			<FollowedButton />
 		</EntitiesSecondFiltersSectionView>
 	);
 };

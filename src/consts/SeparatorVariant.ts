@@ -1,4 +1,4 @@
 export enum SeparatorVariant {
-	HORIZONTAL = "horizontal", //poziom
-	VERTICAL = "vertical", //pion
+	HORIZONTAL = "horizontal",
+	VERTICAL = "vertical",
 }
