@@ -40,6 +40,9 @@ export const RightSection: FC = () => (
 			<Route exact path="/">
 				<MainSectionContent />
 			</Route>
+			<Route exact path="/study-social-app">
+				<MainSectionContent />
+			</Route>
 			<Route component={NotFoundPage} />
 		</Switch>
 	</RightSectionContainer>
